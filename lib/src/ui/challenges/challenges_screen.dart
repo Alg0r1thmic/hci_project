@@ -49,7 +49,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       height: 40,
       decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(15)),
       child: Center(
-        child: Text(text),
+        child: Text(text,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
       ),
     );
   }
@@ -62,7 +62,11 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
 
   Widget _feeding() {
     return Column(
-      children: [Text('Exercices body')],
+      children: [
+        Column(
+          
+        )
+      ],
     );
   }
 }

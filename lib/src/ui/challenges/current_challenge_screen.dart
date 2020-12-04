@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/constants/fake_water_days.dart';
+import 'package:health_body_checking/src/ui/challenges/feeding_challenges_screen.dart';
+import 'package:health_body_checking/src/ui/challenges/widgets/feeding_challenge_container.dart';
 
 class CurrentChallengeScreen extends StatefulWidget {
   CurrentChallengeScreen({Key key}) : super(key: key);
@@ -13,12 +15,18 @@ class CurrentChallengeScreen extends StatefulWidget {
 
 class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
   Timer timer;
+  ScrollController _scrollController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Reto Actual'),
+          title: Text(
+            'Reto actual',
+            style: TextStyle(color: AppColors.WHITE),
+          ),
+          backgroundColor: AppColors.PRIMARY,
+          elevation: 0.0,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,6 +47,7 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
               height: 40,
             ),
             SingleChildScrollView(
+              controller: _scrollController,
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
@@ -100,10 +109,10 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
   }
 
   void _navigatePop() {
-    Navigator.pop(context,(){
-      setState(() {
-      });
-    });
+    Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (context) => new FeedingChallengesScreen()),
+    );
   }
 }
 

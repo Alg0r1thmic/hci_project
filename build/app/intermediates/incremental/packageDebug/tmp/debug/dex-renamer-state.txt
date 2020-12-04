@@ -1,4 +1,4 @@
-#Fri Dec 04 12:04:08 PET 2020
+#Fri Dec 04 12:37:55 PET 2020
 base.2=/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes2.dex
 base.1=/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex
 base.0=/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex

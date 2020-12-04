@@ -73,7 +73,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
           children: [
             FeedingChallengeContainer(
               contentText: 'Empesemos el habito de tomar agua',
-              imagePath: 'assets/images/no-image.jpg',
+              imagePath: 'assets/images/water-glass.png',
               inputFunction: () {
                 Navigator.pushNamed(context, Routes.feeding_challenges);
               },
@@ -83,7 +83,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
             ),
             FeedingChallengeContainer(
               contentText: 'Mantengamos el hábito de comer fruta',
-              imagePath: 'assets/images/no-image.jpg',
+              imagePath: 'assets/images/fruit.png',
               inputFunction: () {},
             ),
             SizedBox(

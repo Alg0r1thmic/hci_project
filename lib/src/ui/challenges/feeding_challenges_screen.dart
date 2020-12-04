@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/constants/fake_water_days.dart';
 import 'package:health_body_checking/src/core/routes/routes.dart';
 import 'package:health_body_checking/src/ui/challenges/widgets/start_challenge_container.dart';
@@ -7,10 +8,10 @@ class FeedingChallengesScreen extends StatefulWidget {
   FeedingChallengesScreen({Key key}) : super(key: key);
 
   @override
-  _FeedingChallengesScreenState createState() => _FeedingChallengesScreenState();
+  FeedingChallengesScreenState createState() => FeedingChallengesScreenState();
 }
 
-class _FeedingChallengesScreenState extends State<FeedingChallengesScreen> with WidgetsBindingObserver {
+class FeedingChallengesScreenState extends State<FeedingChallengesScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -26,7 +27,9 @@ class _FeedingChallengesScreenState extends State<FeedingChallengesScreen> with 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Agua'),
+        title: Text('Agua',style: TextStyle(color: AppColors.WHITE),),
+        backgroundColor: AppColors.PRIMARY,
+        elevation: 0.0,
       ),
       body: Column(
         children: [
@@ -51,7 +54,7 @@ class _FeedingChallengesScreenState extends State<FeedingChallengesScreen> with 
                 ):StartChallengeContainer(
                   amountText: '1 Vaso diario',
                   durationText: '1 Semana',
-                  imagePath: 'assets/images/check.png',
+                  imagePath: 'assets/images/check_1.png',
                   complete: true,
                   inputFunction: () {
                     Navigator.pushNamed(context, Routes.current_challenge);

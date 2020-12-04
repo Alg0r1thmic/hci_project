@@ -13,7 +13,7 @@ class NextOrBackButton extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(40), color: AppColors.SECONDARY),
-        child: Center(child: Icon(this.icon),),
+        child: Center(child: Icon(this.icon, color: Colors.white,),),
       ),
     );
   }

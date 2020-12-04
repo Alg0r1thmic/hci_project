@@ -14,13 +14,9 @@ class FormCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
-            offset: Offset(0.0,15.0),
-            blurRadius: 15.0
-          ),
-          BoxShadow(
-            color: Colors.black12,
-            offset: Offset(0.0,-10.0),
-            blurRadius: 10.0
+            blurRadius: 2.0,
+            spreadRadius: 0.0,
+            offset: Offset(2.0, 2.0), // shadow direction: bottom right
           )
         ]
       ),

@@ -3,24 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
 
-
-class QuestionTwoScreen extends StatefulWidget {
+class QuestionFourScreen extends StatefulWidget {
   final VoidCallback onGoToNextQuestion;
   final VoidCallback onGoToBackQuestion;
-  QuestionTwoScreen({Key key, @required this.onGoToBackQuestion, @required this.onGoToNextQuestion}) : super(key: key);
+  QuestionFourScreen({Key key, @required this.onGoToNextQuestion, @required this.onGoToBackQuestion}) : super(key: key);
   @override
-  _QuestionTwoScreenState createState() => _QuestionTwoScreenState();
+  _QuestionFourScreenState createState() => _QuestionFourScreenState();
 }
 
-class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
+class _QuestionFourScreenState extends State<QuestionFourScreen> {
 
-  int segmentedControlGroupValue = 0;
-  final Map<int, Widget> myTabs = const <int, Widget>{
-    0: Text("Nunca"),
-    1: Text("Mensual"),
-    2: Text("Semanal"),
-    3: Text("Diario"),
-  };
+  double _currentSliderValue = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +23,7 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
           child: Column(
             children: [
-              PaginationText(total: 5, actual: 2),
+              PaginationText(total: 5, actual: 4),
               Expanded(child: SizedBox(child: _content(),)),
               _questionsChangeButton(),
             ],
@@ -61,23 +54,26 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          child: Image.asset("assets/images/fastfood.png"),
+          child: Image.asset("assets/images/ejer.png"),
         ),
         Text(
-          "¿Con que frecuencia consumes comida rápida?",
+          "¿Cuántas veces a la semana realizas ejercicio? Al menos 15 min.",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20
           ),
         ),
-        CupertinoSlidingSegmentedControl(
-          children: myTabs,
-          groupValue: segmentedControlGroupValue,
-          onValueChanged: (value) {
+        Slider(
+          value: _currentSliderValue,
+          min: 0,
+          max: 8,
+          divisions: 7,
+          label: _currentSliderValue.round().toString(),
+          onChanged: (double value) {
             setState(() {
-              segmentedControlGroupValue = value;
+              _currentSliderValue = value;
             });
-          }
+          },
         )
       ],
     );

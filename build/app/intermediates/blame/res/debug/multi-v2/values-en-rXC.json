@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/serlog/Escritorio/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/a9bb833f638dbc7f5cd8bc7f2b260f34/core-1.2.0/res/values-en-rXC/values-en-rXC.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/serlog/Escritorio/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
+            "outputFile": "/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/da50badc198f58cf0c0e56fb80e52d40/jetified-play-services-basement-17.2.1/res/values-uk/values.xml",

@@ -12,11 +12,11 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->/home/serlog/Escritorio/health_body_checking/android/app/src/debug/AndroidManifest.xml:6:5-66
-14-->/home/serlog/Escritorio/health_body_checking/android/app/src/debug/AndroidManifest.xml:6:22-64
+14-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/debug/AndroidManifest.xml:6:5-66
+14-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/debug/AndroidManifest.xml:6:22-64
 15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
-15-->[:geolocator] /home/serlog/Escritorio/health_body_checking/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
-15-->[:geolocator] /home/serlog/Escritorio/health_body_checking/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
+15-->[:geolocator] /home/serlog/Escritorio/Raúl/health_body_checking/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+15-->[:geolocator] /home/serlog/Escritorio/Raúl/health_body_checking/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
 16    <!-- <uses-sdk android:minSdkVersion="14"/> -->
 17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 17-->[com.google.firebase:firebase-storage:19.2.0] /home/serlog/.gradle/caches/transforms-2/files-2.1/be3d6b0e07a885b9698a2004e3c67b29/firebase-storage-19.2.0/AndroidManifest.xml:26:5-79
@@ -35,30 +35,30 @@
 25         FlutterApplication and put your custom class here.
 26    -->
 27    <application
-27-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:8:5-46:19
+27-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:8:5-46:19
 28        android:name="io.flutter.app.FlutterApplication"
-28-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:9:9-57
+28-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:9:9-57
 29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 29-->[androidx.core:core:1.2.0] /home/serlog/.gradle/caches/transforms-2/files-2.1/a9bb833f638dbc7f5cd8bc7f2b260f34/core-1.2.0/AndroidManifest.xml:24:18-86
 30        android:debuggable="true"
 31        android:icon="@mipmap/ic_launcher"
-31-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:11:9-43
+31-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:11:9-43
 32        android:label="health_body_checking" >
-32-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:10:9-45
+32-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:10:9-45
 33        <activity
-33-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:12:9-40:20
+33-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:12:9-40:20
 34            android:name="csunsa.win.health_body_checking.MainActivity"
-34-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:13:13-41
+34-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:13:13-41
 35            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-35-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:16:13-163
+35-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:16:13-163
 36            android:hardwareAccelerated="true"
-36-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:17:13-47
+36-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:17:13-47
 37            android:launchMode="singleTop"
-37-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:14:13-43
+37-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:14:13-43
 38            android:theme="@style/LaunchTheme"
-38-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:15:13-47
+38-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:15:13-47
 39            android:windowSoftInputMode="adjustResize" >
-39-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:18:13-55
+39-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:18:13-55
 40
 41            <!--
 42                 Specifies an Android theme to apply to this Activity as soon as
@@ -67,11 +67,11 @@
 45                 to determine the Window background behind the Flutter UI.
 46            -->
 47            <meta-data
-47-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:23:13-26:17
+47-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:23:13-26:17
 48                android:name="io.flutter.embedding.android.NormalTheme"
-48-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:24:15-70
+48-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:24:15-70
 49                android:resource="@style/NormalTheme" />
-49-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:25:15-52
+49-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:25:15-52
 50            <!--
 51                 Displays an Android View that continues showing the launch screen
 52                 Drawable until Flutter paints its first frame, then this splash
@@ -80,21 +80,21 @@
 55                 Flutter's first frame.
 56            -->
 57            <meta-data
-57-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:32:13-35:17
+57-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:32:13-35:17
 58                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-58-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:33:15-79
+58-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:33:15-79
 59                android:resource="@drawable/launch_background" />
-59-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:34:15-61
+59-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:34:15-61
 60
 61            <intent-filter>
-61-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:36:13-39:29
+61-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:36:13-39:29
 62                <action android:name="android.intent.action.MAIN" />
-62-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:37:17-68
-62-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:37:25-66
+62-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:37:17-68
+62-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:37:25-66
 63
 64                <category android:name="android.intent.category.LAUNCHER" />
-64-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:38:17-76
-64-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:38:27-74
+64-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:38:17-76
+64-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:38:27-74
 65            </intent-filter>
 66        </activity>
 67        <!--
@@ -102,44 +102,44 @@
 69             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
 70        -->
 71        <meta-data
-71-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:43:9-45:33
+71-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:43:9-45:33
 72            android:name="flutterEmbedding"
-72-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:44:13-44
+72-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:44:13-44
 73            android:value="2" />
-73-->/home/serlog/Escritorio/health_body_checking/android/app/src/main/AndroidManifest.xml:45:13-30
+73-->/home/serlog/Escritorio/Raúl/health_body_checking/android/app/src/main/AndroidManifest.xml:45:13-30
 74
 75        <service
-75-->[:firebase_storage] /home/serlog/Escritorio/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
+75-->[:firebase_storage] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
 76            android:name="com.google.firebase.components.ComponentDiscoveryService"
-76-->[:firebase_storage] /home/serlog/Escritorio/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
+76-->[:firebase_storage] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
 77            android:directBootAware="true"
 77-->[com.google.firebase:firebase-common:19.4.0] /home/serlog/.gradle/caches/transforms-2/files-2.1/b8ce949bea4a04ed702601db0a0a3880/jetified-firebase-common-19.4.0/AndroidManifest.xml:35:13-43
 78            android:exported="false" >
 78-->[com.google.firebase:firebase-storage:19.2.0] /home/serlog/.gradle/caches/transforms-2/files-2.1/be3d6b0e07a885b9698a2004e3c67b29/firebase-storage-19.2.0/AndroidManifest.xml:32:13-37
 79            <meta-data
-79-->[:firebase_storage] /home/serlog/Escritorio/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+79-->[:firebase_storage] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
 80                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
-80-->[:firebase_storage] /home/serlog/Escritorio/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-126
+80-->[:firebase_storage] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-126
 81                android:value="com.google.firebase.components.ComponentRegistrar" />
-81-->[:firebase_storage] /home/serlog/Escritorio/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+81-->[:firebase_storage] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
 82            <meta-data
-82-->[:cloud_firestore] /home/serlog/Escritorio/health_body_checking/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+82-->[:cloud_firestore] /home/serlog/Escritorio/Raúl/health_body_checking/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
 83                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
-83-->[:cloud_firestore] /home/serlog/Escritorio/health_body_checking/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-133
+83-->[:cloud_firestore] /home/serlog/Escritorio/Raúl/health_body_checking/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-133
 84                android:value="com.google.firebase.components.ComponentRegistrar" />
-84-->[:cloud_firestore] /home/serlog/Escritorio/health_body_checking/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+84-->[:cloud_firestore] /home/serlog/Escritorio/Raúl/health_body_checking/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
 85            <meta-data
-85-->[:firebase_auth] /home/serlog/Escritorio/health_body_checking/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+85-->[:firebase_auth] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
 86                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
-86-->[:firebase_auth] /home/serlog/Escritorio/health_body_checking/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-122
+86-->[:firebase_auth] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-122
 87                android:value="com.google.firebase.components.ComponentRegistrar" />
-87-->[:firebase_auth] /home/serlog/Escritorio/health_body_checking/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+87-->[:firebase_auth] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
 88            <meta-data
-88-->[:firebase_core] /home/serlog/Escritorio/health_body_checking/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+88-->[:firebase_core] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
 89                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
-89-->[:firebase_core] /home/serlog/Escritorio/health_body_checking/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-123
+89-->[:firebase_core] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-123
 90                android:value="com.google.firebase.components.ComponentRegistrar" />
-90-->[:firebase_core] /home/serlog/Escritorio/health_body_checking/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+90-->[:firebase_core] /home/serlog/Escritorio/Raúl/health_body_checking/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
 91            <meta-data
 91-->[com.google.firebase:firebase-storage:19.2.0] /home/serlog/.gradle/caches/transforms-2/files-2.1/be3d6b0e07a885b9698a2004e3c67b29/firebase-storage-19.2.0/AndroidManifest.xml:33:13-35:85
 92                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"

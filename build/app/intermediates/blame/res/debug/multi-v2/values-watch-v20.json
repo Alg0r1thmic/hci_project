@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/serlog/Escritorio/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
                     "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/252e688c77ade5a77a17857328dc84f0/jetified-play-services-auth-16.0.1/res/values-watch-v20/values.xml",

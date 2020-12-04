@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/serlog/Escritorio/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
+            "outputFile": "/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
             "map": [
                 {
                     "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/c7bf2bf666df0d106e3c35a59a3c937c/play-services-base-17.2.1/res/values-km/values.xml",

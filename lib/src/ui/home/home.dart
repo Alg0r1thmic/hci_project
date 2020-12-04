@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
               ? 'Monitor'
               : _currentTab == 1
                   ? 'Retos'
-                  : 'Perfil', style: TextStyle(color: Colors.black),),
+                  : 'Perfil', style: TextStyle(color: Colors.black,fontSize: 22),),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -60,8 +60,8 @@ class _HomeState extends State<Home> {
         });
       },
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Monitor'),
-        BottomNavigationBarItem(icon: Icon(Icons.ac_unit),label: 'Retos'),
+        BottomNavigationBarItem(icon: Icon(Icons.broken_image), label: 'Monitor'),
+        BottomNavigationBarItem(icon: Icon(Icons.wine_bar),label: 'Retos'),
         BottomNavigationBarItem(icon: Icon(Icons.person_pin),label: 'Perfil'),
       ],
     );

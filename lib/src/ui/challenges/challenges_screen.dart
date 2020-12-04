@@ -31,7 +31,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
   Widget _tabBarHeader() {
     return TabBar(
       indicatorColor: Colors.transparent,
-      tabs: [_tabBarHeaderTextContainer(text: 'Ejercicios', color: _selectedColor), _tabBarHeaderTextContainer(text: 'Alimentación', color: _unSelectedColor)],
+      tabs: [_tabBarHeaderTextContainer(text: 'Ejercicios', color: _selectedColor,), _tabBarHeaderTextContainer(text: 'Alimentación', color: _unSelectedColor)],
       onTap: (index) {
         if (index == 0) {
           _selectedColor = AppColors.PRIMARY_DARK;
@@ -47,13 +47,13 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
 
   Widget _tabBarHeaderTextContainer({String text, Color color}) {
     return Container(
-      width: 120,
-      height: 40,
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(15)),
+      width: 160,
+      height: 50,
+      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
       child: Center(
         child: Text(
           text,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );
@@ -61,7 +61,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
 
   Widget _exercises() {
     return Column(
-      children: [Text('Exercices body')],
+      children: [Text('Ventana de ejercicios')],
     );
   }
 

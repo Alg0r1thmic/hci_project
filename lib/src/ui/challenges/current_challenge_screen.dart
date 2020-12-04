@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/constants/fake_water_days.dart';
 import 'package:health_body_checking/src/ui/challenges/feeding_challenges_screen.dart';
-import 'package:health_body_checking/src/ui/challenges/widgets/feeding_challenge_container.dart';
 
 class CurrentChallengeScreen extends StatefulWidget {
   CurrentChallengeScreen({Key key}) : super(key: key);
@@ -15,7 +14,14 @@ class CurrentChallengeScreen extends StatefulWidget {
 
 class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
   Timer timer;
-  ScrollController _scrollController;
+  ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    timer=Timer(Duration(milliseconds: 500), () => _moveToCenter());
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +81,14 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
             ),
             Text(
               'Lograste terminar el reto hoy?',
-              style: TextStyle(color: AppColors.BLACK, fontSize: 20),
+              style: TextStyle(color: AppColors.BLACK,fontWeight: FontWeight.bold, fontSize: 20),
             ),
             SizedBox(
               height: 40,
             ),
             InkWell(
               onTap: () {
+                _moveToCenter();
                 if (FakeWaterDays().currentDay < 7) {
                   FakeWaterDays().currentDayArray[FakeWaterDays().currentDay] = false;
                   FakeWaterDays().currentDay++;
@@ -93,16 +100,18 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
                   }
                 }
               },
-              child: Container(
-                width: 140,
-                height: 60,
-                decoration: BoxDecoration(color: AppColors.SECONDARY, borderRadius: BorderRadius.circular(25)),
-                child: Center(
-                    child: Text(
-                  'MARCAR',
-                  style: TextStyle(color: AppColors.WHITE, fontSize: 20),
-                )),
-              ),
+              child: (FakeWaterDays().currentDay < 7)
+                  ? Container(
+                      width: 140,
+                      height: 50,
+                      decoration: BoxDecoration(color: AppColors.SECONDARY, borderRadius: BorderRadius.circular(25)),
+                      child: Center(
+                          child: Text(
+                        'MARCAR',
+                        style: TextStyle(color: AppColors.WHITE, fontSize: 20),
+                      )),
+                    )
+                  : SizedBox(),
             )
           ],
         ));
@@ -113,6 +122,11 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
       context,
       new MaterialPageRoute(builder: (context) => new FeedingChallengesScreen()),
     );
+    timer?.cancel();
+  }
+
+  void _moveToCenter() {
+    _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 }
 
@@ -148,14 +162,14 @@ class DayContainerCircle extends StatelessWidget {
               height: 80,
               decoration: BoxDecoration(color: (fill) ? AppColors.PRIMARY : AppColors.PRIMARY_LIGHT, borderRadius: BorderRadius.circular(80), border: Border.all(color: AppColors.PRIMARY)),
               child: Center(
-                child: Text(inputText),
+                child: Text(inputText,style: TextStyle(color: AppColors.WHITE),),
               ),
             ),
-            (currentDay) ? Icon(Icons.arrow_drop_up) : SizedBox(),
-            (currentDay) ? Text('Hoy') : SizedBox()
+            (currentDay) ? Icon(Icons.arrow_drop_up,color: AppColors.PRIMARY,) : SizedBox(),
+            (currentDay) ? Text('Hoy',style: TextStyle(color: AppColors.BLACK,fontWeight: FontWeight.bold),) : SizedBox()
           ],
         ),
-      ],
+      ],  
     );
   }
 }

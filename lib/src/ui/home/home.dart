@@ -34,11 +34,13 @@ class _HomeState extends State<Home> {
     return Scaffold(
       //backgroundColor: AppColors.dodgerBlue,
       appBar: AppBar(
-        title: Text(_currentTab == 0
-            ? 'Monitor'
-            : _currentTab == 1
-                ? 'Retos'
-                : 'Perfil', style: TextStyle(color: Colors.black),),
+        title: Center(
+                  child: Text(_currentTab == 0
+              ? 'Monitor'
+              : _currentTab == 1
+                  ? 'Retos'
+                  : 'Perfil', style: TextStyle(color: Colors.black),),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),

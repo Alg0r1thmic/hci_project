@@ -57,9 +57,9 @@ class MyApp extends StatelessWidget {
                   routes: Routes.routes,
                   //theme: AppThemes.lightTheme,
                   //darkTheme: AppThemes.darkTheme,
-                  themeMode: themeProviderRef.isDarkModeOn
-                      ? ThemeMode.dark
-                      : ThemeMode.light,
+                  // themeMode: themeProviderRef.isDarkModeOn
+                  //     ? ThemeMode.dark
+                  //     : ThemeMode.light,
                   home: Consumer<AuthProvider>(
                     builder: (_, authProviderRef, __) {
                       if (userSnapshot.connectionState ==

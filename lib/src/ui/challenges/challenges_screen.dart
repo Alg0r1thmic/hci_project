@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
+import 'package:health_body_checking/src/core/routes/routes.dart';
 import 'package:health_body_checking/src/ui/challenges/widgets/feeding_challenge_container.dart';
 
 class ChallengesScreen extends StatefulWidget {
@@ -66,28 +67,36 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
 
   Widget _feeding() {
     return SingleChildScrollView(
-          child: Padding(
+      child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             FeedingChallengeContainer(
               contentText: 'Empesemos el habito de tomar agua',
               imagePath: 'assets/images/no-image.jpg',
-              inputFunction: () {},
+              inputFunction: () {
+                Navigator.pushNamed(context, Routes.feeding_challenges);
+              },
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             FeedingChallengeContainer(
               contentText: 'Mantengamos el hábito de comer fruta',
               imagePath: 'assets/images/no-image.jpg',
               inputFunction: () {},
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             FeedingChallengeContainer(
               contentText: 'Empesemos el hábito de comer',
               imagePath: 'assets/images/no-image.jpg',
               inputFunction: () {},
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             FeedingChallengeContainer(
               contentText: 'Empesemos el habito de tomar agua',
               imagePath: 'assets/images/no-image.jpg',

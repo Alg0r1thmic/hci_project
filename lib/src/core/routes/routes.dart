@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:health_body_checking/src/ui/challenges/feeding_challenges_screen.dart';
+import 'package:health_body_checking/src/ui/challenges/widgets/feeding_challenge_container.dart';
 
 import '../../ui/auth/login_screen.dart';
 import '../../ui/home/home.dart';
@@ -14,10 +16,11 @@ class Routes {
   static const String nearby='/nearby';
   static const String profile='/profile';
   static const String wallet='/wallet';
-
+  static const String feeding_challenges='/feeding_callenges';
   static final routes=<String,WidgetBuilder>{
     login:(BuildContext context)=>LoginScreen(),
     home:(BuildContext context)=>Home(),
-    profile:(BuildContext context)=>ProfileScreen()
+    profile:(BuildContext context)=>ProfileScreen(),
+    feeding_challenges:(BuildContext context)=>FeedingChallengesScreen()
   }; 
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:health_body_checking/src/ui/questions/questions_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'app_localizations.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
                       if (userSnapshot.connectionState ==
                           ConnectionState.active) {
                         return userSnapshot.hasData
-                            ? Home()
+                            ? QuestionsScreen()
                             : LoginScreen();
                       }
                       return Material(

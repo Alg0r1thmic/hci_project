@@ -10,7 +10,7 @@ class StartChallengeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 40, top: 60, bottom: 40),
+      margin: EdgeInsets.only(left: 20, top: 60, bottom: 40,right: 20),
       padding: EdgeInsets.all(20),
       width: 350,
       height: 300,
@@ -80,7 +80,6 @@ class StartChallengeContainer extends StatelessWidget {
         ),
         child: Center(child: Text('EMPEZAR',style: TextStyle(color: AppColors.WHITE),)),
       ),
-    
     );
   }
 }

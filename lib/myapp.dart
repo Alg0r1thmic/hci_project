@@ -11,7 +11,6 @@ import 'src/providers/auth_provider.dart';
 import 'src/providers/languaje_provider.dart';
 import 'src/providers/theme_provider.dart';
 import 'src/ui/auth/login_screen.dart';
-import 'src/ui/home/home.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);

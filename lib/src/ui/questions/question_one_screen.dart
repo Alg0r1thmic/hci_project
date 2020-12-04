@@ -3,8 +3,7 @@ import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_butto
 
 class QuestionOneScren extends StatefulWidget {
   final VoidCallback onGoToNextQuestion;
-  final VoidCallback onGoToBackQuestion;
-  QuestionOneScren({Key key, @required this.onGoToNextQuestion, @required this.onGoToBackQuestion}) : super(key: key);
+  QuestionOneScren({Key key, @required this.onGoToNextQuestion,}) : super(key: key);
   @override
   _QuestionOneScrenState createState() => _QuestionOneScrenState();
 }
@@ -28,12 +27,8 @@ class _QuestionOneScrenState extends State<QuestionOneScren> {
 
   Widget _questionsChangeButton() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        NextOrBackButton(
-          inputFunction: widget.onGoToBackQuestion,
-          icon: Icons.arrow_back,
-        ),
         NextOrBackButton(
           inputFunction: widget.onGoToNextQuestion,
           icon: Icons.arrow_forward,

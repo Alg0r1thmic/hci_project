@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/ui/questions/question_one_screen.dart';
+import 'package:health_body_checking/src/ui/questions/question_three_screen..dart';
 import 'package:health_body_checking/src/ui/questions/question_two_screen.dart';
 
 class QuestionIndex {
@@ -7,6 +8,7 @@ class QuestionIndex {
   static const int QUESTION_ONE = 0;
   static const int QUESTION_TWO = 1;
   static const int QUESTION_THREE = 2;
+  
 }
 
 class QuestionsScreen extends StatefulWidget {
@@ -34,9 +36,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       controller: _pageController,
       children: <Widget>[
         QuestionOneScren(
-          onGoToBackQuestion: () {
-            _switchForm(QuestionIndex.QUESTION_ONE);
-          },
           onGoToNextQuestion: () {
             _switchForm(QuestionIndex.QUESTION_TWO);
           },
@@ -47,6 +46,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           },
           onGoToNextQuestion: () {
             _switchForm(QuestionIndex.QUESTION_THREE);
+          },
+        ),
+        QuestionThreeScreen(
+          onGoToBackQuestion: () {
+            _switchForm(QuestionIndex.QUESTION_ONE);
           },
         )
       ],

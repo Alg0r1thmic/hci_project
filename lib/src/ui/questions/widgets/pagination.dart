@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
 
 class PaginationText extends StatelessWidget {
   final int total;

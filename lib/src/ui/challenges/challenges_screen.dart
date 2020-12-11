@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/core/routes/routes.dart';
 import 'package:health_body_checking/src/ui/challenges/widgets/feeding_challenge_container.dart';
+import 'package:value_animation_progress/value_animation_progress .dart';
 
 class ChallengesScreen extends StatefulWidget {
   ChallengesScreen({Key key}) : super(key: key);
@@ -12,6 +13,8 @@ class ChallengesScreen extends StatefulWidget {
 
 class _ChallengesScreenState extends State<ChallengesScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  double value = 90.0;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -53,7 +56,24 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
 
   Widget _exercises() {
     return Column(
-      children: [Text('Exercices body')],
+      children: [
+         Expanded(
+      child: ValueAnimationProgress(
+        value: value,
+        textSize: 30,
+        duration: Duration(seconds: 3),
+        textColor: Colors.white,
+        cardHeight: 170,
+        cardWidth: 170,
+        progressRadius: 120,
+        progressStrokeWidth: 20,
+        textBackGroundColor: Colors.blue,
+        gradientCircularProgressColorOne: AppColors.PRIMARY,
+        gradientCircularProgressColorTwo: AppColors.PRIMARY,
+        gradientCircularProgressColorThree: AppColors.PRIMARY,
+      ),
+         ),
+      ],
     );
   }
 
@@ -75,7 +95,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
             ),
             FeedingChallengeContainer(
               contentText: 'Mantengamos el hábito de comer fruta',
-              imagePath: 'assets/images/no-image.jpg',
+              imagePath: 'assets/images/fruit.png',
               inputFunction: () {},
             ),
             SizedBox(

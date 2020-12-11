@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
+import 'package:health_body_checking/src/services/temperature_service.dart';
 import 'package:provider/provider.dart';
 
 import 'flavor.dart';
@@ -29,6 +31,9 @@ void main() {
           ChangeNotifierProvider<LanguageProvider>(
             create: (context) => LanguageProvider(),
           ),
+          Provider<TemperatureService>(create: (_) =>TemperatureService()),
+          Provider<OxygenSaturationService>(create: (_) =>OxygenSaturationService()),
+
         ],
         child: MyApp(
           //databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/constants/app_colors.dart';
 
 import '../challenges/challenges_screen.dart';
 import '../monitor/monitor_screen.dart';
@@ -39,10 +40,11 @@ class _HomeState extends State<Home> {
               ? 'Monitor'
               : _currentTab == 1
                   ? 'Retos'
-                  : 'Perfil', style: TextStyle(color: Colors.black),),
+                  : 'Perfil',style: TextStyle(color: AppColors.BLACK),),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
+        backgroundColor:AppColors.WHITE,
+        elevation: 0.6,
+
       ),
       body: _currentScreem,
       bottomNavigationBar: _bottonNavigationBar(),
@@ -60,8 +62,8 @@ class _HomeState extends State<Home> {
         });
       },
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Monitor'),
-        BottomNavigationBarItem(icon: Icon(Icons.ac_unit),label: 'Retos'),
+        BottomNavigationBarItem(icon: Icon(Icons.broken_image), label: 'Monitor'),
+        BottomNavigationBarItem(icon: Icon(Icons.wine_bar),label: 'Retos'),
         BottomNavigationBarItem(icon: Icon(Icons.person_pin),label: 'Perfil'),
       ],
     );

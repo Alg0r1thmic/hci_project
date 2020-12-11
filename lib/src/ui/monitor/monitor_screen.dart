@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/models/sensor_model.dart';
 import 'package:health_body_checking/src/ui/monitor/widgets/sensor_card.dart';
+import '../../core/routes/routes.dart';
 
 class MonitorScreen extends StatefulWidget {
   MonitorScreen({Key key}) : super(key: key);
@@ -87,7 +89,16 @@ class _MonitorScreenState extends State<MonitorScreen> {
 
   Widget _riskMap() {
     return Column(
-
+    return Scaffold(
+      body: Column(
+        children: [
+          MaterialButton(
+            child: Text('Click!'),
+            onPressed: () {
+            Navigator.of(context).pushNamed(Routes.data_visualization);
+          }),
+        ],
+      ),
     );
   }
 }

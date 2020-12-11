@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:health_body_checking/src/constants/app_font_family.dart';
 import 'package:health_body_checking/src/ui/questions/questions_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -55,7 +56,15 @@ class MyApp extends StatelessWidget {
                   },
                   title: 'Health-Body-Checker',
                   routes: Routes.routes,
-                  //theme: AppThemes.lightTheme,
+                  theme: ThemeData(
+                    visualDensity: VisualDensity.adaptivePlatformDensity,
+                    //primarySwatch: Colors.grey,
+                    //primaryColor:  Colors.white,
+                    scaffoldBackgroundColor: Color(0xFFEFEFEF), 
+                    brightness: Brightness.light ,
+                    backgroundColor: Color(0xFF028F96) ,
+                    fontFamily: AppFontFamily.POPPINS_MEDIUM,
+                  ),
                   //darkTheme: AppThemes.darkTheme,
                   // themeMode: themeProviderRef.isDarkModeOn
                   //     ? ThemeMode.dark

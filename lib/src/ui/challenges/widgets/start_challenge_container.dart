@@ -5,17 +5,19 @@ class StartChallengeContainer extends StatelessWidget {
   final String amountText;
   final String durationText;
   final VoidCallback inputFunction;
-  const StartChallengeContainer({Key key, @required this.amountText, @required this.durationText, this.inputFunction}) : super(key: key);
+  final String imagePath;
+  final bool complete;
+  const StartChallengeContainer({Key key, @required this.amountText, @required this.durationText, this.inputFunction, this.imagePath, this.complete=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20, top: 60, bottom: 40,right: 20),
+      margin: EdgeInsets.only(left: 20,  bottom: 40, right: 20),
       padding: EdgeInsets.all(20),
-      width: 350,
+      width: 320,
       height: 300,
       decoration: BoxDecoration(
-        color: AppColors.PRIMARY,
+        color: (complete==false)?AppColors.PRIMARY:AppColors.PRIMARY_DARK,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -24,15 +26,19 @@ class StartChallengeContainer extends StatelessWidget {
         children: [
           Center(
               child: Image.asset(
-            'assets/images/no-image.jpg',
-            width: 100,
-            height: 100,
+            imagePath,
+            width: 80,
+            height: 80,
+            color: (complete==false)?AppColors.WHITE:AppColors.WHITE,
           )),
           SizedBox(
             height: 20,
           ),
-          Text(
+          (complete==false)? Text(
             'Empieza un nuevo reto',
+            style: TextStyle(color: AppColors.WHITE, fontSize: 18),
+          ):Text(
+            'Terminaste este reto',
             style: TextStyle(color: AppColors.WHITE, fontSize: 18),
           ),
           SizedBox(
@@ -42,7 +48,7 @@ class StartChallengeContainer extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          _startButton()
+          (complete==false)?_startButton():SizedBox()
         ],
       ),
     );
@@ -58,11 +64,17 @@ class StartChallengeContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Duracion: $durationText',style: TextStyle(color: AppColors.WHITE),),
+          Text(
+            'Duracion: $durationText',
+            style: TextStyle(color: AppColors.WHITE),
+          ),
           SizedBox(
             height: 10,
           ),
-          Text('Cantidad: $amountText',style: TextStyle(color: AppColors.WHITE),)
+          Text(
+            'Cantidad: $amountText',
+            style: TextStyle(color: AppColors.WHITE),
+          )
         ],
       ),
     );
@@ -74,11 +86,12 @@ class StartChallengeContainer extends StatelessWidget {
       child: Container(
         width: 120,
         height: 40,
-        decoration: BoxDecoration(
-          color: AppColors.SECONDARY,
-          borderRadius: BorderRadius.circular(15)
-        ),
-        child: Center(child: Text('EMPEZAR',style: TextStyle(color: AppColors.WHITE),)),
+        decoration: BoxDecoration(color: AppColors.SECONDARY, borderRadius: BorderRadius.circular(15)),
+        child: Center(
+            child: Text(
+          'EMPEZAR',
+          style: TextStyle(color: AppColors.WHITE),
+        )),
       ),
     );
   }

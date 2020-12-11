@@ -13,27 +13,30 @@ class FeedingChallengeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(10),
       width: double.infinity,
-      height: 200,
+      height: 180,
       decoration: BoxDecoration(color: AppColors.WHITE, borderRadius: BorderRadius.circular(10), 
-      boxShadow: [BoxShadow(color: Colors.black12, offset: Offset(0.0, 15.0), blurRadius: 15.0)]),
+      boxShadow: [
+          BoxShadow(color: Colors.black12, offset: Offset(3, 4.0), blurRadius: 0.9)
+        ]
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 200,
-            child: Text(contentText,style: TextStyle(fontSize: 22),textAlign: TextAlign.center,)),
+            child: Text(contentText,style: TextStyle(fontSize: 20),textAlign: TextAlign.center,)),
           Expanded(child: SizedBox()),
           Column(
             children: [
               SizedBox(height: 10,),
-              Image.asset(imagePath,width: 100,height: 100,),
+              Image.asset(imagePath,width: 80,height: 80,),
               SizedBox(height: 10,),
               InkWell(
                 onTap: inputFunction,
                 child: Container(
-                  width: 120,
+                  width: 90,
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),

@@ -16,10 +16,11 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
 
   int segmentedControlGroupValue = 0;
   final Map<int, Widget> myTabs = const <int, Widget>{
-    0: Text("Nunca"),
-    1: Text("Mensual"),
-    2: Text("Semanal"),
-    3: Text("Diario"),
+    0: Text("1 al mes\no\nnunca", textAlign: TextAlign.center),
+    //1: Text("1 vez cada 2 semanas", textAlign: TextAlign.center),
+    1: Text("1 vez\ncada\nsemana", textAlign: TextAlign.center),
+    2: Text("3-4 veces\ncada\nsemana", textAlign: TextAlign.center),
+    3: Text("1 vez\ncada\ndia", textAlign: TextAlign.center),
   };
 
   @override
@@ -27,7 +28,7 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
     return Scaffold(
       body:SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: Column(
             children: [
               PaginationText(total: 5, actual: 2),
@@ -63,13 +64,20 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
         Container(
           child: Image.asset("assets/images/fastfood.png"),
         ),
-        Text(
-          "¿Con que frecuencia consumes comida rápida?",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20
+
+
+        RichText(
+          text:
+          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+            children: <TextSpan>[
+              TextSpan(text: '¿Con que frecuencia consumes ', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: 'comida rapida?', style: TextStyle(fontWeight: FontWeight.bold)),
+//              TextSpan(text: 'tomas al dia? ', style: TextStyle(fontWeight: FontWeight.normal)),
+            ],
           ),
+          textAlign: TextAlign.center,
         ),
+
         CupertinoSlidingSegmentedControl(
           children: myTabs,
           groupValue: segmentedControlGroupValue,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class QuestionOneScren extends StatefulWidget {
   final VoidCallback onGoToNextQuestion;
@@ -10,7 +12,7 @@ class QuestionOneScren extends StatefulWidget {
 }
 
 class _QuestionOneScrenState extends State<QuestionOneScren> {
-  double _currentSliderValue = 1;
+  double _currentSliderValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +51,29 @@ class _QuestionOneScrenState extends State<QuestionOneScren> {
         Container(
           child: Image.asset("assets/images/glass.png"),
         ),
+
         Text(
-          "¿Cuántos vasos de agua natural consumes a diario?",
+          _currentSliderValue.round().toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20
+              fontSize: 40,
+              fontWeight: FontWeight.bold
           ),
         ),
+
+
+        RichText(
+          text:
+            TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+              children: <TextSpan>[
+                TextSpan(text: '¿Cuantos ', style: TextStyle(fontWeight: FontWeight.normal)),
+                TextSpan(text: 'vasos de agua ', style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: 'tomas al dia? ', style: TextStyle(fontWeight: FontWeight.normal)),
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),
+/*
         Slider(
           value: _currentSliderValue,
           min: 0,
@@ -67,7 +85,22 @@ class _QuestionOneScrenState extends State<QuestionOneScren> {
               _currentSliderValue = value;
             });
           },
+        ),
+*/
+
+        SfSlider(
+          min: 0.0,
+          max: 8.0,
+          value: _currentSliderValue,
+          interval: 1,
+          showLabels: true,
+          onChanged: (dynamic value) {
+            setState(() {
+              _currentSliderValue = value;
+          });
+          },
         )
+
       ],
     );
   }

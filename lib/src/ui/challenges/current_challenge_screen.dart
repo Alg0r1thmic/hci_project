@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/constants/fake_water_days.dart';
+import 'package:health_body_checking/src/core/routes/routes.dart';
 import 'package:health_body_checking/src/ui/challenges/feeding_challenges_screen.dart';
 
 class CurrentChallengeScreen extends StatefulWidget {
@@ -19,9 +20,8 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
   @override
   void initState() {
     super.initState();
-    timer=Timer(Duration(milliseconds: 500), () => _moveToCenter());
+    timer = Timer(Duration(milliseconds: 500), () => _moveToCenter());
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,16 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
         appBar: AppBar(
           title: Text(
             'Reto actual',
-            style: TextStyle(color: AppColors.WHITE),
+            style: TextStyle(color: AppColors.BLACK),
           ),
-          backgroundColor: AppColors.PRIMARY,
-          elevation: 0.0,
+          backgroundColor: AppColors.WHITE,
+          elevation: 0.6,
+          leading: MaterialButton(onPressed: () {
+            Navigator.of(context).pop();
+
+          },
+          child: Icon(Icons.arrow_back,color: AppColors.BLACK,),
+          ),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,13 +47,13 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
             (FakeWaterDays().currentDay == 6)
                 ? Image.asset(
                     'assets/images/trophy_color.png',
-                    width: 200,
-                    height: 200,
+                    width: 100,
+                    height: 100,
                   )
                 : Image.asset(
                     'assets/images/trophy.png',
-                    width: 200,
-                    height: 200,
+                    width: 100,
+                    height: 100,
                   ),
             SizedBox(
               height: 40,
@@ -79,10 +85,12 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
             SizedBox(
               height: 40,
             ),
-            Text(
-              'Lograste terminar el reto hoy?',
-              style: TextStyle(color: AppColors.BLACK,fontWeight: FontWeight.bold, fontSize: 20),
-            ),
+            (FakeWaterDays().currentDay < 6)
+                ? Text(
+                    'Lograste terminar el reto hoy?',
+                    style: TextStyle(color: AppColors.BLACK, fontWeight: FontWeight.bold, fontSize: 20),
+                  )
+                : SizedBox(),
             SizedBox(
               height: 40,
             ),
@@ -100,7 +108,7 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
                   }
                 }
               },
-              child: (FakeWaterDays().currentDay < 7)
+              child: (FakeWaterDays().currentDay < 6)
                   ? Container(
                       width: 140,
                       height: 50,
@@ -118,15 +126,12 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
   }
 
   void _navigatePop() {
-    Navigator.push(
-      context,
-      new MaterialPageRoute(builder: (context) => new FeedingChallengesScreen()),
-    );
+    Navigator.popAndPushNamed(context, Routes.feeding_challenges);
     timer?.cancel();
   }
 
   void _moveToCenter() {
-    _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+    _scrollController.animateTo(200, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 }
 
@@ -162,14 +167,27 @@ class DayContainerCircle extends StatelessWidget {
               height: 80,
               decoration: BoxDecoration(color: (fill) ? AppColors.PRIMARY : AppColors.PRIMARY_LIGHT, borderRadius: BorderRadius.circular(80), border: Border.all(color: AppColors.PRIMARY)),
               child: Center(
-                child: Text(inputText,style: TextStyle(color: AppColors.WHITE),),
+                child: Text(
+                  inputText,
+                  style: TextStyle(color: AppColors.WHITE),
+                ),
               ),
             ),
-            (currentDay) ? Icon(Icons.arrow_drop_up,color: AppColors.PRIMARY,) : SizedBox(),
-            (currentDay) ? Text('Hoy',style: TextStyle(color: AppColors.BLACK,fontWeight: FontWeight.bold),) : SizedBox()
+            (currentDay)
+                ? Icon(
+                    Icons.arrow_drop_up,
+                    color: AppColors.PRIMARY,
+                  )
+                : SizedBox(),
+            (currentDay)
+                ? Text(
+                    'Hoy',
+                    style: TextStyle(color: AppColors.BLACK, fontWeight: FontWeight.bold),
+                  )
+                : SizedBox()
           ],
         ),
-      ],  
+      ],
     );
   }
 }

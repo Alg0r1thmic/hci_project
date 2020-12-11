@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/constants/app_colors.dart';
 
 import '../challenges/challenges_screen.dart';
 import '../monitor/monitor_screen.dart';
@@ -39,10 +40,11 @@ class _HomeState extends State<Home> {
               ? 'Monitor'
               : _currentTab == 1
                   ? 'Retos'
-                  : 'Perfil', style: TextStyle(color: Colors.black,fontSize: 22),),
+                  : 'Perfil',style: TextStyle(color: AppColors.BLACK),),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
+        backgroundColor:AppColors.WHITE,
+        elevation: 0.6,
+
       ),
       body: _currentScreem,
       bottomNavigationBar: _bottonNavigationBar(),

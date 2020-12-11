@@ -146,12 +146,6 @@
       "languageVersion": "2.0"
     },
     {
-      "name": "fl_chart",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.12.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.6"
-    },
-    {
       "name": "flutter",
       "rootUri": "file:///home/serlog/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -282,18 +276,6 @@
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0-nullsafety.1",
       "packageUri": "lib/",
       "languageVersion": "2.10"
-    },
-    {
-      "name": "path_drawing",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1+1",
-      "packageUri": "lib/",
-      "languageVersion": "1.19"
-    },
-    {
-      "name": "path_parsing",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "1.19"
     },
     {
       "name": "path_provider_linux",
@@ -434,6 +416,12 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "syncfusion_flutter_charts",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_charts-18.3.53",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "syncfusion_flutter_core",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-18.3.53",
       "packageUri": "lib/",
@@ -500,7 +488,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-11T14:58:38.573775Z",
+  "generated": "2020-12-11T15:46:26.451682Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

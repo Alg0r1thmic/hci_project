@@ -27,6 +27,6 @@ class Routes {
     profile:(BuildContext context)=>ProfileScreen(),
     feeding_challenges:(BuildContext context)=>FeedingChallengesScreen(),
     current_challenge:(BuildContext context)=>CurrentChallengeScreen(),
-    data_visualization:(BuildContext context)=>DataVisualizationScren()
+    data_visualization:(BuildContext context)=>DataVisualizationScreen()
   }; 
 }

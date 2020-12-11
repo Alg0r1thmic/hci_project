@@ -1,50 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/models/temperature_model.dart';
-import 'package:health_body_checking/src/services/temperature_service.dart';
-import 'package:provider/provider.dart';
+import 'package:health_body_checking/src/ui/monitor/oxygen_saturation/oxygen_saturation_visualization_screen.dart';
+import 'package:health_body_checking/src/ui/monitor/temperature/temperature_visualization_screen.dart';
 
-class DataVisualizationScren extends StatefulWidget {
-  DataVisualizationScren({Key key}) : super(key: key);
-
-  @override
-  _DataVisualizationScrenState createState() => _DataVisualizationScrenState();
+class VisualizationIndex {
+  VisualizationIndex._();
+  static const int VIS_0 = 0;
+  static const int VIS_1 = 1;
+  static const int VIS_2 = 2;
+  static const int VIS_3 = 3;
+  static const int VIS_4 = 4;
 }
 
-class _DataVisualizationScrenState extends State<DataVisualizationScren> {
+class DataVisualizationScreen extends StatefulWidget {
+  DataVisualizationScreen({Key key}) : super(key: key);
+
+  @override
+  _DataVisualizationScreenState createState() => _DataVisualizationScreenState();
+}
+
+class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
+  PageController _pageController = PageController(initialPage: 0);
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _switchForm(int page) {
+    _pageController.animateToPage(page, duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data visualization'),
+        title: Text('visualisacion'),
       ),
-      body: _temperatureList(),
+      body:PageView(
+        controller: _pageController,
+        children: <Widget>[
+          TemperatureVisualizationScreen(
+            onGoToNextQuestion: () {
+              _switchForm(VisualizationIndex.VIS_1);
+            },
+          ),
+          OxygenSaturationVisualizationScreen(
+            onGoToNextQuestion: (){
+              _switchForm(VisualizationIndex.VIS_0);
+            },
+            onGoToBackQuestion: (){
+              _switchForm(VisualizationIndex.VIS_2);
+            },
+          )
+        ],
+      ),
     );
   }
 
-  Widget _temperatureList() {
-    final database = Provider.of<TemperatureService>(context, listen: false);
-
-    return StreamBuilder(
-      stream: database.temperaturesStream(),
-      builder: (BuildContext context, AsyncSnapshot<List<TemperatureModel>> snapshot) {
-        if (snapshot.hasData) {
-          List<TemperatureModel> _temperatures = snapshot.data;
-          return ListView.separated(
-              itemBuilder: (context, index) {
-                return Text('Temperature ${_temperatures[index].temperature}');
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  height: 10,
-                );
-              },
-              itemCount: _temperatures.length);
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
-    );
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }

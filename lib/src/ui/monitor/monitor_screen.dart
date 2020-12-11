@@ -100,6 +100,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/core/routes/routes.dart';
 
 class MonitorScreen extends StatefulWidget {
   MonitorScreen({Key key}) : super(key: key);
@@ -114,7 +115,12 @@ class _MonitorScreenState extends State<MonitorScreen> {
     return Scaffold(
       body: Column(
         children: [
-          Text('Monitor screen')
+          Text('Monitor screen'),
+          MaterialButton(
+            child: Text('Go!'),
+            onPressed: () {
+            Navigator.of(context).pushNamed(Routes.data_visualization);
+          })
         ],
       ),
     );

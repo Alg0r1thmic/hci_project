@@ -147,7 +147,7 @@
     },
     {
       "name": "fl_chart",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.12.0",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.12.1",
       "packageUri": "lib/",
       "languageVersion": "2.6"
     },
@@ -339,7 +339,7 @@
     },
     {
       "name": "provider",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.3.2+2",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.3.2+3",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     },
@@ -500,11 +500,7 @@
       "languageVersion": "2.7"
     }
   ],
-<<<<<<< HEAD
-  "generated": "2020-12-11T14:36:52.225938Z",
-=======
-  "generated": "2020-12-11T00:39:47.029524Z",
->>>>>>> e2db07b9fa9307bc01b60de3fb13dc365244b87d
+  "generated": "2020-12-11T14:58:38.573775Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

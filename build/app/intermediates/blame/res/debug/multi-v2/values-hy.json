@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/tom/Documents/IHC/proyectoBodyChecking/flutter_proyecto/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-hy/values-hy.xml",
+            "outputFile": "/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-hy/values-hy.xml",
             "map": [
                 {
-                    "source": "/home/tom/.gradle/caches/transforms-2/files-2.1/89f3fffaf8b1ec81829b371918b750c0/jetified-play-services-basement-17.2.1/res/values-hy/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "209",
-                        "endOffsets": "456"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1306",
-                        "endColumns": "209",
-                        "endOffsets": "1511"
-                    }
-                },
-                {
-                    "source": "/home/tom/.gradle/caches/transforms-2/files-2.1/c7bf2bf666df0d106e3c35a59a3c937c/play-services-base-17.2.1/res/values-hy/values.xml",
+                    "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/c7bf2bf666df0d106e3c35a59a3c937c/play-services-base-17.2.1/res/values-hy/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/tom/.gradle/caches/transforms-2/files-2.1/a9bb833f638dbc7f5cd8bc7f2b260f34/core-1.2.0/res/values-hy/values-hy.xml",
+                    "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/a9bb833f638dbc7f5cd8bc7f2b260f34/core-1.2.0/res/values-hy/values-hy.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -52,6 +35,23 @@
                         "startOffsets": "2909",
                         "endColumns": "100",
                         "endOffsets": "3005"
+                    }
+                },
+                {
+                    "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/da50badc198f58cf0c0e56fb80e52d40/jetified-play-services-basement-17.2.1/res/values-hy/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "209",
+                        "endOffsets": "456"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1306",
+                        "endColumns": "209",
+                        "endOffsets": "1511"
                     }
                 }
             ]

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/tom/Documents/IHC/proyectoBodyChecking/flutter_proyecto/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "/home/serlog/Escritorio/Raúl/health_body_checking/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
-                    "source": "/home/tom/.gradle/caches/transforms-2/files-2.1/a9bb833f638dbc7f5cd8bc7f2b260f34/core-1.2.0/res/values-en-rIN/values-en-rIN.xml",
+                    "source": "/home/serlog/.gradle/caches/transforms-2/files-2.1/a9bb833f638dbc7f5cd8bc7f2b260f34/core-1.2.0/res/values-en-rIN/values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

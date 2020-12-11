@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+
+import '../../core/routes/routes.dart';
+
 class MonitorScreen extends StatefulWidget {
   MonitorScreen({Key key}) : super(key: key);
 
@@ -9,8 +13,16 @@ class MonitorScreen extends StatefulWidget {
 class _MonitorScreenState extends State<MonitorScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-       child: Text('Monitor Screen'),
+    return Scaffold(
+      body: Column(
+        children: [
+          MaterialButton(
+            child: Text('Click!'),
+            onPressed: () {
+            Navigator.of(context).pushNamed(Routes.data_visualization);
+          }),
+        ],
+      ),
     );
   }
 }

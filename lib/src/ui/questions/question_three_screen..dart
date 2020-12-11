@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class QuestionThreeScreen extends StatefulWidget {
   final VoidCallback onGoToBackQuestion;
@@ -16,7 +17,7 @@ class QuestionThreeScreen extends StatefulWidget {
 }
 
 class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
-  double _currentSliderValue = 2;
+  double _currentSliderValue = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +60,29 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
         Container(
           child: Image.asset("assets/images/tea.png"),
         ),
+
         Text(
-          "¿Con cuántas cucharitas de azúcar endulzas tu taza?",
+          _currentSliderValue.round().toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20
+              fontSize: 40,
+              fontWeight: FontWeight.bold
           ),
         ),
+
+        RichText(
+          text:
+          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+            children: <TextSpan>[
+              TextSpan(text: '¿Con cuantas ', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: 'cucharitas ', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: 'endulzas tu taza?', style: TextStyle(fontWeight: FontWeight.normal)),
+//              TextSpan(text: 'tomas al dia? ', style: TextStyle(fontWeight: FontWeight.normal)),
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),
+/*
         Slider(
           value: _currentSliderValue,
           min: 0,
@@ -78,6 +95,23 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
             });
           },
         )
+*/
+
+        SfSlider(
+          min: 0.0,
+          max: 6.0,
+          value: _currentSliderValue,
+          interval: 1,
+          showLabels: true,
+          onChanged: (dynamic value) {
+            setState(() {
+              _currentSliderValue = value;
+            });
+          },
+        )
+
+
+
       ],
     );
   }

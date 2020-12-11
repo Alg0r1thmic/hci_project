@@ -146,12 +146,6 @@
       "languageVersion": "2.0"
     },
     {
-      "name": "fl_chart",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.12.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.6"
-    },
-    {
       "name": "flutter",
       "rootUri": "file:///home/serlog/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -206,12 +200,6 @@
       "languageVersion": "2.6"
     },
     {
-      "name": "gradient_progress",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/gradient_progress-0.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
-    },
-    {
       "name": "http",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.2",
       "packageUri": "lib/",
@@ -264,18 +252,6 @@
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0-nullsafety.1",
       "packageUri": "lib/",
       "languageVersion": "2.10"
-    },
-    {
-      "name": "path_drawing",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1+1",
-      "packageUri": "lib/",
-      "languageVersion": "1.19"
-    },
-    {
-      "name": "path_parsing",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "1.19"
     },
     {
       "name": "path_provider_linux",
@@ -440,12 +416,6 @@
       "languageVersion": "2.10"
     },
     {
-      "name": "value_animation_progress",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/value_animation_progress-1.0.0+2",
-      "packageUri": "lib/",
-      "languageVersion": "2.1"
-    },
-    {
       "name": "vector_math",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0-nullsafety.3",
       "packageUri": "lib/",
@@ -470,7 +440,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-11T00:39:47.029524Z",
+  "generated": "2020-12-04T00:10:56.066220Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

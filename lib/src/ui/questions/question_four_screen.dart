@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
 import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
+import 'package:number_inc_dec/number_inc_dec.dart';
+//import 'package:numberpicker/numberpicker.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class QuestionFourScreen extends StatefulWidget {
   final VoidCallback onGoToNextQuestion;
@@ -14,6 +17,7 @@ class QuestionFourScreen extends StatefulWidget {
 class _QuestionFourScreenState extends State<QuestionFourScreen> {
 
   double _currentSliderValue = 2;
+  int _currentPickerValue = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +60,19 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
         Container(
           child: Image.asset("assets/images/ejer.png"),
         ),
-        Text(
-          "¿Cuántas veces a la semana realizas ejercicio? Al menos 15 min.",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20
+
+        RichText(
+          text:
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
+            children: <TextSpan>[
+              TextSpan(text: '¿Cuantas ', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: 'veces a la semana ', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: 'realizas actividad fisica? ', style: TextStyle(fontWeight: FontWeight.normal)),
+            ],
           ),
+          textAlign: TextAlign.center,
         ),
+/*
         Slider(
           value: _currentSliderValue,
           min: 0,
@@ -74,7 +84,45 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
               _currentSliderValue = value;
             });
           },
-        )
+        ),
+*/
+        SfSlider(
+          min: 0.0,
+          max: 7.0,
+          value: _currentSliderValue,
+          interval: 1,
+          showLabels: true,
+          onChanged: (dynamic value) {
+            setState(() {
+              _currentSliderValue = value;
+            });
+          },
+        ),
+
+
+        RichText(
+          text:
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
+            children: <TextSpan>[
+              TextSpan(text: '¿Durante cuantos ', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: 'minutos ', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: 'realizas dicha actividad fisica?', style: TextStyle(fontWeight: FontWeight.normal)),
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),
+
+
+        NumberInputPrefabbed.roundedEdgeButtons(
+//        NumberInputWithIncrementDecrement(
+          controller: TextEditingController(),
+          min: 0,
+          max: 120,
+          incDecBgColor: Colors.blue,
+          buttonArrangement: ButtonArrangement.incRightDecLeft,
+
+        ),
+
       ],
     );
   }

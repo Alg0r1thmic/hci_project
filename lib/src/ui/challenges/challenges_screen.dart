@@ -12,8 +12,6 @@ class ChallengesScreen extends StatefulWidget {
 
 class _ChallengesScreenState extends State<ChallengesScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  Color _selectedColor = AppColors.PRIMARY_DARK;
-  Color _unSelectedColor = AppColors.PRIMARY_LIGHT;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -30,31 +28,25 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
 
   Widget _tabBarHeader() {
     return TabBar(
-      indicatorColor: Colors.transparent,
-      tabs: [_tabBarHeaderTextContainer(text: 'Ejercicios', color: _selectedColor), _tabBarHeaderTextContainer(text: 'Alimentación', color: _unSelectedColor)],
-      onTap: (index) {
-        if (index == 0) {
-          _selectedColor = AppColors.PRIMARY_DARK;
-          _unSelectedColor = AppColors.PRIMARY_LIGHT;
-        } else if (index == 1) {
-          _selectedColor = AppColors.PRIMARY_LIGHT;
-          _unSelectedColor = AppColors.PRIMARY_DARK;
-        }
-        setState(() {});
-      },
+      unselectedLabelColor: AppColors.PRIMARY_DARK,
+      indicatorSize: TabBarIndicatorSize.label,
+      indicator: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: AppColors.PRIMARY_DARK),
+      tabs: [_tabBarHeaderTextContainer(text: 'Actividad física'), _tabBarHeaderTextContainer(text: 'Alimentación')]
     );
   }
 
-  Widget _tabBarHeaderTextContainer({String text, Color color}) {
+
+  Widget _tabBarHeaderTextContainer({String text}) {
     return Container(
-      width: 120,
-      height: 40,
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(15)),
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: AppColors.PRIMARY_DARK, width: 1)),
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(text),
       ),
     );
   }
@@ -72,7 +64,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
         child: Column(
           children: [
             FeedingChallengeContainer(
-              contentText: 'Empesemos el habito de tomar agua',
+              contentText: 'Empecemos el habito de tomar agua',
               imagePath: 'assets/images/no-image.jpg',
               inputFunction: () {
                 Navigator.pushNamed(context, Routes.feeding_challenges);
@@ -90,7 +82,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
               height: 10,
             ),
             FeedingChallengeContainer(
-              contentText: 'Empesemos el hábito de comer',
+              contentText: 'Empecemos el hábito de comer',
               imagePath: 'assets/images/no-image.jpg',
               inputFunction: () {},
             ),
@@ -98,7 +90,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
               height: 10,
             ),
             FeedingChallengeContainer(
-              contentText: 'Empesemos el habito de tomar agua',
+              contentText: 'Empecemos el habito de tomar agua',
               imagePath: 'assets/images/no-image.jpg',
               inputFunction: () {},
             ),

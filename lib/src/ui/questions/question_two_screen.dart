@@ -16,11 +16,11 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
 
   int segmentedControlGroupValue = 0;
   final Map<int, Widget> myTabs = const <int, Widget>{
-    0: Text("1 al mes\no\nnunca", textAlign: TextAlign.center),
+    0: Text("Nunca", textAlign: TextAlign.center),
     //1: Text("1 vez cada 2 semanas", textAlign: TextAlign.center),
-    1: Text("1 vez\ncada\nsemana", textAlign: TextAlign.center),
-    2: Text("3-4 veces\ncada\nsemana", textAlign: TextAlign.center),
-    3: Text("1 vez\ncada\ndia", textAlign: TextAlign.center),
+    1: Text("Semanal", textAlign: TextAlign.center),
+    2: Text("Quincenal", textAlign: TextAlign.center),
+    3: Text("Mensual", textAlign: TextAlign.center),
   };
 
   @override
@@ -62,7 +62,7 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          child: Image.asset("assets/images/fastfood.png"),
+          child: Image.asset("assets/images/fastfood.png", height: 150,),
         ),
 
 

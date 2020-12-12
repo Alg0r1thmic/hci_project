@@ -71,13 +71,13 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          child: Image.asset("assets/images/fruit.png"),
+          child: Image.asset("assets/images/fruit.png", height: 150,),
         ),
         Text(
           _currentSliderValue.round().toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: 40
+              fontSize: 30
           ),
         ),
 
@@ -87,26 +87,13 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
           TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: '¿Cuantas ', style: TextStyle(fontWeight: FontWeight.normal)),
-              TextSpan(text: 'frutas enteras ', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: 'frutas ', style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: 'comes a la semana? ', style: TextStyle(fontWeight: FontWeight.normal)),
             ],
           ),
           textAlign: TextAlign.center,
         ),
-/*
-        Slider(
-          value: _currentSliderValue,
-          min: 0,
-          max: 7,
-          divisions: 6,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
-        )
-*/
+
         SfSlider(
           min: 0.0,
           max: 8.0,

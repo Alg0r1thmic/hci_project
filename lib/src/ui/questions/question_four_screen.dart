@@ -17,7 +17,6 @@ class QuestionFourScreen extends StatefulWidget {
 class _QuestionFourScreenState extends State<QuestionFourScreen> {
 
   double _currentSliderValue = 2;
-  int _currentPickerValue = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,7 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          child: Image.asset("assets/images/ejer.png"),
+          child: Image.asset("assets/images/ejer.png", height: 150,),
         ),
 
         RichText(
@@ -72,20 +71,7 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           ),
           textAlign: TextAlign.center,
         ),
-/*
-        Slider(
-          value: _currentSliderValue,
-          min: 0,
-          max: 8,
-          divisions: 7,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
-        ),
-*/
+
         SfSlider(
           min: 0.0,
           max: 7.0,
@@ -99,29 +85,28 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           },
         ),
 
-
         RichText(
           text:
           TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
-              TextSpan(text: '¿Durante cuantos ', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: '¿Durante cuántos ', style: TextStyle(fontWeight: FontWeight.normal)),
               TextSpan(text: 'minutos ', style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: 'realizas dicha actividad fisica?', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: '?', style: TextStyle(fontWeight: FontWeight.normal)),
             ],
           ),
           textAlign: TextAlign.center,
         ),
 
 
+        _currentSliderValue != 0 ?
         NumberInputPrefabbed.roundedEdgeButtons(
-//        NumberInputWithIncrementDecrement(
           controller: TextEditingController(),
           min: 0,
           max: 120,
           incDecBgColor: Colors.blue,
           buttonArrangement: ButtonArrangement.incRightDecLeft,
 
-        ),
+        ): Container()
 
       ],
     );

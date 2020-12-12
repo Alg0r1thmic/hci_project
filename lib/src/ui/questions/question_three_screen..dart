@@ -58,14 +58,14 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          child: Image.asset("assets/images/tea.png"),
+          child: Image.asset("assets/images/tea.png", height: 150,),
         ),
 
         Text(
           _currentSliderValue.round().toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: 40,
+              fontSize: 30,
               fontWeight: FontWeight.bold
           ),
         ),
@@ -82,20 +82,6 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
           ),
           textAlign: TextAlign.center,
         ),
-/*
-        Slider(
-          value: _currentSliderValue,
-          min: 0,
-          max: 8,
-          divisions: 7,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
-        )
-*/
 
         SfSlider(
           min: 0.0,

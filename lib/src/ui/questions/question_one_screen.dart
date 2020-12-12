@@ -49,14 +49,14 @@ class _QuestionOneScrenState extends State<QuestionOneScren> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          child: Image.asset("assets/images/glass.png"),
+          child: Image.asset("assets/images/glass.png", height: 150,),
         ),
 
         Text(
           _currentSliderValue.round().toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: 40,
+              fontSize: 30,
               fontWeight: FontWeight.bold
           ),
         ),
@@ -73,21 +73,6 @@ class _QuestionOneScrenState extends State<QuestionOneScren> {
           ),
           textAlign: TextAlign.center,
         ),
-/*
-        Slider(
-          value: _currentSliderValue,
-          min: 0,
-          max: 8,
-          divisions: 7,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
-        ),
-*/
-
         SfSlider(
           min: 0.0,
           max: 8.0,

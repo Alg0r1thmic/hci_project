@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/ui/monitor/oxygen_saturation/oxygen_saturation_visualization_screen.dart';
 import 'package:health_body_checking/src/ui/monitor/temperature/temperature_visualization_screen.dart';
-
-class VisualizationIndex {
-  VisualizationIndex._();
-  static const int VIS_0 = 0;
-  static const int VIS_1 = 1;
-  static const int VIS_2 = 2;
-  static const int VIS_3 = 3;
-  static const int VIS_4 = 4;
-}
+import 'package:health_body_checking/src/constants/app_colors.dart';
 
 class DataVisualizationScreen extends StatefulWidget {
   DataVisualizationScreen({Key key}) : super(key: key);
@@ -19,46 +11,69 @@ class DataVisualizationScreen extends StatefulWidget {
 }
 
 class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
-  PageController _pageController = PageController(initialPage: 0);
-  @override
-  void initState() {
-    super.initState();
-  }
 
-  void _switchForm(int page) {
-    _pageController.animateToPage(page, duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
-  }
+  List<String> names = [
+    "Latidos por minuto",
+    "Índice de masa corporal",
+    "Temperatura"
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('visualisacion'),
-      ),
-      body:PageView(
-        controller: _pageController,
-        children: <Widget>[
-          TemperatureVisualizationScreen(
-            onGoToNextQuestion: () {
-              _switchForm(VisualizationIndex.VIS_1);
-            },
+    return DefaultTabController(
+        length: names.length,
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+              backgroundColor: AppColors.ALICE_BLUE,
+              elevation: 0.0,
+              leading: InkWell(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.west, color: Colors.black,),
+              ),
+              bottom: _tabBarHeader()
           ),
-          OxygenSaturationVisualizationScreen(
-            onGoToNextQuestion: (){
-              _switchForm(VisualizationIndex.VIS_0);
-            },
-            onGoToBackQuestion: (){
-              _switchForm(VisualizationIndex.VIS_2);
-            },
-          )
-        ],
+          body: TabBarView(
+            physics: NeverScrollableScrollPhysics(),
+            children: [
+              OxygenSaturationVisualizationScreen(),
+              OxygenSaturationVisualizationScreen(),
+              TemperatureVisualizationScreen(),
+            ],
+          ),
+        )
+    );
+  }
+
+  Widget _tabBarHeader() {
+    return TabBar(
+        isScrollable: true,
+        unselectedLabelColor: AppColors.PRIMARY_DARK,
+        indicatorSize: TabBarIndicatorSize.label,
+        indicator: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: AppColors.PRIMARY_DARK),
+        tabs: [
+          _tabBarHeaderTextContainer(text: names[0]),
+          _tabBarHeaderTextContainer(text: names[1]),
+          _tabBarHeaderTextContainer(text: names[2]),
+        ]
+    );
+  }
+
+  Widget _tabBarHeaderTextContainer({String text}) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          border: Border.all(color: AppColors.PRIMARY_DARK, width: 1)),
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(text),
       ),
     );
   }
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 }

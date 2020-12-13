@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
   static const Color LIGHT_SEA_GREEN = Color.fromRGBO(27, 163, 156, 1);
-  static const Color ALICE_BLUE = Color.fromRGBO(240, 248, 255, 1);
+  static const Color ALICE_BLUE = Color.fromRGBO(250, 250, 255, 1);
   static const Color ANTIQUEWHITE = Color.fromRGBO(250, 245, 215, 1);
   static const Color CASCADE = Color.fromRGBO(149, 165, 166, 1);
   static const Color MONTAIN_MEADOW = Color.fromRGBO(27, 188, 155, 1);

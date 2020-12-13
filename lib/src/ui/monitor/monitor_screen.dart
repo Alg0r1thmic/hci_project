@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/models/sensor_model.dart';
 import 'package:health_body_checking/src/ui/monitor/widgets/sensor_card.dart';
-import '../../core/routes/routes.dart';
 
 class MonitorScreen extends StatefulWidget {
   MonitorScreen({Key key}) : super(key: key);
@@ -41,7 +40,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppColors.ALICE_BLUE,
           elevation: 0.0,
           title: _tabBarHeader()
         ),
@@ -77,11 +76,14 @@ class _MonitorScreenState extends State<MonitorScreen> {
   }
 
   Widget _monitor() {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        return SensorCard(icon: icons[index], name: names[index], sensor: items[index],);
-      },
+    return Padding(
+        padding: EdgeInsets.symmetric(vertical: 20),
+        child: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return SensorCard(icon: icons[index], name: names[index], sensor: items[index],);
+          },
+        ),
     );
   }
 
@@ -90,32 +92,3 @@ class _MonitorScreenState extends State<MonitorScreen> {
   }
 }
 
-/*
-import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/core/routes/routes.dart';
-
-class MonitorScreen extends StatefulWidget {
-  MonitorScreen({Key key}) : super(key: key);
-
-  @override
-  _MonitorScreenState createState() => _MonitorScreenState();
-}
-
-class _MonitorScreenState extends State<MonitorScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Text('Monitor screen'),
-          MaterialButton(
-            child: Text('Go!'),
-            onPressed: () {
-            Navigator.of(context).pushNamed(Routes.data_visualization);
-          })
-        ],
-      ),
-    );
-  }
-}
-*/

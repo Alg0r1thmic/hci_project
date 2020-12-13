@@ -5,6 +5,6 @@ class FirestorePath {
   static String oxygenSaturations()=>'oxygensaturations';
   static String question(String id) => 'questions/$id';
   static String questions()=>'questions';
-  static String user(String id) => 'user/$id';
+  static String user(String id) => 'users/$id';
   static String users()=>'users';
 }

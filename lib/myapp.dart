@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
           builder: (_, languageProviderRef, __) {
             return AuthWidgetBuilder(
               //databaseBuilder: databaseBuilder,
-              builder: (BuildContext context,
-                  AsyncSnapshot<UserModel> userSnapshot) {
+              builder: (BuildContext context, AsyncSnapshot<UserModel> userSnapshot) {
                 return MaterialApp(
                   debugShowCheckedModeBanner: false,
                   locale: languageProviderRef.appLocale,
@@ -44,9 +43,7 @@ class MyApp extends StatelessWidget {
                   localeResolutionCallback: (locale, supportedLocales) {
                     //check if the current device locale is supported or not
                     for (var supportedLocale in supportedLocales) {
-                      if (supportedLocale.languageCode ==
-                              locale?.languageCode ||
-                          supportedLocale.countryCode == locale?.countryCode) {
+                      if (supportedLocale.languageCode == locale?.languageCode || supportedLocale.countryCode == locale?.countryCode) {
                         return supportedLocale;
                       }
                     }
@@ -60,9 +57,9 @@ class MyApp extends StatelessWidget {
                     visualDensity: VisualDensity.adaptivePlatformDensity,
                     //primarySwatch: Colors.grey,
                     //primaryColor:  Colors.white,
-                    scaffoldBackgroundColor: Color(0xFFEFEFEF), 
-                    brightness: Brightness.light ,
-                    backgroundColor: Color(0xFF028F96) ,
+                    scaffoldBackgroundColor: Color(0xFFEFEFEF),
+                    brightness: Brightness.light,
+                    backgroundColor: Color(0xFF028F96),
                     fontFamily: AppFontFamily.POPPINS_MEDIUM,
                   ),
                   //darkTheme: AppThemes.darkTheme,
@@ -71,11 +68,14 @@ class MyApp extends StatelessWidget {
                   //     : ThemeMode.light,
                   home: Consumer<AuthProvider>(
                     builder: (_, authProviderRef, __) {
-                      if (userSnapshot.connectionState ==
-                          ConnectionState.active) {
-                        return userSnapshot.hasData
-                            ? QuestionsScreen()
-                            : LoginScreen();
+                      if (userSnapshot.connectionState == ConnectionState.active) {
+                        if (userSnapshot.hasData) {
+                          final UserModel user = userSnapshot.data;
+                          return QuestionsScreen();
+                        } else {
+                          return LoginScreen();
+                        }
+                        //return userSnapshot.hasData ? QuestionsScreen() : LoginScreen();
                       }
                       return Material(
                         child: Container(

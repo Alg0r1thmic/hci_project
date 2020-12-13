@@ -1,32 +1,24 @@
 
 import 'package:flutter/foundation.dart';
-import 'package:health_body_checking/src/models/questions_model.dart';
+import 'package:health_body_checking/src/models/user_model.dart';
 
 import '../core/db/firebase_path.dart';
 import '../core/db/firebase_service.dart';
 
-class QuestionsService {
+class UserService {
   final _firestoreService = FirestoreService.instance;
 
-  //Method to retrieve all questions  
-  Stream<List<QuestionsModel>> questionsStream() => _firestoreService.collectionStream(
-        path: FirestorePath.questions(),
-        builder: (data) => QuestionsModel.fromJson(data),
-  );
-  //Method to create/update Question
-  Future<void> setQuestion(QuestionsModel model) async => await _firestoreService.setData(
-        path: FirestorePath.question(model.id),
+  //Method to create/update user
+  Future<void> setUser(CurrentUserModel model) async => await _firestoreService.setData(
+        path: FirestorePath.user(model.id),
         data: model.toJson(),
   );
-  //Method to delete QuestionsModel entry
-  Future<void> deleteQuestion(QuestionsModel model) async {
-    await _firestoreService.deleteData(path: FirestorePath.question(model.id));
-  }
 
-  //Method to retrieve Question object based on the given Id
-  Stream<QuestionsModel> questionStream({@required String id}) =>
+
+  //Method to retrieve User object based on the given Id
+  Stream<CurrentUserModel> userStream({@required String id}) =>
       _firestoreService.documentStream(
-        path: FirestorePath.question(id),
-        builder: (data, documentId) => QuestionsModel.fromJson(data),
+        path: FirestorePath.user(id),
+        builder: (data, documentId) => CurrentUserModel.fromJson(data),
   );
 }

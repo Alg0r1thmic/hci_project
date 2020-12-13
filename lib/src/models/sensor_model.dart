@@ -16,7 +16,7 @@ class SensorModel {
         this.time
     });
 
-    String id;
+    int id;
     String name;
     String type;
     double value;

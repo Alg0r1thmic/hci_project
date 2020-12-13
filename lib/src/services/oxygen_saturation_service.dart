@@ -14,12 +14,12 @@ class OxygenSaturationService {
   );
   //Method to create/update OxygenSaturation
   Future<void> setOxygenSaturation(OxygenSaturationModel model) async => await _firestoreService.setData(
-        path: FirestorePath.oxygenSaturation(model.id),
+        path: FirestorePath.oxygenSaturation(model.id.toString()),
         data: model.toJson(),
   );
   //Method to delete OxygenSaturationModel entry
   Future<void> deleteOxygenSaturation(OxygenSaturationModel model) async {
-    await _firestoreService.deleteData(path: FirestorePath.oxygenSaturation(model.id));
+    await _firestoreService.deleteData(path: FirestorePath.oxygenSaturation(model.id.toString()));
   }
 
   //Method to retrieve OxygenSaturation object based on the given Id

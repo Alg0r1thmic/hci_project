@@ -7,7 +7,8 @@ class StartChallengeContainer extends StatelessWidget {
   final VoidCallback inputFunction;
   final String imagePath;
   final bool complete;
-  const StartChallengeContainer({Key key, @required this.amountText, @required this.durationText, this.inputFunction, this.imagePath, this.complete=false}) : super(key: key);
+  final bool enable;
+  const StartChallengeContainer({Key key, this.enable = true, @required this.amountText, @required this.durationText, this.inputFunction, this.imagePath, this.complete=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class StartChallengeContainer extends StatelessWidget {
       width: 320,
       height: 300,
       decoration: BoxDecoration(
-        color: (complete==false)?AppColors.PRIMARY:AppColors.PRIMARY_DARK,
+        color: _getColor(),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -26,7 +27,7 @@ class StartChallengeContainer extends StatelessWidget {
         children: [
           Center(
               child: Image.asset(
-            imagePath,
+            enable ? 'assets/images/unlock.png': 'assets/images/padlock.png',
             width: 80,
             height: 80,
             color: (complete==false)?AppColors.WHITE:AppColors.WHITE,
@@ -94,5 +95,12 @@ class StartChallengeContainer extends StatelessWidget {
         )),
       ),
     );
+  }
+
+  Color _getColor() {
+    if (enable){
+      if (complete) return AppColors.PRIMARY_DARK;
+      else return AppColors.PRIMARY;
+    } else return AppColors.CASCADE;
   }
 }

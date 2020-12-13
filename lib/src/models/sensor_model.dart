@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 SensorModel sensorModelFromJson(String str) => SensorModel.fromJson(json.decode(str));
 
 String sensorModelToJson(SensorModel data) => json.encode(data.toJson());
@@ -10,12 +12,16 @@ class SensorModel {
         this.name,
         this.type,
         this.enable,
+        this.value,
+        this.time
     });
 
     String id;
     String name;
     String type;
+    double value;
     bool enable;
+    Timestamp time;
 
     factory SensorModel.fromJson(Map<String, dynamic> json) => SensorModel(
         id: json["id"],

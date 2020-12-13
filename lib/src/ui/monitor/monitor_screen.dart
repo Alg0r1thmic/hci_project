@@ -18,9 +18,9 @@ class _MonitorScreenState extends State<MonitorScreen> {
   static const _kFontPkg = null;
 
   List<SensorModel> items = [
-    SensorModel(value: 35.6, time: Timestamp(10,5)),
-    SensorModel(value: 35.6, time: Timestamp(10,5)),
-    SensorModel(value: 35.6, time: Timestamp(10,5))
+    SensorModel(id: 0, value: 35.6, time: Timestamp(10,5)),
+    SensorModel(id: 1, value: 35.6, time: Timestamp(10,5)),
+    SensorModel(id: 2, value: 35.6, time: Timestamp(10,5))
   ];
   static const List<IconData> icons = [
     IconData(0xf21e, fontFamily: _kFontFam, fontPackage: _kFontPkg),

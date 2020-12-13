@@ -14,7 +14,7 @@ class SensorModel {
     this.time,
   });
 
-  String id;
+  int id;
   String userId;
   double value;
   Timestamp time;

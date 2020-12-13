@@ -48,24 +48,24 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
                 plotBands: <PlotBand>[
                   PlotBand(
                     isVisible: true,
-                    opacity: .5,
+                    opacity: .3,
                     associatedAxisStart: 36.0,
                     associatedAxisEnd: 37.5,
-                    color: const Color.fromRGBO(27, 188, 155, .5)
+                    color: const Color.fromRGBO(27, 188, 155, .3)
                   ),
                   PlotBand(
                       isVisible: true,
-                      opacity: .5,
+                      opacity: .3,
                       associatedAxisStart: 37.5,
-                      associatedAxisEnd: 40,
-                      color: const Color.fromRGBO(200, 27, 50, .5)
+                      associatedAxisEnd: 40.5,
+                      color: const Color.fromRGBO(200, 27, 50, .3)
                   ),
                   PlotBand(
                       isVisible: true,
-                      opacity: .5,
-                      associatedAxisStart: 30.0,
+                      opacity: .3,
+                      associatedAxisStart: 34.0,
                       associatedAxisEnd: 36.0,
-                      color: const Color.fromRGBO(200, 27, 50, .5)
+                      color: const Color.fromRGBO(200, 27, 50, .3)
                   ),
                 ]
               ),

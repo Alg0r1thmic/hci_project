@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: AppColors.dodgerBlue,
+      backgroundColor: AppColors.ALICE_BLUE,
       appBar: AppBar(
         title: Center(
                   child: Text(_currentTab == 0
@@ -42,8 +42,8 @@ class _HomeState extends State<Home> {
                   ? 'Retos'
                   : 'Perfil',style: TextStyle(color: AppColors.BLACK),),
         ),
-        backgroundColor:AppColors.WHITE,
-        elevation: 0.6,
+        backgroundColor: AppColors.ALICE_BLUE,
+        elevation: 0,
 
       ),
       body: _currentScreem,
@@ -53,6 +53,8 @@ class _HomeState extends State<Home> {
 
   Widget _bottonNavigationBar() {
     return BottomNavigationBar(
+      backgroundColor: AppColors.ALICE_BLUE,
+      selectedItemColor: AppColors.PRIMARY_DARK,
       type: BottomNavigationBarType.fixed,
       currentIndex: _currentTab,
       onTap: (index) {

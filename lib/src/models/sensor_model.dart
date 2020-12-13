@@ -2,33 +2,38 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-SensorModel temperatureModelFromJson(String str) => SensorModel.fromJson(json.decode(str));
+SensorModel sensorModelFromJson(String str) => SensorModel.fromJson(json.decode(str));
 
-String temperatureModelToJson(SensorModel data) => json.encode(data.toJson());
+String sensorModelToJson(SensorModel data) => json.encode(data.toJson());
 
 class SensorModel {
-  SensorModel({
-    this.id,
-    this.userId,
-    this.value,
-    this.time,
-  });
+    SensorModel({
+        this.id,
+        this.name,
+        this.type,
+        this.enable,
+        this.value,
+        this.time
+    });
 
-  int id;
-  String userId;
-  double value;
-  Timestamp time;
+    String id;
+    String name;
+    String type;
+    double value;
+    bool enable;
+    Timestamp time;
 
-  factory SensorModel.fromJson(Map<String, dynamic> json) => SensorModel(
-    id: json["id"],
-    userId: json["user_id"],
-    value: json["value"].toDouble(),
-    time: json["time"],
-  );
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "user_id": userId,
-    "value": value,
-    "time": time,
-  };
+    factory SensorModel.fromJson(Map<String, dynamic> json) => SensorModel(
+        id: json["id"],
+        name: json["name"],
+        type: json["type"],
+        enable: json["enable"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "type": type,
+        "enable": enable,
+    };
 }

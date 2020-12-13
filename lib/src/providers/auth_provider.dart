@@ -1,17 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:health_body_checking/src/services/user_service.dart';
 
 import '../models/user_model.dart';
 
-enum Status {
-  Uninitialized,
-  Authenticated,
-  Authenticating,
-  GoogleAuthenticating,
-  Unauthenticated,
-  Registering
-}
+enum Status { Uninitialized, Authenticated, Authenticating, GoogleAuthenticating, Unauthenticated, Registering }
 
 class AuthProvider extends ChangeNotifier {
   GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -26,8 +20,7 @@ class AuthProvider extends ChangeNotifier {
 
   Status get status => _status;
 
-  Stream<UserModel> get user =>
-      _auth.onAuthStateChanged.map(_userFromFirebase);
+  Stream<UserModel> get user => _auth.onAuthStateChanged.map(_userFromFirebase);
 
   AuthProvider() {
     //initialise object
@@ -43,12 +36,7 @@ class AuthProvider extends ChangeNotifier {
       return null;
     }
 
-    return UserModel(
-        uid: user.uid,
-        email: user.email ?? "",
-        displayName: user.displayName,
-        phoneNumber: user.phoneNumber,
-        photoUrl: user.photoUrl);
+    return UserModel(uid: user.uid, email: user.email ?? "", displayName: user.displayName, phoneNumber: user.phoneNumber, photoUrl: user.photoUrl);
   }
 
   //Method to detect live auth changes such as user sign in and sign out
@@ -63,17 +51,20 @@ class AuthProvider extends ChangeNotifier {
   }
 
   //Method for new user registration using email and password
-  Future<UserModel> registerWithEmailAndPassword(String user,String email, String password) async {
+  Future<UserModel> registerWithEmailAndPassword(String user, String email, String password) async {
     try {
       _status = Status.Registering;
       notifyListeners();
-      final AuthResult result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      if(result!=null){
-        final UserUpdateInfo userUpdateInfo=UserUpdateInfo();
-        userUpdateInfo.displayName=user;
+      final AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      if (result != null) {
+        final UserUpdateInfo userUpdateInfo = UserUpdateInfo();
+        userUpdateInfo.displayName = user;
         await result.user.updateProfile(userUpdateInfo);
       }
+      UserService _userService = UserService();
+      CurrentUserModel _user = CurrentUserModel(id: result.user.uid, email: email, userName: user);
+      _userService.setUser(_user);
+
       return _userFromFirebase(result.user);
     } catch (e) {
       print("Error on the new user registration = " + e.toString());

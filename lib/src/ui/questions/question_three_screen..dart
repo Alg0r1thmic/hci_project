@@ -27,7 +27,7 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
             child: Column(
               children: [
-                PaginationText(total: 5, actual: 3),
+                PaginationText(total: 6, actual: 4),
                 Expanded(child: SizedBox(child: _content(),)),
                 _questionsChangeButton(),
               ],

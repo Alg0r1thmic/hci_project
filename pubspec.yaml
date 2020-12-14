@@ -45,6 +45,7 @@ dependencies:
   carousel_slider: ^2.1.0
   carousel_pro: ^1.0.0
   value_animation_progress: ^1.0.0+2
+  sticky_headers: ^0.1.8
   flutter_localizations:
     sdk: flutter
 

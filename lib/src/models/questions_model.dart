@@ -9,25 +9,27 @@ QuestionsModel questionsModelFromJson(String str) => QuestionsModel.fromJson(jso
 String questionsModelToJson(QuestionsModel data) => json.encode(data.toJson());
 
 class QuestionsModel {
-    QuestionsModel({
-        this.id,
-        this.userId,
-        this.questionOne,
-        this.questionTwo,
-        this.questionThree,
-        this.questionFour,
-        this.questionFive,
-    });
+  QuestionsModel({
+    this.id,
+    this.userId,
+    this.questionOne,
+    this.questionTwo,
+    this.questionThree,
+    this.questionFour,
+    this.questionFive,
+    this.completed
+  });
 
-    String id;
-    String userId;
-    String questionOne;
-    String questionTwo;
-    String questionThree;
-    String questionFour;
-    String questionFive;
+  String id;
+  String userId;
+  String questionOne;
+  String questionTwo;
+  String questionThree;
+  String questionFour;
+  String questionFive;
+  bool completed;
 
-    factory QuestionsModel.fromJson(Map<String, dynamic> json) => QuestionsModel(
+  factory QuestionsModel.fromJson(Map<String, dynamic> json) => QuestionsModel(
         id: json["id"],
         userId: json["userId"],
         questionOne: json["questionOne"],
@@ -35,9 +37,10 @@ class QuestionsModel {
         questionThree: json["questionThree"],
         questionFour: json["questionFour"],
         questionFive: json["questionFive"],
-    );
+        completed: json["completed"]
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "userId": userId,
         "questionOne": questionOne,
@@ -45,5 +48,6 @@ class QuestionsModel {
         "questionThree": questionThree,
         "questionFour": questionFour,
         "questionFive": questionFive,
-    };
+        "completed":completed
+      };
 }

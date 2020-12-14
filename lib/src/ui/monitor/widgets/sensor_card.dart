@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/models/sensor_model.dart';
 
+import '../../../constants/app_colors.dart';
 import '../../../core/routes/routes.dart';
+import '../../../models/sensor_model.dart';
 
 class SensorCard extends StatefulWidget {
 

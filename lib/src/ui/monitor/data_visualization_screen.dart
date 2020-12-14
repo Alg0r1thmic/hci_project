@@ -23,7 +23,7 @@ class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
   Widget build(BuildContext context) {
     final int args = ModalRoute.of(context).settings.arguments;
     return DefaultTabController(
-        initialIndex: args,
+        //initialIndex: args,
         length: names.length,
         child: Scaffold(
           appBar: AppBar(

@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
     return InkWell(
       onTap: inputFunction,
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         width: 300,
         decoration: BoxDecoration(
           border: Border.all(color: (filled)?AppColors.SECONDARY:AppColors.PRIMARY_DARK),

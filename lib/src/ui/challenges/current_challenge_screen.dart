@@ -46,13 +46,13 @@ class _CurrentChallengeScreenState extends State<CurrentChallengeScreen> {
             (FakeWaterDays().currentDay == 6)
                 ? Image.asset(
                     'assets/images/trophy_color.png',
-                    width: 150,
-                    height: 150,
+                    width: 100,
+                    height: 100,
                   )
                 : Image.asset(
-                    'assets/images/trophy_black.png',
-                    width: 150,
-                    height: 150,
+                    'assets/images/trophy.png',
+                    width: 100,
+                    height: 100,
                   ),
             SizedBox(
               height: 40,

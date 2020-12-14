@@ -40,10 +40,23 @@ class FeedingChallengeContainer extends StatelessWidget {
               ),
             )
           ),
-          FloatingActionButton(
-            backgroundColor: AppColors.ORANGE,
-            onPressed: inputFunction,
-            child: Icon(Icons.play_arrow_rounded),
+          InkWell(
+            onTap: inputFunction,
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                color: AppColors.ORANGE,
+                borderRadius: BorderRadius.circular(50.0),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0.0, 10.0),
+                        blurRadius: 5.0)
+                  ]
+              ),
+              child: Icon(Icons.play_arrow_rounded, color: Colors.white,),
+            ),
           )
         ],
       ),

@@ -13,10 +13,9 @@ class StartChallengeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20,  bottom: 40, right: 20),
+      margin: EdgeInsets.only(left: 20),
       padding: EdgeInsets.all(20),
       width: 320,
-      height: 300,
       decoration: BoxDecoration(
         color: _getColor(),
         borderRadius: BorderRadius.circular(10),
@@ -60,7 +59,7 @@ class StartChallengeContainer extends StatelessWidget {
       padding: EdgeInsets.only(left: 40),
       width: 250,
       height: 80,
-      decoration: BoxDecoration(color: AppColors.WHITE.withOpacity(0.4), borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(color: AppColors.WHITE.withOpacity(0.2), borderRadius: BorderRadius.circular(10)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,

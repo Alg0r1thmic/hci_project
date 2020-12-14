@@ -14,9 +14,11 @@ class QuestionZeroScreen extends StatefulWidget {
 }
 
 TextEditingController _estaturaString = new TextEditingController();
+TextEditingController _edadString = new TextEditingController();
 enum SexOption { Hombre, Mujer }
 class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
   double _estatura = 160;
+  double _edad = 160;
   Color _myColor = Colors.lightBlueAccent;
   String _myAccountState = "Account Enabled";
   int _value = 1;
@@ -122,19 +124,29 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
           ),
           textAlign: TextAlign.center,
         ),
-/*
-        Text(
-          _estatura.round().toString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold
-          ),
-        ),
-*/
+
         TextField(
           controller: _estaturaString,
           decoration: new InputDecoration(labelText: "Ingrese su talla en centimetros."),
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ], // Only numbers can be entered
+        ),
+        RichText(
+          text:
+          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+            children: <TextSpan>[
+              TextSpan(text: 'Edad ', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: 'en años:', style: TextStyle(fontWeight: FontWeight.normal)),
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),
+
+        TextField(
+          controller: _edadString,
+          decoration: new InputDecoration(labelText: "Ingrese su edad en años."),
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.digitsOnly

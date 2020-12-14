@@ -18,10 +18,10 @@ class _MonitorScreenState extends State<MonitorScreen> {
   static const _kFontPkg = null;
 
   List<SensorModel> items = [
-    SensorModel(id: 0, value: 35.6, time: Timestamp(10,5)),
-    SensorModel(id: 1, value: 35.6, time: Timestamp(10,5)),
-    SensorModel(id: 2, value: 35.6, time: Timestamp(10,5)),
-    SensorModel(id: 3, value: 35.6, time: Timestamp(10,5))
+    SensorModel( value: 35.6, time: Timestamp(10,5)),
+    SensorModel( value: 35.6, time: Timestamp(10,5)),
+    SensorModel( value: 35.6, time: Timestamp(10,5)),
+    SensorModel( value: 35.6, time: Timestamp(10,5))
   ];
   static const List<IconData> icons = [
     IconData(0xf21e, fontFamily: _kFontFam, fontPackage: _kFontPkg),
@@ -55,22 +55,13 @@ class _MonitorScreenState extends State<MonitorScreen> {
   }
 
   Widget _tabBarHeader() {
-    return TabBar(
-      unselectedLabelColor: AppColors.PRIMARY_DARK,
-      indicatorSize: TabBarIndicatorSize.label,
-      indicator: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
-        color: AppColors.PRIMARY_DARK),
-      tabs: [_tabBarHeaderTextContainer(text: 'Monitor'), _tabBarHeaderTextContainer(text: 'Mapa de riesgo')]
-    );
+    return TabBar(unselectedLabelColor: AppColors.PRIMARY_DARK, indicatorSize: TabBarIndicatorSize.label, indicator: BoxDecoration(borderRadius: BorderRadius.circular(50), color: AppColors.PRIMARY_DARK), tabs: [_tabBarHeaderTextContainer(text: 'Monitor'), _tabBarHeaderTextContainer(text: 'Mapa de riesgo')]);
   }
 
   Widget _tabBarHeaderTextContainer({String text}) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
-        border: Border.all(color: AppColors.PRIMARY_DARK, width: 1)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), border: Border.all(color: AppColors.PRIMARY_DARK, width: 1)),
       child: Align(
         alignment: Alignment.center,
         child: Text(text),
@@ -94,4 +85,3 @@ class _MonitorScreenState extends State<MonitorScreen> {
     return Container();
   }
 }
-

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:health_body_checking/src/services/sensor_service.dart';
 import 'package:health_body_checking/src/services/user_service.dart';
 
 import '../models/user_model.dart';
@@ -61,10 +62,7 @@ class AuthProvider extends ChangeNotifier {
         userUpdateInfo.displayName = user;
         await result.user.updateProfile(userUpdateInfo);
       }
-      UserService _userService = UserService();
-      CurrentUserModel _user = CurrentUserModel(id: result.user.uid, email: email, userName: user);
-      _userService.setUser(_user);
-
+      this._setSensorsToUserAndUpdate(result.user.uid,email,user);
       return _userFromFirebase(result.user);
     } catch (e) {
       print("Error on the new user registration = " + e.toString());
@@ -72,6 +70,16 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return null;
     }
+  }
+
+  void _setSensorsToUserAndUpdate(String id,String email,String user) {
+    UserService _userService = UserService();
+    CurrentUserModel _user = CurrentUserModel(id:id, email: email, userName: user);
+    final _sensorService = SensorService();
+    _sensorService.sensorsStream().listen((event) {
+      CurrentUserModel.instance.sensors = event;
+      _userService.setUser(_user);
+    });
   }
 
   //Method to handle user sign in using email and password

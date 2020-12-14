@@ -43,10 +43,8 @@ CurrentUserModel currentUserModelFromJson(String str) => CurrentUserModel.fromJs
 String currentUserModelToJson(CurrentUserModel data) => json.encode(data.toJson());
 
 class CurrentUserModel {
-  static CurrentUserModel _instance=CurrentUserModel._internal();
-  static get instance {
-    return _instance;
-  }
+  static CurrentUserModel _instance = CurrentUserModel._internal();
+  static get instance => _instance;
   CurrentUserModel._internal();
   String id;
   String email;
@@ -72,9 +70,9 @@ class CurrentUserModel {
     _instance.photoUrl = json["photoUrl"];
     _instance.age = json["age"];
     _instance.country = json["country"];
-    _instance.weight = json["weight"].toDouble();
-    _instance.height = json["height"].toDouble();
-    _instance.sensors = List<SensorModel>.from(json["sensors"].map((x) => SensorModel.fromJson(x)));
+    _instance.weight = (json["weight"]!=null)?json["weight"].toDouble():null;
+    _instance.height = (json["height"]!=null)?json["height"].toDouble():null;
+    _instance.sensors =(json["sensors"]!=null)?List<SensorModel>.from(json["sensors"].map((x) => SensorModel.fromJson(x))):null;
     return _instance;
   }
   factory CurrentUserModel({
@@ -120,6 +118,7 @@ class CurrentUserModel {
         "country": country,
         "weight": weight,
         "height": height,
-        //"sensors": List<dynamic>.from(sensors.map((x) => x.toJson())),
+        "sensors": (sensors!=null)?List<dynamic>.from(sensors.map((x) => x.toJson())):null,
       };
+  
 }

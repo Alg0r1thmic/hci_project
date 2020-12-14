@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
+import 'package:health_body_checking/src/core/routes/routes.dart';
 import 'package:health_body_checking/src/models/user_model.dart';
 import 'package:health_body_checking/src/providers/auth_provider.dart';
 import 'package:health_body_checking/src/ui/profile/widgets/custom_button.dart';
@@ -57,15 +59,23 @@ class _ProfileScreemState extends State<ProfileScreen> {
         children: [
           Text(CurrentUserModel.instance?.name ?? ''),
           Text(CurrentUserModel.instance?.country ?? ''),
-          _userInfo('Peso','${CurrentUserModel.instance?.weight ?? ''}'),
-          _userInfo('Altura','${CurrentUserModel.instance?.height ?? ''}'),
-          _userInfo('Edad','${CurrentUserModel.instance?.age ?? ''}'),
+          _userInfo('Peso', '${CurrentUserModel.instance?.weight ?? ''}'),
+          _userInfo('Altura', '${CurrentUserModel.instance?.height ?? ''}'),
+          _userInfo('Edad', '${CurrentUserModel.instance?.age ?? ''}'),
           Divider(),
-          CustomButton(inputFunction: () {}, text: 'Editar perfil'),
+          CustomButton(
+              inputFunction: () {
+                Navigator.of(context).pushNamed(Routes.profile_edit);
+              },
+              text: 'Editar perfil'),
           SizedBox(
             height: 10,
           ),
-          CustomButton(inputFunction: () {}, text: 'Ajustes'),
+          CustomButton(
+              inputFunction: () {
+                Navigator.of(context).pushNamed(Routes.profile_settings);
+              },
+              text: 'Ajustes'),
           SizedBox(
             height: 20,
           ),
@@ -87,8 +97,14 @@ class _ProfileScreemState extends State<ProfileScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(name,style: TextStyle(fontWeight: FontWeight.bold),),
-        Text(value,style: TextStyle(fontWeight: FontWeight.bold),),
+        Text(
+          name,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          value,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }

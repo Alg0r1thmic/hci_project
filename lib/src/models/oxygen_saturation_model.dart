@@ -14,16 +14,16 @@ class OxygenSaturationModel {
         this.time,
     });
 
-    String id;
+    int id;
     String userId;
     double saturation;
-    Timestamp time;
+    DateTime time;
 
     factory OxygenSaturationModel.fromJson(Map<String, dynamic> json) => OxygenSaturationModel(
         id: json["id"],
         userId: json["user_id"],
         saturation: json["saturation"].toDouble(),
-        time: json["time"],
+        time: json["time"].toDate(),
     );
     Map<String, dynamic> toJson() => {
         "id": id,

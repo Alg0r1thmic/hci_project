@@ -72,7 +72,7 @@ class CurrentUserModel {
     _instance.country = json["country"];
     _instance.weight = (json["weight"]!=null)?json["weight"].toDouble():null;
     _instance.height = (json["height"]!=null)?json["height"].toDouble():null;
-    //_instance.sensors = List<SensorModel>.from(json["sensors"].map((x) => SensorModel.fromJson(x)));
+    _instance.sensors =(json["sensors"]!=null)?List<SensorModel>.from(json["sensors"].map((x) => SensorModel.fromJson(x))):null;
     return _instance;
   }
   factory CurrentUserModel({
@@ -118,6 +118,7 @@ class CurrentUserModel {
         "country": country,
         "weight": weight,
         "height": height,
-        //"sensors": List<dynamic>.from(sensors.map((x) => x.toJson())),
+        "sensors": (sensors!=null)?List<dynamic>.from(sensors.map((x) => x.toJson())):null,
       };
+  
 }

@@ -17,13 +17,13 @@ class TemperatureModel {
     String id;
     String userId;
     double temperature;
-    Timestamp time;
+    DateTime time;
 
     factory TemperatureModel.fromJson(Map<String, dynamic> json) => TemperatureModel(
         id: json["id"],
         userId: json["user_id"],
         temperature: json["temperature"].toDouble(),
-        time: json["time"],
+        time: json["time"].toDate(),
     );
     Map<String, dynamic> toJson() => {
         "id": id,

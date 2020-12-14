@@ -7,20 +7,20 @@ SensorModel sensorModelFromJson(String str) => SensorModel.fromJson(json.decode(
 String sensorModelToJson(SensorModel data) => json.encode(data.toJson());
 
 class SensorModel {
-  SensorModel({this.id, this.name, this.type, this.enable, this.value, this.time,this.route});
+  SensorModel({this.id, this.name, this.type, this.enabled, this.value, this.time,this.route});
   String id;
   String name;
   String type;
   double value;
   String route;
-  bool enable;
+  bool enabled=false;
   Timestamp time;
 
   factory SensorModel.fromJson(Map<String, dynamic> json) => SensorModel(
         id: json["id"],
         name: json["name"],
         type: json["type"],
-        enable: json["enable"],
+        enabled: json["enabled"],
         route:json["route"]
       );
 
@@ -28,6 +28,6 @@ class SensorModel {
         "id": id,
         "name": name,
         "type": type,
-        "enable": enable,
+        "enabled": enabled,
       };
 }

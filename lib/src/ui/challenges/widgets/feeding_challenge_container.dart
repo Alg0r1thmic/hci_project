@@ -16,35 +16,47 @@ class FeedingChallengeContainer extends StatelessWidget {
       padding: EdgeInsets.all(20),
       width: double.infinity,
       height: 200,
-      decoration: BoxDecoration(color: AppColors.WHITE, borderRadius: BorderRadius.circular(10), 
-      boxShadow: [BoxShadow(color: Colors.black12, offset: Offset(0.0, 15.0), blurRadius: 15.0)]),
+      decoration: BoxDecoration(
+          color: AppColors.PRIMARY,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black12,
+                offset: Offset(0.0, 15.0),
+                blurRadius: 15.0)
+          ]
+      ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             width: 200,
-            child: Text(contentText,style: TextStyle(fontSize: 22),textAlign: TextAlign.center,)),
-          Expanded(child: SizedBox()),
-          Column(
-            children: [
-              SizedBox(height: 10,),
-              Image.asset(imagePath,width: 100,height: 100,),
-              SizedBox(height: 10,),
-              InkWell(
-                onTap: inputFunction,
-                child: Container(
-                  width: 120,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.SECONDARY
-                  ),
-                  child: Center(
-                    child: Text('VER RETOS',style: TextStyle(color: AppColors.WHITE),),
-                  ),
-                ),
-              )
-            ],
+            child: Text(
+              contentText,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white
+              ),
+            )
+          ),
+          InkWell(
+            onTap: inputFunction,
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                color: AppColors.ORANGE,
+                borderRadius: BorderRadius.circular(50.0),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0.0, 10.0),
+                        blurRadius: 5.0)
+                  ]
+              ),
+              child: Icon(Icons.play_arrow_rounded, color: Colors.white,),
+            ),
           )
         ],
       ),

@@ -7,4 +7,6 @@ class FirestorePath {
   static String questions()=>'questions';
   static String user(String id) => 'users/$id';
   static String users()=>'users';
+  static String sensor(String id) => 'sensors/$id';
+  static String sensors()=>'sensors';
 }

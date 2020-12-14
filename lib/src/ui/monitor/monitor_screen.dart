@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/core/routes/routes.dart';
-
-import '../../constants/app_colors.dart';
-import '../../models/sensor_model.dart';
-import 'widgets/sensor_card.dart';
+import 'package:health_body_checking/src/constants/app_colors.dart';
+import 'package:health_body_checking/src/models/sensor_model.dart';
+import 'package:health_body_checking/src/ui/monitor/widgets/sensor_card.dart';
 
 class MonitorScreen extends StatefulWidget {
   MonitorScreen({Key key}) : super(key: key);
@@ -19,21 +17,41 @@ class _MonitorScreenState extends State<MonitorScreen> {
   static const _kFontFam = 'Health';
   static const _kFontPkg = null;
 
-  List<SensorModel> items = [SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5))];
-  static const List<IconData> icons = [IconData(0xf21e, fontFamily: _kFontFam, fontPackage: _kFontPkg), IconData(0xf496, fontFamily: _kFontFam, fontPackage: _kFontPkg), IconData(0xf2c9, fontFamily: _kFontFam, fontPackage: _kFontPkg)];
-  List<String> names = ["Latidos por minuto", "Índice de masa corporal", "Temperatura"];
+  List<SensorModel> items = [
+    SensorModel( value: 35.6, time: Timestamp(10,5)),
+    SensorModel( value: 35.6, time: Timestamp(10,5)),
+    SensorModel( value: 35.6, time: Timestamp(10,5)),
+    SensorModel( value: 35.6, time: Timestamp(10,5))
+  ];
+  static const List<IconData> icons = [
+    IconData(0xf21e, fontFamily: _kFontFam, fontPackage: _kFontPkg),
+    IconData(0xf496, fontFamily: _kFontFam, fontPackage: _kFontPkg),
+    IconData(0xf2c9, fontFamily: _kFontFam, fontPackage: _kFontPkg),
+    IconData(0xf604, fontFamily: 'Lungs', fontPackage: _kFontPkg),
+  ];
+  List<String> names = [
+    "Latidos por minuto",
+    "Índice de masa corporal",
+    "Temperatura",
+    "Saturacion de oxigeno"
+  ];
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          key: _scaffoldKey,
-          appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0.0, title: _tabBarHeader()),
-          body: TabBarView(
-            children: [_monitor(), _riskMap()],
-          ),
-        ));
+      length: 2,
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: AppColors.ALICE_BLUE,
+          elevation: 0.0,
+          title: _tabBarHeader()
+        ),
+        body: TabBarView(
+          children: [_monitor(), _riskMap()],
+        ),
+      )
+    );
   }
 
   Widget _tabBarHeader() {
@@ -52,18 +70,14 @@ class _MonitorScreenState extends State<MonitorScreen> {
   }
 
   Widget _monitor() {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        return SensorCard(
-          icon: icons[index],
-          name: names[index],
-          sensor: items[index],
-          inputFunction: () {
-            Navigator.of(context).pushNamed(Routes.data_visualization);
+    return Padding(
+        padding: EdgeInsets.symmetric(vertical: 20),
+        child: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return SensorCard(icon: icons[index], name: names[index], sensor: items[index],);
           },
-        );
-      },
+        ),
     );
   }
 

@@ -47,7 +47,6 @@ class _ProfileScreemState extends State<ProfileScreen> {
 
   Widget _profileCard() {
     final authProvider = Provider.of<AuthProvider>(context);
-
     return Container(
       padding: EdgeInsets.only(right: 40, left: 40, top: 10),
       width: double.infinity,
@@ -58,8 +57,8 @@ class _ProfileScreemState extends State<ProfileScreen> {
         children: [
           Text(CurrentUserModel.instance?.name ?? ''),
           Text(CurrentUserModel.instance?.country ?? ''),
-          _userInfo('Peso','${CurrentUserModel.instance?.weight ?? 0.0}'),
-          _userInfo('Altura','${CurrentUserModel.instance?.height ?? 0.0}'),
+          _userInfo('Peso','${CurrentUserModel.instance?.weight ?? ''}'),
+          _userInfo('Altura','${CurrentUserModel.instance?.height ?? ''}'),
           _userInfo('Edad','${CurrentUserModel.instance?.age ?? ''}'),
           Divider(),
           CustomButton(inputFunction: () {}, text: 'Editar perfil'),

@@ -4,14 +4,15 @@ import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_butto
 import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-class QuestionOneScren extends StatefulWidget {
+class QuestionOneScreen extends StatefulWidget {
   final VoidCallback onGoToNextQuestion;
-  QuestionOneScren({Key key, @required this.onGoToNextQuestion,}) : super(key: key);
+  final VoidCallback onGoToBackQuestion;
+  QuestionOneScreen({Key key, @required this.onGoToBackQuestion, @required this.onGoToNextQuestion}) : super(key: key);
   @override
-  _QuestionOneScrenState createState() => _QuestionOneScrenState();
+  _QuestionOneScreenState createState() => _QuestionOneScreenState();
 }
 
-class _QuestionOneScrenState extends State<QuestionOneScren> {
+class _QuestionOneScreenState extends State<QuestionOneScreen> {
   double _currentSliderValue = 0;
 
   @override
@@ -22,7 +23,7 @@ class _QuestionOneScrenState extends State<QuestionOneScren> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
           child: Column(
             children: [
-              PaginationText(total: 5, actual: 1),
+              PaginationText(total: 6, actual: 2),
               Expanded(child: SizedBox(child: _content(),)),
               _questionsChangeButton(),
             ],
@@ -34,8 +35,12 @@ class _QuestionOneScrenState extends State<QuestionOneScren> {
 
   Widget _questionsChangeButton() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        NextOrBackButton(
+          inputFunction: widget.onGoToBackQuestion,
+          icon: Icons.west,
+        ),
         NextOrBackButton(
           inputFunction: widget.onGoToNextQuestion,
           icon: Icons.east,

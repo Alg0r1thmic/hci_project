@@ -102,7 +102,7 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
         NumberInputPrefabbed.roundedEdgeButtons(
           controller: TextEditingController(),
           min: 0,
-          max: 120,
+          max: 240,
           incDecBgColor: Colors.blue,
           buttonArrangement: ButtonArrangement.incRightDecLeft,
 

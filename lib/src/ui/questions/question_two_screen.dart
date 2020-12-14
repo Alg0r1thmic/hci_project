@@ -18,9 +18,9 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
   final Map<int, Widget> myTabs = const <int, Widget>{
     0: Text("Nunca", textAlign: TextAlign.center),
     //1: Text("1 vez cada 2 semanas", textAlign: TextAlign.center),
-    1: Text("Semanal", textAlign: TextAlign.center),
-    2: Text("Quincenal", textAlign: TextAlign.center),
-    3: Text("Mensual", textAlign: TextAlign.center),
+    1: Text("Quincenal", textAlign: TextAlign.center),
+    2: Text("Semanal", textAlign: TextAlign.center),
+    3: Text("Diario", textAlign: TextAlign.center),
   };
 
   @override

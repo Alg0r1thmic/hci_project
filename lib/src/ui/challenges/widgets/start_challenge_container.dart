@@ -30,17 +30,17 @@ class StartChallengeContainer extends StatelessWidget {
             enable ? 'assets/images/unlock.png': 'assets/images/padlock.png',
             width: 80,
             height: 80,
-            color: (complete==false)?AppColors.WHITE:AppColors.WHITE,
+            color: (complete==false)?AppColors.LIME:AppColors.WHITE,
           )),
           SizedBox(
             height: 20,
           ),
           (complete==false)? Text(
             'Empieza un nuevo reto',
-            style: TextStyle(color: AppColors.WHITE, fontSize: 18),
+            style: TextStyle(color: AppColors.WHITE, fontSize: 24),
           ):Text(
             'Terminaste este reto',
-            style: TextStyle(color: AppColors.WHITE, fontSize: 18),
+            style: TextStyle(color: AppColors.WHITE, fontSize: 24),
           ),
           SizedBox(
             height: 20,

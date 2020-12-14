@@ -19,35 +19,38 @@ class SensorCardState extends State<SensorCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Container(
-        padding: EdgeInsets.all(20),
-        width: double.infinity,
-        height: 200,
-        decoration: BoxDecoration(color: AppColors.WHITE, borderRadius: BorderRadius.circular(10),
-          boxShadow: [BoxShadow(color: Colors.black12, offset: Offset(0.0, 15.0), blurRadius: 15.0)]),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 150,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(widget.icon),
-                  Text(widget.sensor.value.toString(), style: TextStyle(fontSize: 25),),
-                  Text(widget.name, textAlign: TextAlign.center,),
-                ],
-              )
-            ),
-            Expanded(
-              child: Container(
+    return InkWell(
+        onTap:widget.inputFunction,
+          child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Container(
+          padding: EdgeInsets.all(20),
+          width: double.infinity,
+          height: 200,
+          decoration: BoxDecoration(color: AppColors.WHITE, borderRadius: BorderRadius.circular(10),
+            boxShadow: [BoxShadow(color: Colors.black12, offset: Offset(0.0, 15.0), blurRadius: 15.0)]),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 150,
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(widget.icon),
+                    Text(widget.sensor.value.toString(), style: TextStyle(fontSize: 25),),
+                    Text(widget.name, textAlign: TextAlign.center,),
+                  ],
+                )
+              ),
+              Expanded(
+                child: Container(
 
+                )
               )
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

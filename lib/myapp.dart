@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:health_body_checking/src/constants/app_font_family.dart';
+import 'package:health_body_checking/src/services/user_service.dart';
 import 'package:health_body_checking/src/ui/questions/questions_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -71,6 +72,9 @@ class MyApp extends StatelessWidget {
                       if (userSnapshot.connectionState == ConnectionState.active) {
                         if (userSnapshot.hasData) {
                           final UserModel user = userSnapshot.data;
+                          CurrentUserModel(email: user.email, id: user.uid);
+                          UserService _userService = UserService();
+                          _userService.userStream(id: user.uid).listen((event) {});
                           return QuestionsScreen();
                         } else {
                           return LoginScreen();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/ui/monitor/oxygen_saturation/oxygen_saturation_visualization_screen.dart';
-import 'package:health_body_checking/src/ui/monitor/temperature/temperature_visualization_screen.dart';
+
+import 'oxygen_saturation/oxygen_saturation_visualization_screen.dart';
+import 'temperature/temperature_visualization_screen.dart';
 
 class VisualizationIndex {
   VisualizationIndex._();

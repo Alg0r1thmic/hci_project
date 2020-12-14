@@ -15,7 +15,8 @@ class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
   List<String> names = [
     "Latidos por minuto",
     "Índice de masa corporal",
-    "Temperatura"
+    "Temperatura",
+    "Saturacion de oxigeno"
   ];
 
   @override
@@ -43,6 +44,7 @@ class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
               OxygenSaturationVisualizationScreen(),
               OxygenSaturationVisualizationScreen(),
               TemperatureVisualizationScreen(),
+              OxygenSaturationVisualizationScreen(),
             ],
           ),
         )
@@ -57,12 +59,16 @@ class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
         indicator: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
             color: AppColors.PRIMARY_DARK),
-        tabs: [
-          _tabBarHeaderTextContainer(text: names[0]),
-          _tabBarHeaderTextContainer(text: names[1]),
-          _tabBarHeaderTextContainer(text: names[2]),
-        ]
+        tabs: _getsTabs()
     );
+  }
+
+  List<Widget> _getsTabs() {
+    List<Widget> list = [];
+    for (int i = 0; i < names.length; i++) {
+        list.add(_tabBarHeaderTextContainer(text: names[i]));
+    }
+    return list;
   }
 
   Widget _tabBarHeaderTextContainer({String text}) {

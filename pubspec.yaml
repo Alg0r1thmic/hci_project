@@ -104,6 +104,9 @@ flutter:
     - family: Health
       fonts:
         - asset: assets/fonts/health.ttf
+    - family: Lungs
+      fonts:
+        - asset: assets/fonts/lungs.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

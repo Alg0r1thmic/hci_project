@@ -20,17 +20,20 @@ class _MonitorScreenState extends State<MonitorScreen> {
   List<SensorModel> items = [
     SensorModel(id: 0, value: 35.6, time: Timestamp(10,5)),
     SensorModel(id: 1, value: 35.6, time: Timestamp(10,5)),
-    SensorModel(id: 2, value: 35.6, time: Timestamp(10,5))
+    SensorModel(id: 2, value: 35.6, time: Timestamp(10,5)),
+    SensorModel(id: 3, value: 35.6, time: Timestamp(10,5))
   ];
   static const List<IconData> icons = [
     IconData(0xf21e, fontFamily: _kFontFam, fontPackage: _kFontPkg),
     IconData(0xf496, fontFamily: _kFontFam, fontPackage: _kFontPkg),
-    IconData(0xf2c9, fontFamily: _kFontFam, fontPackage: _kFontPkg)
+    IconData(0xf2c9, fontFamily: _kFontFam, fontPackage: _kFontPkg),
+    IconData(0xf604, fontFamily: 'Lungs', fontPackage: _kFontPkg),
   ];
   List<String> names = [
     "Latidos por minuto",
     "Índice de masa corporal",
-    "Temperatura"
+    "Temperatura",
+    "Saturacion de oxigeno"
   ];
 
   @override

@@ -26,7 +26,7 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
           child: Column(
             children: [
-              PaginationText(total: 5, actual: 5),
+              PaginationText(total: 6, actual: 6),
               Expanded(child: SizedBox(child: _content(),)),
               _questionsChangeButton(),
             ],

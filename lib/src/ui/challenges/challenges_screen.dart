@@ -12,15 +12,13 @@ class ChallengesScreen extends StatefulWidget {
 
 class _ChallengesScreenState extends State<ChallengesScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  Color _selectedColor = AppColors.PRIMARY_DARK;
-  Color _unSelectedColor = AppColors.PRIMARY_LIGHT;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 2,
         child: new Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: AppColors.ALICE_BLUE,
               elevation: 0.0,
               title: _tabBarHeader(),
             ),

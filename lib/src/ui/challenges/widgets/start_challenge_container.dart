@@ -29,7 +29,7 @@ class StartChallengeContainer extends StatelessWidget {
             enable ? 'assets/images/unlock.png': 'assets/images/padlock.png',
             width: 80,
             height: 80,
-            color: (complete==false)?AppColors.LIME:AppColors.WHITE,
+            color: (enable==false)?AppColors.WHITE: AppColors.LIME,
           )),
           SizedBox(
             height: 20,

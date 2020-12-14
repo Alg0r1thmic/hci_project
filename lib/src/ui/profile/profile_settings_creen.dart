@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/models/sensor_model.dart';
-import 'package:health_body_checking/src/models/user_model.dart';
-import 'package:health_body_checking/src/services/sensor_service.dart';
-import 'package:health_body_checking/src/services/user_service.dart';
+
+import '../../models/user_model.dart';
+import '../../services/user_service.dart';
 
 class ProfileSettingsScreen extends StatefulWidget {
   ProfileSettingsScreen({Key key}) : super(key: key);

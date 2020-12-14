@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:health_body_checking/src/ui/challenges/current_challenge_screen.dart';
 import 'package:health_body_checking/src/ui/challenges/feeding_challenges_screen.dart';
 import 'package:health_body_checking/src/ui/monitor/data_visualization_screen.dart';
+import 'package:health_body_checking/src/ui/profile/profile_edit_screen.dart';
+import 'package:health_body_checking/src/ui/profile/profile_settings_creen.dart';
 
 import '../../ui/auth/login_screen.dart';
 import '../../ui/home/home.dart';
@@ -20,6 +22,8 @@ class Routes {
   static const String feeding_challenges='/feeding_challenges';
   static const String current_challenge='/current_challenge';
   static const String data_visualization='/data_visualization';
+  static const String profile_settings='/profile_settings';
+  static const String profile_edit='/profile_edit';
 
   static final routes=<String,WidgetBuilder>{
     login:(BuildContext context)=>LoginScreen(),
@@ -27,6 +31,8 @@ class Routes {
     profile:(BuildContext context)=>ProfileScreen(),
     feeding_challenges:(BuildContext context)=>FeedingChallengesScreen(),
     current_challenge:(BuildContext context)=>CurrentChallengeScreen(),
-    data_visualization:(BuildContext context)=>DataVisualizationScreen()
+    data_visualization:(BuildContext context)=>DataVisualizationScreen(),
+    profile_settings:(BuildContext context)=>ProfileSettingsScreen(),
+    profile_edit:(BuildContext context)=>ProfileEditScreen()
   }; 
 }

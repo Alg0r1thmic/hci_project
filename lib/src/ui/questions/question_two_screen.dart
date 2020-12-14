@@ -31,7 +31,7 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: Column(
             children: [
-              PaginationText(total: 5, actual: 2),
+              PaginationText(total: 6, actual: 3),
               Expanded(child: SizedBox(child: _content(),)),
               _questionsChangeButton(),
             ],

@@ -32,7 +32,6 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
     final database = Provider.of<OxygenSaturationService>(context, listen: false);
     database.oxygenSaturationsStream().listen((event) {
       _oxygenSaturationModel = event;
-      print(event.length);
       setState(() {
 
       });
@@ -97,12 +96,13 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
     return Container(
       height: MediaQuery.of(context).size.height * 0.65,
       child: SfCartesianChart(
-        primaryXAxis: NumericAxis(
-            visibleMinimum: 5,
-            visibleMaximum: 10,
+        primaryXAxis: DateTimeAxis(
+            visibleMinimum: DateTime(0,0,0,0,0,5),
+            visibleMaximum: DateTime(0,0,0,0,0,10),
             zoomFactor: .5,
+            intervalType: DateTimeIntervalType.auto,
             plotBands: <PlotBand>[
-              _makePlotBand(95.0, 100.0, Color.fromRGBO(27, 188, 155, .3))
+              _makePlotBand(95.0, 100.0, Color.fromRGBO(27, 188, 155, .3)),
             ]
         ),
         zoomPanBehavior: ZoomPanBehavior(

@@ -26,7 +26,7 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
           child: Column(
             children: [
-              PaginationText(total: 5, actual: 4),
+              PaginationText(total: 6, actual: 5),
               Expanded(child: SizedBox(child: _content(),)),
               _questionsChangeButton(),
             ],
@@ -103,6 +103,7 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           controller: TextEditingController(),
           min: 0,
           max: 240,
+          scaleWidth: 0.50,
           incDecBgColor: Colors.blue,
           buttonArrangement: ButtonArrangement.incRightDecLeft,
 

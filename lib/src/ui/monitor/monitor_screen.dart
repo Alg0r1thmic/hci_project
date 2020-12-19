@@ -38,19 +38,8 @@ class _MonitorScreenState extends State<MonitorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          backgroundColor: AppColors.ALICE_BLUE,
-          elevation: 0.0,
-          title: _tabBarHeader()
-        ),
-        body: TabBarView(
-          children: [_monitor(), _riskMap()],
-        ),
-      )
+    return Scaffold(
+      body: _monitor(),
     );
   }
 

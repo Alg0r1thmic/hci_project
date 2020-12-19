@@ -55,39 +55,17 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
   }
 
   Widget _content() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return ListView(
       children: [
-        /*
-        Container(
-          child: Image.asset("assets/images/glass.png", height: 150,),
-        ),
-*/
         RichText(
           text:
-          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: 'Sexo', style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: ':', style: TextStyle(fontWeight: FontWeight.normal)),
             ],
           ),
-          textAlign: TextAlign.center,
         ),
-/*
-        RaisedButton(
-            child: new Text("Presiona para cambiar"), color: _myColor, onPressed: () {
-          setState(() {
-            if (_myColor == Colors.lightBlueAccent) {
-              _myAccountState = "Account Disabled";
-              _myColor = Colors.pinkAccent;
-            }
-            else {
-              _myAccountState = "Account Enabled";
-              _myColor = Colors.lightBlueAccent;
-            }
-          });
-        }),
-*/
 
         ListTile(
           title: const Text('Hombre'),
@@ -114,39 +92,42 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
           ),
         ),
 
+        SizedBox(height: 25,),
+
         RichText(
           text:
-          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: 'Talla ', style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: 'en centimetros:', style: TextStyle(fontWeight: FontWeight.normal)),
             ],
           ),
-          textAlign: TextAlign.center,
         ),
 
         TextField(
           controller: _estaturaString,
-          decoration: new InputDecoration(labelText: "Ingrese su talla en centimetros."),
+          decoration: new InputDecoration(hintText: "Ingrese su talla en centimetros."),
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.digitsOnly
           ], // Only numbers can be entered
         ),
+
+        SizedBox(height: 25,),
+
         RichText(
           text:
-          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: 'Edad ', style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: 'en años:', style: TextStyle(fontWeight: FontWeight.normal)),
             ],
           ),
-          textAlign: TextAlign.center,
         ),
 
         TextField(
           controller: _edadString,
-          decoration: new InputDecoration(labelText: "Ingrese su edad en años."),
+          decoration: new InputDecoration(hintText: "Ingrese su edad en años."),
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.digitsOnly

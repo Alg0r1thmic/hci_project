@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 
+import '../dashboard/dashboard.dart';
 import '../challenges/challenges_screen.dart';
 import '../monitor/monitor_screen.dart';
 import '../profile/profile_screen.dart';
@@ -14,20 +15,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentTab = 0;
-  Widget _currentScreem;
-  List<Widget> _screems;
-  //Pages or Screems For Tab
-  MonitorScreen _monitorScreen;
-  ChallengesScreen _challengesScreen;
-  ProfileScreen _profileScreem;
+
+  List<String> _titles = ["Inicio", "Monitor", "Retos", "Perfil"];
+
   @override
   void initState() {
     super.initState();
-    _monitorScreen = MonitorScreen();
-    _challengesScreen = ChallengesScreen();
-    _profileScreem = ProfileScreen();
-    _screems = [_monitorScreen,_challengesScreen, _profileScreem];
-    _currentScreem = _monitorScreen;
   }
 
   @override
@@ -36,19 +29,22 @@ class _HomeState extends State<Home> {
       backgroundColor: AppColors.ALICE_BLUE,
       appBar: AppBar(
         title: Center(
-                  child: Text(_currentTab == 0
-              ? 'Monitor'
-              : _currentTab == 1
-                  ? 'Retos'
-                  : 'Perfil',style: TextStyle(color: AppColors.BLACK),),
+                  child: Text(_titles[_currentTab], style: TextStyle(color: AppColors.BLACK),),
         ),
         backgroundColor: AppColors.ALICE_BLUE,
         elevation: 0,
 
       ),
-      body: _currentScreem,
+      body: _getBody(),
       bottomNavigationBar: _bottonNavigationBar(),
     );
+  }
+
+  Widget _getBody(){
+    if(_currentTab == 0) return DashboardScreen();
+    else if (_currentTab == 1) return MonitorScreen();
+    else if (_currentTab == 2) return ChallengesScreen();
+    else return ProfileScreen();
   }
 
   Widget _bottonNavigationBar() {
@@ -60,12 +56,12 @@ class _HomeState extends State<Home> {
       onTap: (index) {
         setState(() {
           _currentTab = index;
-          _currentScreem = _screems[_currentTab];
         });
       },
-      items: [
-        BottomNavigationBarItem(icon: Icon(Icons.broken_image), label: 'Monitor'),
-        BottomNavigationBarItem(icon: Icon(Icons.wine_bar),label: 'Retos'),
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Inicio'),
+        BottomNavigationBarItem(icon: Icon(IconData(0xf21e, fontFamily: 'Health', fontPackage: null),), label: 'Monitor'),
+        BottomNavigationBarItem(icon: Icon(IconData(0xf5a2, fontFamily: 'Medal', fontPackage: null)),label: 'Retos'),
         BottomNavigationBarItem(icon: Icon(Icons.person_pin),label: 'Perfil'),
       ],
     );

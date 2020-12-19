@@ -103,7 +103,6 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           controller: TextEditingController(),
           min: 0,
           max: 240,
-          scaleWidth: 0.50,
           incDecBgColor: Colors.blue,
           buttonArrangement: ButtonArrangement.incRightDecLeft,
 

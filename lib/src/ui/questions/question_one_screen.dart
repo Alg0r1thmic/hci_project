@@ -69,7 +69,7 @@ class _QuestionOneScreenState extends State<QuestionOneScreen> {
 
         RichText(
           text:
-            TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+            TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
               children: <TextSpan>[
                 TextSpan(text: '¿Cuantos ', style: TextStyle(fontWeight: FontWeight.normal)),
                 TextSpan(text: 'vasos de agua ', style: TextStyle(fontWeight: FontWeight.bold)),

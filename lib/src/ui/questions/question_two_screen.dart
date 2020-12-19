@@ -68,7 +68,7 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
 
         RichText(
           text:
-          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: '¿Con que frecuencia consumes ', style: TextStyle(fontWeight: FontWeight.normal)),
               TextSpan(text: 'comida rapida?', style: TextStyle(fontWeight: FontWeight.bold)),

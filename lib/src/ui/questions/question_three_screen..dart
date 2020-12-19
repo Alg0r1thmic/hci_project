@@ -72,7 +72,7 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
 
         RichText(
           text:
-          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: '¿Con cuantas ', style: TextStyle(fontWeight: FontWeight.normal)),
               TextSpan(text: 'cucharitas ', style: TextStyle(fontWeight: FontWeight.bold)),

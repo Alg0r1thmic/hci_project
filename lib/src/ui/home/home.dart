@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
 
+import '../../constants/app_colors.dart';
 import '../challenges/challenges_screen.dart';
 import '../monitor/monitor_screen.dart';
 import '../profile/profile_screen.dart';

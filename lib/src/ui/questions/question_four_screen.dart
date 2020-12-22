@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
 //import 'package:numberpicker/numberpicker.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+
+import 'widgets/next_or_back_button.dart';
+import 'widgets/pagination.dart';
 
 class QuestionFourScreen extends StatefulWidget {
   final VoidCallback onGoToNextQuestion;

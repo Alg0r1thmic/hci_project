@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../core/routes/routes.dart';
@@ -25,7 +26,7 @@ class SensorCardState extends State<SensorCard> {
       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(Routes.data_visualization, arguments: widget.sensor.id);
+          Navigator.of(context).pushNamed(Routes.data_visualization, arguments: widget.sensor.index);
         },
         child: Container(
           padding: EdgeInsets.all(10),
@@ -58,7 +59,28 @@ class SensorCardState extends State<SensorCard> {
               ),
               Expanded(
                   child: Container(
-
+                     child: SfCartesianChart(
+                      // Initialize category axis
+                      primaryXAxis: CategoryAxis(),
+                      backgroundColor: AppColors.WHITE,
+                      plotAreaBackgroundColor: Colors.white,
+                      plotAreaBorderColor: Colors.transparent,
+                      borderColor: AppColors.WHITE,
+                      series: <LineSeries<SalesData, String>>[
+                        LineSeries<SalesData, String>(
+                          // Bind data source
+                          dataSource:  <SalesData>[
+                            SalesData('Jan', 35),
+                            SalesData('Feb', 28),
+                            SalesData('Mar', 34),
+                            SalesData('Apr', 32),
+                            SalesData('May', 40)
+                          ],
+                          xValueMapper: (SalesData sales, _) => sales.year,
+                          yValueMapper: (SalesData sales, _) => sales.sales
+                        )
+                      ]
+                    )
                   )
               )
             ],
@@ -69,3 +91,8 @@ class SensorCardState extends State<SensorCard> {
   }
 }
 
+class SalesData {
+  SalesData(this.year, this.sales);
+  final String year;
+  final double sales;
+}

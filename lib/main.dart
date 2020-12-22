@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
-import 'package:health_body_checking/src/services/temperature_service.dart';
 import 'package:provider/provider.dart';
 
 import 'flavor.dart';
@@ -9,6 +7,8 @@ import 'myapp.dart';
 import 'src/providers/auth_provider.dart';
 import 'src/providers/languaje_provider.dart';
 import 'src/providers/theme_provider.dart';
+import 'src/services/oxygen_saturation_service.dart';
+import 'src/services/temperature_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

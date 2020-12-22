@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/models/temperature_model.dart';
-import 'package:health_body_checking/src/services/temperature_service.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../../models/temperature_model.dart';
+import '../../../services/temperature_service.dart';
 
 class TemperatureVisualizationScreen extends StatefulWidget {
   TemperatureVisualizationScreen({Key key}) : super(key: key);

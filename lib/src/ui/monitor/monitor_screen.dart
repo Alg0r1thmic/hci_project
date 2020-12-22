@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/models/sensor_model.dart';
-import 'package:health_body_checking/src/ui/monitor/widgets/sensor_card.dart';
+
+import '../../constants/app_colors.dart';
+import '../../constants/custom_icons..dart';
+import '../../models/sensor_model.dart';
+import '../../models/user_model.dart';
+import 'widgets/sensor_card.dart';
 
 class MonitorScreen extends StatefulWidget {
   MonitorScreen({Key key}) : super(key: key);
@@ -14,44 +17,33 @@ class MonitorScreen extends StatefulWidget {
 class _MonitorScreenState extends State<MonitorScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  static const _kFontFam = 'Health';
-  static const _kFontPkg = null;
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  List<SensorModel> items = [
-    SensorModel( value: 35.6, time: Timestamp(10,5)),
-    SensorModel( value: 35.6, time: Timestamp(10,5)),
-    SensorModel( value: 35.6, time: Timestamp(10,5)),
-    SensorModel( value: 35.6, time: Timestamp(10,5))
+
+
+  List<SensorModel> items = [SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5))];
+  List<IconData> icons = [
+    CustomIcons.icons["ppm"],
+    CustomIcons.icons["weight_scale"],
+    CustomIcons.icons["temperature"],
+    CustomIcons.icons["hearth"],
   ];
-  static const List<IconData> icons = [
-    IconData(0xf21e, fontFamily: _kFontFam, fontPackage: _kFontPkg),
-    IconData(0xf496, fontFamily: _kFontFam, fontPackage: _kFontPkg),
-    IconData(0xf2c9, fontFamily: _kFontFam, fontPackage: _kFontPkg),
-    IconData(0xf604, fontFamily: 'Lungs', fontPackage: _kFontPkg),
-  ];
-  List<String> names = [
-    "Latidos por minuto",
-    "Índice de masa corporal",
-    "Temperatura",
-    "Saturacion de oxigeno"
-  ];
+  List<String> names = ["Latidos por minuto", "Índice de masa corporal", "Temperatura", "Saturacion de oxigeno"];
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          backgroundColor: AppColors.ALICE_BLUE,
-          elevation: 0.0,
-          title: _tabBarHeader()
-        ),
-        body: TabBarView(
-          children: [_monitor(), _riskMap()],
-        ),
-      )
-    );
+        length: 2,
+        child: Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBar(backgroundColor: AppColors.ALICE_BLUE, elevation: 0.0, title: _tabBarHeader()),
+          body: TabBarView(
+            children: [_monitor(), _riskMap()],
+          ),
+        ));
   }
 
   Widget _tabBarHeader() {
@@ -71,13 +63,17 @@ class _MonitorScreenState extends State<MonitorScreen> {
 
   Widget _monitor() {
     return Padding(
-        padding: EdgeInsets.symmetric(vertical: 20),
-        child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return SensorCard(icon: icons[index], name: names[index], sensor: items[index],);
-          },
-        ),
+      padding: EdgeInsets.symmetric(vertical: 20),
+      child: ListView.builder(
+        itemCount: CurrentUserModel.instance.sensors.length,
+        itemBuilder: (context, index) {
+          return(CurrentUserModel.instance.sensors[index].enabled)? SensorCard(
+            icon: CustomIcons.icons[CurrentUserModel.instance.sensors[index].icon],
+            name:CurrentUserModel.instance.sensors[index].displayName,
+            sensor:CurrentUserModel.instance.sensors[index],
+          ):null;
+        },
+      ),
     );
   }
 

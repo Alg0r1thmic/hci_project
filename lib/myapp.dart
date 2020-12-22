@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:health_body_checking/src/constants/app_font_family.dart';
-import 'package:health_body_checking/src/services/user_service.dart';
-import 'package:health_body_checking/src/ui/questions/questions_screen.dart';
+import 'src/constants/app_font_family.dart';
+import 'src/services/user_service.dart';
+import 'src/ui/questions/questions_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'app_localizations.dart';

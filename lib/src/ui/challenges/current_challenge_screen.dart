@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/constants/fake_water_days.dart';
-import 'package:health_body_checking/src/core/routes/routes.dart';
+
+import '../../constants/app_colors.dart';
+import '../../constants/fake_water_days.dart';
+import '../../core/routes/routes.dart';
 
 class CurrentChallengeScreen extends StatefulWidget {
   CurrentChallengeScreen({Key key}) : super(key: key);

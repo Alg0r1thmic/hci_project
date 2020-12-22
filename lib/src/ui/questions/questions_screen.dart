@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/ui/questions/question_one_screen.dart';
-import 'package:health_body_checking/src/ui/questions/question_three_screen..dart';
-import 'package:health_body_checking/src/ui/questions/question_two_screen.dart';
-import 'package:health_body_checking/src/ui/questions/question_four_screen.dart';
-import 'package:health_body_checking/src/ui/questions/question_five_screen.dart';
+
+import 'question_five_screen.dart';
+import 'question_four_screen.dart';
+import 'question_one_screen.dart';
+import 'question_three_screen..dart';
+import 'question_two_screen.dart';
 
 class QuestionIndex {
   QuestionIndex._();

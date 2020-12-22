@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 TemperatureModel temperatureModelFromJson(String str) => TemperatureModel.fromJson(json.decode(str));
 
@@ -32,3 +31,4 @@ class TemperatureModel {
         "time": time,
     };
 }
+

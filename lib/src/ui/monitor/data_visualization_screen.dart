@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/ui/monitor/oxygen_saturation/oxygen_saturation_visualization_screen.dart';
-import 'package:health_body_checking/src/ui/monitor/temperature/temperature_visualization_screen.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
+
+import '../../constants/app_colors.dart';
+import 'oxygen_saturation/oxygen_saturation_visualization_screen.dart';
+import 'temperature/temperature_visualization_screen.dart';
 
 class DataVisualizationScreen extends StatefulWidget {
   DataVisualizationScreen({Key key}) : super(key: key);

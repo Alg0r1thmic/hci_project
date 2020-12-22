@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/custom_icons..dart';
@@ -16,14 +17,12 @@ class MonitorScreen extends StatefulWidget {
 
 class _MonitorScreenState extends State<MonitorScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  OxygenSaturationService _oxygenSaturationService;
   @override
   void initState() {
+    _oxygenSaturationService=OxygenSaturationService();
     super.initState();
   }
-
-
-
   List<SensorModel> items = [SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5))];
   List<IconData> icons = [
     CustomIcons.icons["ppm"],
@@ -71,6 +70,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
             icon: CustomIcons.icons[CurrentUserModel.instance.sensors[index].icon],
             name:CurrentUserModel.instance.sensors[index].displayName,
             sensor:CurrentUserModel.instance.sensors[index],
+            service: _oxygenSaturationService,
           ):null;
         },
       ),

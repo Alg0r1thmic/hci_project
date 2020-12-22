@@ -13,7 +13,7 @@ class OxygenSaturationModel {
         this.time,
     });
 
-    int id;
+    String id;
     String userId;
     double saturation;
     DateTime time;

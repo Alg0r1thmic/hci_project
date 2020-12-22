@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/services/base.service.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../constants/app_colors.dart';
@@ -8,18 +9,26 @@ import '../../../core/routes/routes.dart';
 import '../../../models/sensor_model.dart';
 
 class SensorCard extends StatefulWidget {
-
   final SensorModel sensor;
   final String name;
   final IconData icon;
   final VoidCallback inputFunction;
-  SensorCard({Key key, this.sensor, this.name, this.icon, this.inputFunction}) : super(key: key);
-
+  final BaseService service;
+  SensorCard({Key key, this.sensor, this.name, this.icon, this.inputFunction,@required this.service}) : super(key: key);
   @override State createState() => SensorCardState();
 }
 
 class SensorCardState extends State<SensorCard> {
-
+  @override
+  void initState() {
+    super.initState();
+    _getAllData();
+  }
+  void _getAllData(){
+    widget.service.findAllStream().listen((event) { 
+      print(event);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Card(

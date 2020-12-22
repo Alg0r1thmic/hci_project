@@ -31,7 +31,7 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
 
   _listenStream() {
     final database = Provider.of<OxygenSaturationService>(context, listen: false);
-    database.oxygenSaturationsStream().listen((event) {
+    database.findAllStream().listen((event) {
       _oxygenSaturationModel = event;
       setState(() {
 

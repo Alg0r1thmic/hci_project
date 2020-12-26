@@ -9,4 +9,10 @@ class FirestorePath {
   static String users()=>'users';
   static String sensor(String id) => 'sensors/$id';
   static String sensors()=>'sensors';
+  
+  static String hearthRate(String id) => 'hearthRates/$id';
+  static String hearthRates()=>'hearthRates';
+  static String imc(String id) => 'imcs/$id';
+  static String imcs()=>'imcs';
+
 }

@@ -12,7 +12,6 @@ class OxygenSaturationService implements BaseService<OxygenSaturationModel> {
   Stream<List<OxygenSaturationModel>> findAllStream() => _firestoreService.collectionStream(
         path: FirestorePath.oxygenSaturations(),
         builder: (data) => OxygenSaturationModel.fromJson(data),
-        queryBuilder: (query) => query.orderBy('id',descending: true).limit(10)
   );
   //Method to retrieve OxygenSaturation object based on the given Id
   @override
@@ -32,4 +31,11 @@ class OxygenSaturationService implements BaseService<OxygenSaturationModel> {
   Future<void> deleteOne(OxygenSaturationModel model) async {
     await _firestoreService.deleteData(path: FirestorePath.oxygenSaturation(model.id.toString()));
   }
+
+  @override
+  Stream<List<OxygenSaturationModel>> lastDocumentsStream(int n) => _firestoreService.collectionStream(
+        path: FirestorePath.oxygenSaturations(),
+        builder: (data) => OxygenSaturationModel.fromJson(data),
+        queryBuilder: (query) => query.orderBy('id',descending: true).limit(n)
+  );
 }

@@ -14,18 +14,6 @@
       "languageVersion": "2.10"
     },
     {
-      "name": "carousel_pro",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/carousel_pro-1.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
-    },
-    {
-      "name": "carousel_slider",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/carousel_slider-2.3.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.6"
-    },
-    {
       "name": "characters",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0-nullsafety.3",
       "packageUri": "lib/",
@@ -144,6 +132,12 @@
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "fl_chart",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.12.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
     },
     {
       "name": "flutter",
@@ -276,6 +270,18 @@
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0-nullsafety.1",
       "packageUri": "lib/",
       "languageVersion": "2.10"
+    },
+    {
+      "name": "path_drawing",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
+    },
+    {
+      "name": "path_parsing",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
     },
     {
       "name": "path_provider_linux",
@@ -488,7 +494,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-14T01:53:28.304631Z",
+  "generated": "2020-12-23T23:05:02.379907Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

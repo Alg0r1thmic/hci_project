@@ -137,7 +137,7 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
           LineSeries<OxygenSaturationModel, DateTime>(
               dataSource: this._oxygenSaturationModel,
               xValueMapper: (OxygenSaturationModel sales, _) => sales.time,
-              yValueMapper: (OxygenSaturationModel sales, _) => sales.saturation,
+              yValueMapper: (OxygenSaturationModel sales, _) => sales.value,
               markerSettings: MarkerSettings(
                   isVisible: true
               )

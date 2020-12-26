@@ -42,9 +42,9 @@ dependencies:
   splashscreen: ^1.2.0
   provider: 
   http: ^0.12.1
-  carousel_slider: ^2.1.0
-  carousel_pro: ^1.0.0
   value_animation_progress: ^1.0.0+2
+  fl_chart: ^0.12.1
+
   flutter_localizations:
     sdk: flutter
 

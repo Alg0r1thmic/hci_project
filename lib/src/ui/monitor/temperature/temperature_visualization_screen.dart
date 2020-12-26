@@ -30,7 +30,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
 
   _listenStream() {
     final database = Provider.of<TemperatureService>(context, listen: false);
-    database.temperaturesStream().listen((event) {
+    database.findAllStream().listen((event) {
       _temperaturaModel = event;
       setState(() {
         
@@ -138,7 +138,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
           LineSeries<TemperatureModel, DateTime>(
               dataSource: this._temperaturaModel,
               xValueMapper: (TemperatureModel sales, _) => sales.time,
-              yValueMapper: (TemperatureModel sales, _) => sales.temperature,
+              yValueMapper: (TemperatureModel sales, _) => sales.value,
               markerSettings: MarkerSettings(
                   isVisible: true
               )

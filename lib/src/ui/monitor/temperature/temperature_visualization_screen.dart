@@ -30,7 +30,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
 
   _listenStream() {
     final database = Provider.of<TemperatureService>(context, listen: false);
-    database.findAllStream().listen((event) {
+    database.lastDocumentsStream(100).listen((event) {
       _temperaturaModel = event;
       setState(() {
         

@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/models/user_model.dart';
+import 'package:health_body_checking/src/services/base.service.dart';
+import 'package:health_body_checking/src/services/hearth_service.dart';
+import 'package:health_body_checking/src/services/imc_service.dart';
+import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
+import 'package:health_body_checking/src/services/temperature_service.dart';
+import 'package:health_body_checking/src/ui/monitor/hearth_rate/hearth_rate_visualization_screen.dart';
+import 'package:health_body_checking/src/ui/monitor/imc/imc_visualization_screen.dart';
 
 import '../../constants/app_colors.dart';
 import 'oxygen_saturation/oxygen_saturation_visualization_screen.dart';
@@ -12,7 +20,30 @@ class DataVisualizationScreen extends StatefulWidget {
 }
 
 class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
-
+  List<Widget> _visualizationScreens=[];
+  List<String> _names=[];
+  @override
+  void initState() { 
+    super.initState();
+    _generateScreens();
+  }
+  void _generateScreens(){
+    CurrentUserModel.instance.sensors.forEach((element){
+      if(element.enabled){
+        _visualizationScreens.add(_sensorScreens[element.sensorName]);
+        _names.add(element.sensorName);
+      }
+    });
+    setState(() {
+      
+    });
+  }
+  Map<String,Widget> _sensorScreens={
+    "Temperatura":new TemperatureVisualizationScreen(),
+    "Oximetro":new OxygenSaturationVisualizationScreen(),
+    "HearthRate":new HearthRateVisualizationScreen(),
+    "Imc":new ImcVisualizationScreen()
+  };
   List<String> names = [
     "Latidos por minuto",
     "Índice de masa corporal",
@@ -22,10 +53,10 @@ class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final int args = ModalRoute.of(context).settings.arguments;
+    final String args = ModalRoute.of(context).settings.arguments;
     return DefaultTabController(
-        //initialIndex: args,
-        length: names.length,
+        initialIndex:_names.indexOf(args),
+        length: CurrentUserModel.instance.sensors.fold(0,(enabled,sensor)=>(sensor.enabled)?enabled+1:enabled+0),
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -41,12 +72,7 @@ class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
           ),
           body: TabBarView(
             physics: NeverScrollableScrollPhysics(),
-            children: [
-              OxygenSaturationVisualizationScreen(),
-              OxygenSaturationVisualizationScreen(),
-              TemperatureVisualizationScreen(),
-              OxygenSaturationVisualizationScreen(),
-            ],
+            children: _visualizationScreens
           ),
         )
     );
@@ -66,9 +92,11 @@ class _DataVisualizationScreenState extends State<DataVisualizationScreen> {
 
   List<Widget> _getsTabs() {
     List<Widget> list = [];
-    for (int i = 0; i < names.length; i++) {
-        list.add(_tabBarHeaderTextContainer(text: names[i]));
-    }
+    CurrentUserModel.instance.sensors.forEach((element){
+      if(element.enabled){
+        list.add(_tabBarHeaderTextContainer(text: element.displayName));
+      }
+    });
     return list;
   }
 

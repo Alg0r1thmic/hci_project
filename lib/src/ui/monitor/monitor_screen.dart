@@ -1,15 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/services/base.service.dart';
+import 'package:health_body_checking/src/services/hearth_service.dart';
+import 'package:health_body_checking/src/services/imc_service.dart';
+import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
+import 'package:health_body_checking/src/services/temperature_service.dart';
 
-import '../../constants/app_colors.dart';
 import '../../constants/custom_icons..dart';
 import '../../models/sensor_model.dart';
 import '../../models/user_model.dart';
-import '../../services/base.service.dart';
-import '../../services/hearth_service.dart';
-import '../../services/imc_service.dart';
-import '../../services/oxygen_saturation_service.dart';
-import '../../services/temperature_service.dart';
 import 'widgets/sensor_card.dart';
 
 class MonitorScreen extends StatefulWidget {
@@ -20,11 +19,8 @@ class MonitorScreen extends StatefulWidget {
 }
 
 class _MonitorScreenState extends State<MonitorScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  OxygenSaturationService _oxygenSaturationService;
   @override
   void initState() {
-    _oxygenSaturationService=OxygenSaturationService();
     super.initState();
   }
   List<SensorModel> items = [SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5))];
@@ -40,7 +36,6 @@ class _MonitorScreenState extends State<MonitorScreen> {
     "HearthRate":new HearthRateService(),
     "Imc":new ImcService()
   };
-  List<String> names = ["Latidos por minuto", "Índice de masa corporal", "Temperatura", "Saturacion de oxigeno"];
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +43,6 @@ class _MonitorScreenState extends State<MonitorScreen> {
       body: _monitor(),
     );
   }
-
-
 
 
   Widget _monitor() {
@@ -64,10 +57,9 @@ class _MonitorScreenState extends State<MonitorScreen> {
             minValue: CurrentUserModel.instance.sensors[index].minValue,
             maxValue: CurrentUserModel.instance.sensors[index].maxValue,
             unitOfMeasurement: CurrentUserModel.instance.sensors[index].unitOfMeasurement,
-          ):null;
+          ):SizedBox();
         },
       );
   }
 
-  
 }

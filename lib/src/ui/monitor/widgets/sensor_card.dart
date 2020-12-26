@@ -54,7 +54,7 @@ class SensorCardState extends State<SensorCard> {
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(Routes.data_visualization,
-            arguments: widget.sensor.index);
+            arguments: widget.sensor.sensorName);
       },
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 10),

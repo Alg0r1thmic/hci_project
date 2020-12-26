@@ -41,8 +41,8 @@ class _ProfileScreemState extends State<ProfileScreen> {
     return Center(
         child: Image.asset(
       'assets/images/no-image.jpg',
-      width: 100,
-      height: 100,
+      width: 60,
+      height: 60,
       fit: BoxFit.cover,
     ));
   }
@@ -77,7 +77,7 @@ class _ProfileScreemState extends State<ProfileScreen> {
               },
               text: 'Ajustes'),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           CustomButton(
               inputFunction: () {

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:health_body_checking/src/ui/challenges/current_challenge_screen.dart';
 import 'package:health_body_checking/src/ui/challenges/feeding_challenges_screen.dart';
+import 'package:health_body_checking/src/ui/dashboard/dashboard.dart';
 import 'package:health_body_checking/src/ui/monitor/data_visualization_screen.dart';
 import 'package:health_body_checking/src/ui/profile/profile_edit_screen.dart';
 import 'package:health_body_checking/src/ui/profile/profile_settings_creen.dart';
@@ -15,12 +15,12 @@ class Routes {
   static const String login='/login';
   static const String register='/register';
   static const String home='/home';
+  static const String dashboard='/dashboard';
   static const String settings='/settings';
   static const String nearby='/nearby';
   static const String profile='/profile';
   static const String wallet='/wallet';
   static const String feeding_challenges='/feeding_challenges';
-  static const String current_challenge='/current_challenge';
   static const String data_visualization='/data_visualization';
   static const String profile_settings='/profile_settings';
   static const String profile_edit='/profile_edit';
@@ -28,9 +28,9 @@ class Routes {
   static final routes=<String,WidgetBuilder>{
     login:(BuildContext context)=>LoginScreen(),
     home:(BuildContext context)=>Home(),
+    dashboard:(BuildContext context)=>DashboardScreen(),
     profile:(BuildContext context)=>ProfileScreen(),
     feeding_challenges:(BuildContext context)=>FeedingChallengesScreen(),
-    current_challenge:(BuildContext context)=>CurrentChallengeScreen(),
     data_visualization:(BuildContext context)=>DataVisualizationScreen(),
     profile_settings:(BuildContext context)=>ProfileSettingsScreen(),
     profile_edit:(BuildContext context)=>ProfileEditScreen()

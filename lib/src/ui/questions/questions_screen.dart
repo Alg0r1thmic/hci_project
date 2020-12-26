@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/ui/questions/question_zero_screen.dart';
 import 'package:health_body_checking/src/ui/questions/question_one_screen.dart';
 import 'package:health_body_checking/src/ui/questions/question_three_screen..dart';
 import 'package:health_body_checking/src/ui/questions/question_two_screen.dart';
@@ -7,12 +8,12 @@ import 'package:health_body_checking/src/ui/questions/question_five_screen.dart'
 
 class QuestionIndex {
   QuestionIndex._();
-  static const int QUESTION_ONE = 0;
-  static const int QUESTION_TWO = 1;
-  static const int QUESTION_THREE = 2;
-  static const int QUESTION_FOUR = 3;
-  static const int QUESTION_FIVE = 4;
-  
+  static const int QUESTION_ZERO = 0;
+  static const int QUESTION_ONE = 1;
+  static const int QUESTION_TWO = 2;
+  static const int QUESTION_THREE = 3;
+  static const int QUESTION_FOUR = 4;
+  static const int QUESTION_FIVE = 5;
 }
 
 class QuestionsScreen extends StatefulWidget {
@@ -39,7 +40,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       physics: NeverScrollableScrollPhysics(),
       controller: _pageController,
       children: <Widget>[
-        QuestionOneScren(
+        QuestionZeroScreen(
+          onGoToNextQuestion: () {
+            _switchForm(QuestionIndex.QUESTION_ONE);
+          },
+        ),
+        QuestionOneScreen(
+          onGoToBackQuestion: () {
+            _switchForm(QuestionIndex.QUESTION_ZERO);
+          },
           onGoToNextQuestion: () {
             _switchForm(QuestionIndex.QUESTION_TWO);
           },
@@ -70,7 +79,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         ),
         QuestionFiveScreen(
           onGoToBackQuestion: () {
-            _switchForm(QuestionIndex.QUESTION_ONE);
+            _switchForm(QuestionIndex.QUESTION_ZERO);
           },
         )
       ],

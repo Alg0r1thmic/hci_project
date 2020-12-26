@@ -18,9 +18,9 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
   final Map<int, Widget> myTabs = const <int, Widget>{
     0: Text("Nunca", textAlign: TextAlign.center),
     //1: Text("1 vez cada 2 semanas", textAlign: TextAlign.center),
-    1: Text("Semanal", textAlign: TextAlign.center),
-    2: Text("Quincenal", textAlign: TextAlign.center),
-    3: Text("Mensual", textAlign: TextAlign.center),
+    1: Text("Quincenal", textAlign: TextAlign.center),
+    2: Text("Semanal", textAlign: TextAlign.center),
+    3: Text("Diario", textAlign: TextAlign.center),
   };
 
   @override
@@ -31,7 +31,7 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: Column(
             children: [
-              PaginationText(total: 5, actual: 2),
+              PaginationText(total: 6, actual: 3),
               Expanded(child: SizedBox(child: _content(),)),
               _questionsChangeButton(),
             ],
@@ -68,7 +68,7 @@ class _QuestionTwoScreenState extends State<QuestionTwoScreen> {
 
         RichText(
           text:
-          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: '¿Con que frecuencia consumes ', style: TextStyle(fontWeight: FontWeight.normal)),
               TextSpan(text: 'comida rapida?', style: TextStyle(fontWeight: FontWeight.bold)),

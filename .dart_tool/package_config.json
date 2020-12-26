@@ -404,6 +404,12 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "sticky_headers",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/sticky_headers-0.1.8+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "stream_channel",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0-nullsafety.1",
       "packageUri": "lib/",
@@ -424,6 +430,12 @@
     {
       "name": "syncfusion_flutter_core",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-18.3.53",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "syncfusion_flutter_gauges",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_gauges-18.3.53",
       "packageUri": "lib/",
       "languageVersion": "2.1"
     },
@@ -488,7 +500,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-14T01:53:28.304631Z",
+  "generated": "2020-12-26T17:23:40.320359Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

@@ -27,7 +27,7 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
             child: Column(
               children: [
-                PaginationText(total: 5, actual: 3),
+                PaginationText(total: 6, actual: 4),
                 Expanded(child: SizedBox(child: _content(),)),
                 _questionsChangeButton(),
               ],
@@ -72,7 +72,7 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
 
         RichText(
           text:
-          TextSpan(style: TextStyle(fontSize: 30, color: Colors.black),
+          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: '¿Con cuantas ', style: TextStyle(fontWeight: FontWeight.normal)),
               TextSpan(text: 'cucharitas ', style: TextStyle(fontWeight: FontWeight.bold)),

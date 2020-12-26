@@ -1,5 +1,9 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
+import 'package:health_body_checking/src/models/sensor_model.dart';
 
 import '../dashboard/dashboard.dart';
 import '../challenges/challenges_screen.dart';
@@ -18,9 +22,40 @@ class _HomeState extends State<Home> {
 
   List<String> _titles = ["Inicio", "Monitor", "Retos", "Perfil"];
 
+  Timer timer;
+
+  var rng = new Random();
+
   @override
   void initState() {
+    timer = Timer.periodic(Duration(seconds: 5), (Timer t) {
+      _generate();
+    });
     super.initState();
+  }
+
+  _generate() {
+    double imc = doubleInRange(rng, 18.5, 30.0);
+    double lpm = doubleInRange(rng, 50.0, 110.0);
+    double temp = doubleInRange(rng, 36.0, 39.0);
+    double os = doubleInRange(rng, 95.0, 100.0);
+
+    DateTime time = DateTime.now();
+    setState(() {
+      sensors[0].values.add(Values(value: imc, time: time));
+      sensors[1].values.add(Values(value: lpm, time: time));
+      sensors[2].values.add(Values(value: temp, time: time));
+      sensors[3].values.add(Values(value: os, time: time));
+    });
+  }
+
+  double doubleInRange(Random source, num start, num end) =>
+      source.nextDouble() * (end - start) + start;
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
+import 'package:health_body_checking/src/models/sensor_model.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 
@@ -20,30 +21,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Column(
+        child: ListView(
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Retos actuales", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
+                  Text("Alimentacion", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
                   thereAreChallenges ? _getChallenges() : _makeNoChallenge()
                 ],
               ),
             ),
-            Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(top: 25),
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Mapa de riesgo", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
-                      _riksMap()
-                    ],
-                  ),
-                )
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Actividad fisica", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
+                  thereAreChallenges ? _getChallenges() : _makeNoChallenge()
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 25),
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Mapa de riesgo", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
+                  _riksMap()
+                ],
+              ),
             )
           ],
         ),
@@ -137,7 +146,43 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _riksMap() {
     return Container(
-
+      width: MediaQuery.of(context).size.width,
+      child: _health(),
     );
+  }
+
+  Widget _health() {
+    return Row(
+      children: [
+        Image.asset(
+            "assets/images/health.png",
+            width: MediaQuery.of(context).size.width*.4
+        ),
+        Expanded(child: Container(
+          child: Column(
+            children: _sensors()
+          ),
+        ))
+      ],
+    );
+  }
+
+  List<Widget> _sensors() {
+    List<Widget> list = List<Widget>();
+    for (Sensor sensor in sensors) {
+      if (sensor.values.isNotEmpty) {
+        list.add(
+            ListTile(
+              title: Text(sensor.values[sensor.values.length-1].value.toStringAsFixed(1)),
+              subtitle: Text(sensor.name, style: TextStyle(fontSize: 12),),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.navigate_next),
+              ),
+            )
+        );
+      }
+    }
+    return list;
   }
 }

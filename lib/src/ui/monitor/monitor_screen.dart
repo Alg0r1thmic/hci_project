@@ -1,8 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/models/sensor_model.dart';
-import 'package:health_body_checking/src/ui/monitor/widgets/sensor_card.dart';
+
+import '../../constants/app_colors.dart';
+import '../../constants/custom_icons..dart';
+import '../../models/sensor_model.dart';
+import '../../models/user_model.dart';
+import '../../services/base.service.dart';
+import '../../services/hearth_service.dart';
+import '../../services/imc_service.dart';
+import '../../services/oxygen_saturation_service.dart';
+import '../../services/temperature_service.dart';
+import 'widgets/sensor_card.dart';
 
 class MonitorScreen extends StatefulWidget {
   MonitorScreen({Key key}) : super(key: key);
@@ -13,28 +21,26 @@ class MonitorScreen extends StatefulWidget {
 
 class _MonitorScreenState extends State<MonitorScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  static const _kFontFam = 'Health';
-  static const _kFontPkg = null;
-
-  List<SensorModel> items = [
-    SensorModel( value: 35.6, time: Timestamp(10,5)),
-    SensorModel( value: 35.6, time: Timestamp(10,5)),
-    SensorModel( value: 35.6, time: Timestamp(10,5)),
-    SensorModel( value: 35.6, time: Timestamp(10,5))
+  OxygenSaturationService _oxygenSaturationService;
+  @override
+  void initState() {
+    _oxygenSaturationService=OxygenSaturationService();
+    super.initState();
+  }
+  List<SensorModel> items = [SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5)), SensorModel(value: 35.6, time: Timestamp(10, 5))];
+  List<IconData> icons = [
+    CustomIcons.icons["ppm"],
+    CustomIcons.icons["weight_scale"],
+    CustomIcons.icons["temperature"],
+    CustomIcons.icons["hearth"],
   ];
-  static const List<IconData> icons = [
-    IconData(0xf21e, fontFamily: _kFontFam, fontPackage: _kFontPkg),
-    IconData(0xf496, fontFamily: _kFontFam, fontPackage: _kFontPkg),
-    IconData(0xf2c9, fontFamily: _kFontFam, fontPackage: _kFontPkg),
-    IconData(0xf604, fontFamily: 'Lungs', fontPackage: _kFontPkg),
-  ];
-  List<String> names = [
-    "Latidos por minuto",
-    "Índice de masa corporal",
-    "Temperatura",
-    "Saturacion de oxigeno"
-  ];
+  Map<String,BaseService> _services={
+    "Temperatura":new TemperatureService(),
+    "Oximetro":new OxygenSaturationService(),
+    "HearthRate":new HearthRateService(),
+    "Imc":new ImcService()
+  };
+  List<String> names = ["Latidos por minuto", "Índice de masa corporal", "Temperatura", "Saturacion de oxigeno"];
 
   @override
   Widget build(BuildContext context) {
@@ -43,34 +49,25 @@ class _MonitorScreenState extends State<MonitorScreen> {
     );
   }
 
-  Widget _tabBarHeader() {
-    return TabBar(unselectedLabelColor: AppColors.PRIMARY_DARK, indicatorSize: TabBarIndicatorSize.label, indicator: BoxDecoration(borderRadius: BorderRadius.circular(50), color: AppColors.PRIMARY_DARK), tabs: [_tabBarHeaderTextContainer(text: 'Monitor'), _tabBarHeaderTextContainer(text: 'Mapa de riesgo')]);
-  }
 
-  Widget _tabBarHeaderTextContainer({String text}) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), border: Border.all(color: AppColors.PRIMARY_DARK, width: 1)),
-      child: Align(
-        alignment: Alignment.center,
-        child: Text(text),
-      ),
-    );
-  }
+
 
   Widget _monitor() {
-    return Padding(
-        padding: EdgeInsets.symmetric(vertical: 20),
-        child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return SensorCard(icon: icons[index], name: names[index], sensor: items[index],);
-          },
-        ),
-    );
+    return  ListView.builder(
+        itemCount: CurrentUserModel.instance.sensors.length,
+        itemBuilder: (context, index) {
+          return(CurrentUserModel.instance.sensors[index].enabled)? SensorCard(
+            icon: CustomIcons.icons[CurrentUserModel.instance.sensors[index].icon],
+            name:CurrentUserModel.instance.sensors[index].displayName,
+            sensor:CurrentUserModel.instance.sensors[index],
+            service: this._services[CurrentUserModel.instance.sensors[index].sensorName],
+            minValue: CurrentUserModel.instance.sensors[index].minValue,
+            maxValue: CurrentUserModel.instance.sensors[index].maxValue,
+            unitOfMeasurement: CurrentUserModel.instance.sensors[index].unitOfMeasurement,
+          ):null;
+        },
+      );
   }
 
-  Widget _riskMap() {
-    return Container();
-  }
+  
 }

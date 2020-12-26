@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/models/temperature_model.dart';
-import 'package:health_body_checking/src/services/temperature_service.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../../models/temperature_model.dart';
+import '../../../services/temperature_service.dart';
 
 class TemperatureVisualizationScreen extends StatefulWidget {
   TemperatureVisualizationScreen({Key key}) : super(key: key);
@@ -29,7 +30,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
 
   _listenStream() {
     final database = Provider.of<TemperatureService>(context, listen: false);
-    database.temperaturesStream().listen((event) {
+    database.findAllStream().listen((event) {
       _temperaturaModel = event;
       setState(() {
         
@@ -137,7 +138,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
           LineSeries<TemperatureModel, DateTime>(
               dataSource: this._temperaturaModel,
               xValueMapper: (TemperatureModel sales, _) => sales.time,
-              yValueMapper: (TemperatureModel sales, _) => sales.temperature,
+              yValueMapper: (TemperatureModel sales, _) => sales.value,
               markerSettings: MarkerSettings(
                   isVisible: true
               )

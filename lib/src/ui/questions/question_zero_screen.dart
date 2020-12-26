@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
-import 'package:sticky_headers/sticky_headers.dart';
+import 'package:flutter/widgets.dart';
+
+import 'widgets/next_or_back_button.dart';
+import 'widgets/pagination.dart';
 
 class QuestionZeroScreen extends StatefulWidget {
   final VoidCallback onGoToNextQuestion;

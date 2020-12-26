@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/core/routes/routes.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+
+import '../../constants/app_colors.dart';
+import '../../core/routes/routes.dart';
+import 'widgets/next_or_back_button.dart';
+import 'widgets/pagination.dart';
 
 class QuestionFiveScreen extends StatefulWidget {
   final VoidCallback onGoToBackQuestion;

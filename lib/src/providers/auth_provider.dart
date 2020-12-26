@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:health_body_checking/src/services/sensor_service.dart';
-import 'package:health_body_checking/src/services/user_service.dart';
 
 import '../models/user_model.dart';
+import '../services/sensor_service.dart';
+import '../services/user_service.dart';
 
 enum Status { Uninitialized, Authenticated, Authenticating, GoogleAuthenticating, Unauthenticated, Registering }
 

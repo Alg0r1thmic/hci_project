@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/core/routes/routes.dart';
-import 'package:health_body_checking/src/models/user_model.dart';
-import 'package:health_body_checking/src/providers/auth_provider.dart';
-import 'package:health_body_checking/src/ui/profile/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
+
+import '../../constants/app_colors.dart';
+import '../../core/routes/routes.dart';
+import '../../models/user_model.dart';
+import '../../providers/auth_provider.dart';
+import 'widgets/custom_button.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key key}) : super(key: key);

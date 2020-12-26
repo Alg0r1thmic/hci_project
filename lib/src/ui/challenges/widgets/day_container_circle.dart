@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
+
+import '../../../constants/app_colors.dart';
 
 class DayContainerCircle extends StatelessWidget {
   final bool fill;

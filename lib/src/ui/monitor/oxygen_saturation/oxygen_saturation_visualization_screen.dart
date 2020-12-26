@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/models/oxygen_saturation_model.dart';
-import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../../models/oxygen_saturation_model.dart';
+import '../../../services/oxygen_saturation_service.dart';
 
 class OxygenSaturationVisualizationScreen extends StatefulWidget {
   OxygenSaturationVisualizationScreen({Key key}) : super(key: key);
@@ -30,7 +31,7 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
 
   _listenStream() {
     final database = Provider.of<OxygenSaturationService>(context, listen: false);
-    database.oxygenSaturationsStream().listen((event) {
+    database.findAllStream().listen((event) {
       _oxygenSaturationModel = event;
       setState(() {
 
@@ -136,7 +137,7 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
           LineSeries<OxygenSaturationModel, DateTime>(
               dataSource: this._oxygenSaturationModel,
               xValueMapper: (OxygenSaturationModel sales, _) => sales.time,
-              yValueMapper: (OxygenSaturationModel sales, _) => sales.saturation,
+              yValueMapper: (OxygenSaturationModel sales, _) => sales.value,
               markerSettings: MarkerSettings(
                   isVisible: true
               )

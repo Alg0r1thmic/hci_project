@@ -1,9 +1,9 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/models/challenge_model.dart';
-import 'package:health_body_checking/src/ui/challenges/widgets/day_container_circle.dart';
+
+import '../../../constants/app_colors.dart';
+import '../../../models/challenge_model.dart';
+import 'day_container_circle.dart';
 
 enum States {
   ENABLE,
@@ -11,6 +11,7 @@ enum States {
   PROGRESS,
   COMPLETE
 }
+
 
 class ChallengeContainer extends StatefulWidget {
   States _actualState;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/core/routes/routes.dart';
-import 'package:health_body_checking/src/ui/challenges/widgets/feeding_challenge_container.dart';
+
+import '../../constants/app_colors.dart';
+import '../../core/routes/routes.dart';
+import 'widgets/feeding_challenge_container.dart';
 
 class ChallengesScreen extends StatefulWidget {
   ChallengesScreen({Key key}) : super(key: key);

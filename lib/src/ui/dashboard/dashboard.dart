@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+
+import '../../constants/app_colors.dart';
 
 
 class DashboardScreen extends StatefulWidget {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
-import 'package:health_body_checking/src/ui/challenges/widgets/start_challenge_container.dart';
-import 'package:health_body_checking/src/models/challenge_model.dart';
+
+import '../../constants/app_colors.dart';
+import '../../models/challenge_model.dart';
+import 'widgets/start_challenge_container.dart';
 
 class FeedingChallengesScreen extends StatefulWidget {
   FeedingChallengesScreen({Key key}) : super(key: key);

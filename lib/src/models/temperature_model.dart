@@ -1,34 +1,36 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'base_model.dart';
+
 
 TemperatureModel temperatureModelFromJson(String str) => TemperatureModel.fromJson(json.decode(str));
 
 String temperatureModelToJson(TemperatureModel data) => json.encode(data.toJson());
 
-class TemperatureModel {
+class TemperatureModel implements BaseModel {
     TemperatureModel({
         this.id,
         this.userId,
-        this.temperature,
+        this.value,
         this.time,
     });
 
     String id;
     String userId;
-    double temperature;
+    double value;
     DateTime time;
 
     factory TemperatureModel.fromJson(Map<String, dynamic> json) => TemperatureModel(
         id: json["id"],
         userId: json["user_id"],
-        temperature: json["temperature"].toDouble(),
+        value: json["value"].toDouble(),
         time: json["time"].toDate(),
     );
     Map<String, dynamic> toJson() => {
         "id": id,
         "user_id": userId,
-        "temperature": temperature,
+        "value": value,
         "time": time,
     };
 }
+

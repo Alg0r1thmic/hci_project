@@ -1,6 +1,5 @@
 
 import 'package:flutter/foundation.dart';
-import 'package:health_body_checking/src/models/sensor_model.dart';
 
 import '../core/db/firebase_path.dart';
 import '../core/db/firebase_service.dart';

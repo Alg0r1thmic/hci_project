@@ -1,33 +1,35 @@
 import 'dart:convert';
 
 
+import 'base_model.dart';
+
+
 OxygenSaturationModel oxygenSaturationModelFromJson(String str) => OxygenSaturationModel.fromJson(json.decode(str));
 
 String oxygenSaturationModelToJson(OxygenSaturationModel data) => json.encode(data.toJson());
 
-class OxygenSaturationModel {
+class OxygenSaturationModel implements BaseModel {
     OxygenSaturationModel({
         this.id,
         this.userId,
-        this.saturation,
+        this.value,
         this.time,
     });
-
-    int id;
+    String id;
     String userId;
-    double saturation;
+    double value;
     DateTime time;
 
     factory OxygenSaturationModel.fromJson(Map<String, dynamic> json) => OxygenSaturationModel(
         id: json["id"],
         userId: json["user_id"],
-        saturation: json["saturation"].toDouble(),
+        value: json["value"].toDouble(),
         time: json["time"].toDate(),
     );
     Map<String, dynamic> toJson() => {
         "id": id,
         "user_id": userId,
-        "saturation": saturation,
+        "value": value,
         "time": time,
     };
 }

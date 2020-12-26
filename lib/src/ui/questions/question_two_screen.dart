@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/next_or_back_button.dart';
-import 'package:health_body_checking/src/ui/questions/widgets/pagination.dart';
+
+import 'widgets/next_or_back_button.dart';
+import 'widgets/pagination.dart';
 
 
 class QuestionTwoScreen extends StatefulWidget {

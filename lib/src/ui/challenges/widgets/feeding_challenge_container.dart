@@ -2,7 +2,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:health_body_checking/src/constants/app_colors.dart';
+
+import '../../../constants/app_colors.dart';
 
 class FeedingChallengeContainer extends StatelessWidget {
   final String contentText;

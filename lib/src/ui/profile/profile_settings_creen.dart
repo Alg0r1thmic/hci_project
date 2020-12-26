@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../models/sensor_model.dart';
 import '../../models/user_model.dart';
+import '../../services/sensor_service.dart';
 import '../../services/user_service.dart';
 
 class ProfileSettingsScreen extends StatefulWidget {
@@ -18,16 +20,17 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     _userService = UserService();
     //_setSensorsToUser();
   }
-  // _setSensorsToUser() {
-  //   final _sensorService = SensorService();
-  //   final _userService = UserService();
-  //   List<SensorModel> list = List();
-  //   _sensorService.sensorsStream().listen((event) {
-  //     list = event;
-  //     CurrentUserModel.instance.sensors = list;
-  //     _userService.setUser(CurrentUserModel.instance);
-  //   });
-  // }
+
+  _setSensorsToUser() {
+    final _sensorService = SensorService();
+    final _userService = UserService();
+    List<SensorModel> list = List();
+    _sensorService.sensorsStream().listen((event) {
+      list = event;
+      CurrentUserModel.instance.sensors = list;
+      _userService.setUser(CurrentUserModel.instance);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,28 +61,30 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
         builder: (BuildContext context, AsyncSnapshot<CurrentUserModel> snapshot) {
           if (snapshot.hasData) {
             CurrentUserModel user = snapshot.data;
-            return (user.sensors!=null)? ListView.separated(
-              itemCount: user.sensors.length,
-              itemBuilder: (BuildContext context, index) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(user.sensors[index].name),
-                    Switch(
-                        value: user.sensors[index].enabled,
-                        onChanged: (value) {
-                          setState(() {
-                            user.sensors[index].enabled = value;
-                            _userService.setUser(user);
-                          });
-                        })
-                  ],
-                );
-              },
-              separatorBuilder: (BuildContext context, index) {
-                return Divider();
-              },
-            ):Text('Actualmente no tiene ningun sensor');
+            return (user.sensors != null)
+                ? ListView.separated(
+                    itemCount: user.sensors.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(user.sensors[index].displayName),
+                          Switch(
+                              value: user.sensors[index].enabled,
+                              onChanged: (value) {
+                                setState(() {
+                                  user.sensors[index].enabled = value;
+                                  _userService.setUser(user);
+                                });
+                              })
+                        ],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, index) {
+                      return Divider();
+                    },
+                  )
+                : Text('Actualmente no tiene ningun sensor');
           }
           return Center(child: CircularProgressIndicator());
         });

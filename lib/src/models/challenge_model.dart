@@ -1,4 +1,4 @@
-import 'package:health_body_checking/src/constants/fake_water_days.dart';
+import '../constants/fake_water_days.dart';
 
 class ChallengeModel {
   ChallengeModel({

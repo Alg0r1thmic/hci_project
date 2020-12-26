@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:health_body_checking/src/models/sensor_model.dart';
+import 'sensor_model.dart';
 
 UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 

@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:health_body_checking/src/ui/challenges/feeding_challenges_screen.dart';
-import 'package:health_body_checking/src/ui/dashboard/dashboard.dart';
-import 'package:health_body_checking/src/ui/monitor/data_visualization_screen.dart';
-import 'package:health_body_checking/src/ui/profile/profile_edit_screen.dart';
-import 'package:health_body_checking/src/ui/profile/profile_settings_creen.dart';
 
 import '../../ui/auth/login_screen.dart';
+import '../../ui/challenges/feeding_challenges_screen.dart';
+import '../../ui/dashboard/dashboard.dart';
 import '../../ui/home/home.dart';
+import '../../ui/monitor/data_visualization_screen.dart';
+import '../../ui/profile/profile_edit_screen.dart';
 import '../../ui/profile/profile_screen.dart';
+import '../../ui/profile/profile_settings_creen.dart';
 
 class Routes {
   Routes._();

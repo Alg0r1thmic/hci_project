@@ -1,7 +1,16 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/services/hearth_service.dart';
+import 'package:health_body_checking/src/services/imc_service.dart';
+import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
+import 'package:health_body_checking/src/services/temperature_service.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../../constants/app_colors.dart';
+import '../../models/user_model.dart';
+import '../../services/base.service.dart';
 
 
 class DashboardScreen extends StatefulWidget {
@@ -12,8 +21,22 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  var list;
+  double value;
 
   bool thereAreChallenges = false;
+
+  Map<String,BaseService> _services={
+    "Temperatura":new TemperatureService(),
+    "Oximetro":new OxygenSaturationService(),
+    "HearthRate":new HearthRateService(),
+    "Imc":new ImcService()
+  };
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,30 +44,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Column(
+        child: ListView(
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Retos actuales", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
+                  Text("Alimentacion", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
                   thereAreChallenges ? _getChallenges() : _makeNoChallenge()
                 ],
               ),
             ),
-            Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(top: 25),
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Mapa de riesgo", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
-                      _riksMap()
-                    ],
-                  ),
-                )
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Actividad fisica", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
+                  thereAreChallenges ? _getChallenges() : _makeNoChallenge()
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 25),
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Mapa de riesgo", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
+                  _riksMap()
+                ],
+              ),
             )
           ],
         ),
@@ -138,7 +169,58 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _riksMap() {
     return Container(
-
+      width: MediaQuery.of(context).size.width,
+      child: _health(),
     );
   }
+
+  Widget _health() {
+    return Row(
+      children: [
+        Image.asset(
+            "assets/images/health.png",
+            width: MediaQuery.of(context).size.width*.4
+        ),
+        Expanded(child: Container(
+          child: Column(
+            children: _sensors(),
+          )
+        ))
+      ],
+    );
+  }
+
+  Widget _lastValue(BaseService service) {
+    return StreamBuilder<Object>(
+        stream: service.lastDocumentsStream(1),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<dynamic> list = snapshot.data;
+            //list.sort((a, b) => a.time.compareTo(b.time));
+            value = list.last.value;
+            return Text(value.toStringAsFixed(1));
+          }
+          return CircularProgressIndicator();
+        });
+  }
+
+  List<Widget> _sensors() {
+    List<Widget> list = List<Widget>();
+    for (var sensor in CurrentUserModel.instance.sensors) {
+      if(sensor.enabled) {
+        list.add(
+            ListTile(
+              title: _lastValue(this._services[sensor.sensorName]),
+              subtitle: Text(sensor.displayName, style: TextStyle(fontSize: 12),),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.navigate_next),
+              ),
+            )
+        );
+      }
+    }
+    return list;
+  }
+
 }

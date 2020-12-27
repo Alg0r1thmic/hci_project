@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:splashscreen/splashscreen.dart';
 import 'src/constants/app_font_family.dart';
+import 'src/models/user_model.dart';
+import 'src/models/user_model.dart';
+import 'src/models/user_model.dart';
 import 'src/services/user_service.dart';
+import 'src/ui/home/home.dart';
+import 'src/ui/home/home.dart';
 import 'src/ui/questions/questions_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +19,7 @@ import 'src/providers/auth_provider.dart';
 import 'src/providers/languaje_provider.dart';
 import 'src/providers/theme_provider.dart';
 import 'src/ui/auth/login_screen.dart';
+import 'src/ui/questions/questions_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -74,8 +81,9 @@ class MyApp extends StatelessWidget {
                           final UserModel user = userSnapshot.data;
                           CurrentUserModel(email: user.email, id: user.uid);
                           UserService _userService = UserService();
-                          _userService.userStream(id: user.uid).listen((event) {});
-                          return QuestionsScreen();
+                          _userService.userStream(id: user.uid).listen((event) {
+                          });
+                          return MySplashScreen();
                         } else {
                           return LoginScreen();
                         }
@@ -95,5 +103,47 @@ class MyApp extends StatelessWidget {
         );
       },
     );
+  }
+}
+class MySplashScreen extends StatefulWidget {
+  MySplashScreen({Key key}) : super(key: key);
+
+  @override
+  _MySplashScreenState createState() => _MySplashScreenState();
+}
+
+class _MySplashScreenState extends State<MySplashScreen> {
+  @override
+  void initState() { 
+    super.initState();
+    
+  }
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 5,
+      navigateAfterSeconds:PrevisScreen(),
+      title: new Text(
+        'Welcome to HealthBodyChecking',
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      ),
+      image: new Image.network(
+          'https://flutter.io/images/catalog-widget-placeholder.png'),
+      backgroundColor: Colors.white,
+      loaderColor: Colors.red,
+    );
+  }
+}
+class PrevisScreen extends StatefulWidget {
+  PrevisScreen({Key key}) : super(key: key);
+
+  @override
+  _PrevisScreenState createState() => _PrevisScreenState();
+}
+
+class _PrevisScreenState extends State<PrevisScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return CurrentUserModel.instance.custionsCompleted?Home():QuestionsScreen();
   }
 }

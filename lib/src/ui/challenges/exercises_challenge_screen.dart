@@ -248,7 +248,6 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
       widget.exerciseChallengeModel.challenges[widget.index].currentDay++;
     }
     await this._service.createOne(widget.exerciseChallengeModel);
-
     _currentTimer = Timer(Duration(seconds: 2), () => _natigateToHome());
   }
   void _natigateToHome() {

@@ -58,6 +58,7 @@ class CurrentUserModel {
   String country;
   double weight;
   double height;
+  bool custionsCompleted;
   List<SensorModel> sensors;
   factory CurrentUserModel.fromJson(Map<String, dynamic> json) {
     _instance.id = json["id"];
@@ -72,6 +73,9 @@ class CurrentUserModel {
     _instance.country = json["country"];
     _instance.weight = (json["weight"]!=null)?json["weight"].toDouble():null;
     _instance.height = (json["height"]!=null)?json["height"].toDouble():null;
+    
+    _instance.custionsCompleted= json["custionsCompleted"];
+    
     _instance.sensors =(json["sensors"]!=null)?List<SensorModel>.from(json["sensors"].map((x) => SensorModel.fromJson(x))):null;
     return _instance;
   }
@@ -88,6 +92,7 @@ class CurrentUserModel {
     String country,
     double weight,
     double height,
+    bool cuestionsCompleted=false,
     List<SensorModel> sensors,
   }) {
     _instance.id = id;
@@ -103,6 +108,7 @@ class CurrentUserModel {
     _instance.weight = weight;
     _instance.height = height;
     _instance.sensors = sensors;
+    _instance.custionsCompleted=cuestionsCompleted;
     return _instance;
   }
   Map<String, dynamic> toJson() => {
@@ -118,6 +124,7 @@ class CurrentUserModel {
         "country": country,
         "weight": weight,
         "height": height,
+        "custionsCompleted":custionsCompleted,
         "sensors": (sensors!=null)?List<dynamic>.from(sensors.map((x) => x.toJson())):null,
       };
   

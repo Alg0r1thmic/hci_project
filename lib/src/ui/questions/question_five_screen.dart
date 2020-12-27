@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../constants/app_colors.dart';
 import '../../core/routes/routes.dart';
+import '../../models/user_model.dart';
 import 'widgets/next_or_back_button.dart';
 import 'widgets/pagination.dart';
 
@@ -27,6 +28,7 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
   ExerciseQuestionService _exerciseQuestionService;
   ExerciseChallengeModel _exerciseChallengeModel;
   ExerciseQuestionModel _exerciseQuestionModel;
+
   @override
   void initState() {
     super.initState();
@@ -113,6 +115,7 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
     return InkWell(
       onTap: () {
         this._createExerciseChallenges();
+        CurrentUserModel.instance.custionsCompleted=true;
         Navigator.of(context).pushReplacementNamed(Routes.home);
       },
       child: Container(

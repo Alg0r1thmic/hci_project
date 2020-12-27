@@ -32,7 +32,7 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -45,7 +45,9 @@ class _RegisterFormState extends State<RegisterForm> {
               height: 20,
             ),
             (authProvider.status==Status.Registering||authProvider.status==Status.GoogleAuthenticating)?
-            Center(child: CircularProgressIndicator(),)
+            Center(
+              child: CircularProgressIndicator(),
+            )
             :CustomButton(
               text: 'Crear cuenta',
               buttonColor: Colors.blue,

@@ -11,14 +11,6 @@ class FormCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 2.0,
-            spreadRadius: 0.0,
-            offset: Offset(2.0, 2.0), // shadow direction: bottom right
-          )
-        ]
       ),
       child: Padding(
         padding: EdgeInsets.only(

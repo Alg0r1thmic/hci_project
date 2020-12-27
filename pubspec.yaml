@@ -42,10 +42,10 @@ dependencies:
   splashscreen: ^1.2.0
   provider: 
   http: ^0.12.1
-  value_animation_progress: ^1.0.0+2
   sticky_headers: ^0.1.8
   syncfusion_flutter_gauges: ^18.2.44
   fl_chart: ^0.12.1
+  sleek_circular_slider: ^1.2.0+web
 
   flutter_localizations:
     sdk: flutter

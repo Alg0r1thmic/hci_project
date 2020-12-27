@@ -194,12 +194,6 @@
       "languageVersion": "2.6"
     },
     {
-      "name": "gradient_progress",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/gradient_progress-0.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.0"
-    },
-    {
       "name": "http",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.2",
       "packageUri": "lib/",
@@ -380,6 +374,12 @@
       "languageVersion": "1.11"
     },
     {
+      "name": "sleek_circular_slider",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/sleek_circular_slider-1.2.0+web",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "source_span",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0-nullsafety.2",
       "packageUri": "lib/",
@@ -476,12 +476,6 @@
       "languageVersion": "2.10"
     },
     {
-      "name": "value_animation_progress",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/value_animation_progress-1.0.0+2",
-      "packageUri": "lib/",
-      "languageVersion": "2.1"
-    },
-    {
       "name": "vector_math",
       "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0-nullsafety.3",
       "packageUri": "lib/",
@@ -489,13 +483,13 @@
     },
     {
       "name": "win32",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/win32-1.7.4",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/win32-1.7.2+1",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     },
     {
       "name": "xdg_directories",
-      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.1.2",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.3"
     },
@@ -506,7 +500,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-26T17:55:53.930976Z",
+  "generated": "2020-12-27T12:36:02.537233Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

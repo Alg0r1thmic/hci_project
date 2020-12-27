@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/models/exercise_question_model.dart';
+import 'package:health_body_checking/src/models/user_model.dart';
+import 'package:health_body_checking/src/services/exercise_question_service.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
 //import 'package:numberpicker/numberpicker.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -17,7 +20,19 @@ class QuestionFourScreen extends StatefulWidget {
 
 class _QuestionFourScreenState extends State<QuestionFourScreen> {
 
+  ExerciseQuestionService _service;
+  ExerciseQuestionModel _model;
+  TextEditingController _controller = TextEditingController();
+  @override
+  void initState() { 
+    super.initState();
+    _service=ExerciseQuestionService();
+  }
   double _currentSliderValue = 2;
+  void _saveData()async{
+    _model=ExerciseQuestionModel(id: DateTime.now().toIso8601String(),userId: CurrentUserModel.instance.id,days: _currentSliderValue.toInt(),minuts:int.parse(_controller.text));
+    await _service.createOne(_model);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +61,11 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           icon: Icons.west,
         ),
         NextOrBackButton(
-          inputFunction: widget.onGoToNextQuestion,
+          inputFunction:(){
+            this._saveData();
+            widget.onGoToNextQuestion();
+          
+          } ,
           icon: Icons.east,
         )
       ],
@@ -101,12 +120,12 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
 
         _currentSliderValue != 0 ?
         NumberInputPrefabbed.roundedEdgeButtons(
-          controller: TextEditingController(),
+          controller: _controller,
+          autovalidate: true,
           min: 0,
-          max: 240,
+          max: 40,
           incDecBgColor: Colors.blue,
           buttonArrangement: ButtonArrangement.incRightDecLeft,
-
         ): Container()
 
       ],

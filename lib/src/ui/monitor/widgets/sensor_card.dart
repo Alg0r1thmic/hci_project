@@ -119,7 +119,7 @@ class SensorCardState extends State<SensorCard> {
                   ],
                 );
               }
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }),
       ),
     );

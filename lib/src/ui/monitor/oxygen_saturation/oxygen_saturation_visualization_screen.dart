@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../../models/oxygen_saturation_model.dart';
-import '../../../services/oxygen_saturation_service.dart';
+import '../../../models/temperature_model.dart';
+import '../../../services/temperature_service.dart';
 
 class OxygenSaturationVisualizationScreen extends StatefulWidget {
   OxygenSaturationVisualizationScreen({Key key}) : super(key: key);
-
   @override
   _OxygenSaturationVisualizationScreenState createState() => _OxygenSaturationVisualizationScreenState();
 }
 
 class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVisualizationScreen> {
-  List<OxygenSaturationModel> _oxygenSaturationModel = List();
+  List<TemperatureModel> _temperaturaModel = List();
 
   int segmentedControlGroupValue = 0;
   final Map<int, Widget> myTabs = const <int, Widget>{
@@ -30,11 +29,11 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
   }
 
   _listenStream() {
-    final database = Provider.of<OxygenSaturationService>(context, listen: false);
-    database.lastDocumentsStream(100).listen((event) {
-      _oxygenSaturationModel = event;
+    final database = Provider.of<TemperatureService>(context, listen: false);
+    database.lastDocumentsStream(10).listen((event) {
+      _temperaturaModel = event;
       setState(() {
-
+        
       });
     });
   }
@@ -98,12 +97,14 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
       height: MediaQuery.of(context).size.height * 0.65,
       child: SfCartesianChart(
         primaryXAxis: DateTimeAxis(
-            visibleMinimum: DateTime(0,0,0,0,0,5),
-            visibleMaximum: DateTime(0,0,0,0,0,10),
-            zoomFactor: .5,
+            visibleMinimum: DateTime(0,0,0,0,5),
+            visibleMaximum: DateTime(0,0,0,0,8),
+            zoomFactor: 0.1,
             intervalType: DateTimeIntervalType.auto,
             plotBands: <PlotBand>[
-              _makePlotBand(95.0, 100.0, Color.fromRGBO(27, 188, 155, .3)),
+              _makePlotBand(36.0, 37.5, Color.fromRGBO(27, 188, 155, .3)),
+              _makePlotBand(37.5, 40.5, Color.fromRGBO(200, 27, 50, .3)),
+              _makePlotBand(34.0, 36.0, Color.fromRGBO(200, 27, 50, .3))
             ]
         ),
         zoomPanBehavior: ZoomPanBehavior(
@@ -121,7 +122,7 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       child: ListTile(
                         title: Text(
-                          '${data.saturation.toStringAsFixed(1)}%',
+                          '${data.value.toStringAsFixed(1)}°C',
                           style: TextStyle(fontSize: 14),
                         ),
                         subtitle: Text(
@@ -133,11 +134,11 @@ class _OxygenSaturationVisualizationScreenState extends State<OxygenSaturationVi
               );
             }
         ),
-        series: <ChartSeries<OxygenSaturationModel, DateTime>>[
-          LineSeries<OxygenSaturationModel, DateTime>(
-              dataSource: this._oxygenSaturationModel,
-              xValueMapper: (OxygenSaturationModel sales, _) => sales.time,
-              yValueMapper: (OxygenSaturationModel sales, _) => sales.value,
+        series: <ChartSeries<TemperatureModel, DateTime>>[
+          LineSeries<TemperatureModel, DateTime>(
+              dataSource: this._temperaturaModel,
+              xValueMapper: (TemperatureModel sales, _) => sales.time,
+              yValueMapper: (TemperatureModel sales, _) => sales.value,
               markerSettings: MarkerSettings(
                   isVisible: true
               )

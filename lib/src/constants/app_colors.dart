@@ -18,4 +18,5 @@ class AppColors {
   static const Color PRIMARY_LIGHT = const Color(0xFF68A7FC);
   static const Color WHITE = const Color(0xFFFFFFFF);
   static const Color BLACK = const Color(0xFF000000);
+  static const Color GREY=const Color(0xFF9B9B9B);
 }

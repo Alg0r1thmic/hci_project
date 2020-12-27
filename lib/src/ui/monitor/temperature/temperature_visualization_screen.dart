@@ -30,7 +30,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
 
   _listenStream() {
     final database = Provider.of<TemperatureService>(context, listen: false);
-    database.lastDocumentsStream(100).listen((event) {
+    database.lastDocumentsStream(10).listen((event) {
       _temperaturaModel = event;
       setState(() {
         
@@ -99,7 +99,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
         primaryXAxis: DateTimeAxis(
             visibleMinimum: DateTime(0,0,0,0,5),
             visibleMaximum: DateTime(0,0,0,0,8),
-            zoomFactor: .5,
+            zoomFactor: 0.1,
             intervalType: DateTimeIntervalType.auto,
             plotBands: <PlotBand>[
               _makePlotBand(36.0, 37.5, Color.fromRGBO(27, 188, 155, .3)),
@@ -122,7 +122,7 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       child: ListTile(
                         title: Text(
-                          '${data.temperature.toStringAsFixed(1)}°C',
+                          '${data.value.toStringAsFixed(1)}°C',
                           style: TextStyle(fontSize: 14),
                         ),
                         subtitle: Text(

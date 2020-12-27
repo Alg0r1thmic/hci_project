@@ -14,5 +14,8 @@ class FirestorePath {
   static String hearthRates()=>'hearthRates';
   static String imc(String id) => 'imcs/$id';
   static String imcs()=>'imcs';
-
+  static String exerciseChallenge(String id) => 'exerciseChallenges/$id';
+  static String exerciseChallenges()=>'exerciseChallenges';
+  static String exerciseQuestion(String id) => 'exerciseQuestions/$id';
+  static String exerciseQuestions()=>'exerciseQuestions';
 }

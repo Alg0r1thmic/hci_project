@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
       backgroundColor: AppColors.ALICE_BLUE,
       appBar: AppBar(
         title: Center(
-                  child: Text(_titles[_currentTab], style: TextStyle(color: AppColors.BLACK),),
+          child: Text(_titles[_currentTab], style: TextStyle(color: AppColors.BLACK),),
         ),
         backgroundColor: AppColors.ALICE_BLUE,
         elevation: 0,
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
 
   Widget _bottonNavigationBar() {
     return BottomNavigationBar(
-      backgroundColor: AppColors.ALICE_BLUE,
+      backgroundColor: AppColors.WHITE,
       selectedItemColor: AppColors.PRIMARY_DARK,
       type: BottomNavigationBarType.fixed,
       currentIndex: _currentTab,

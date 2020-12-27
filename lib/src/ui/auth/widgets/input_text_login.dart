@@ -29,6 +29,7 @@ class InputTextLoginState extends State<InputTextLogin> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: _textController,
+      textInputAction: TextInputAction.next,
       obscureText:this.widget.isPassword,
       decoration: InputDecoration(
         hintText: widget.placeholder,

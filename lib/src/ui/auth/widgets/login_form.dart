@@ -24,15 +24,12 @@ class _LoginFormState extends State<LoginForm> {
     final authProvider = Provider.of<AuthProvider>(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 250,),
+            SizedBox(height: 150,),
             _formCard(context),
-            SizedBox(
-              height: 20,
-            ),
             Container(
                 alignment: Alignment.centerRight,
                 child: (authProvider.status == Status.Authenticating ||
@@ -60,12 +57,9 @@ class _LoginFormState extends State<LoginForm> {
                           }
                         },
                       )),
-            SizedBox(
-              height: 20,
-            ),
-            _socialLoginText(),
-            SizedBox(
-              height: 20,
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: _socialLoginText(),
             ),
             CustomButton(text: 'Crear Cuenta',ontap: widget.onGoToRegister,buttonColor: Colors.amber,)
           ],

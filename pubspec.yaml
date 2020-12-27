@@ -46,6 +46,7 @@ dependencies:
   sticky_headers: ^0.1.8
   syncfusion_flutter_gauges: ^18.2.44
   fl_chart: ^0.12.1
+  graphic: ^0.3.0
 
   flutter_localizations:
     sdk: flutter

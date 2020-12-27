@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/models/sensor_model.dart';
 import 'package:health_body_checking/src/services/hearth_service.dart';
 import 'package:health_body_checking/src/services/imc_service.dart';
 import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
 import 'package:health_body_checking/src/services/temperature_service.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:graphic/graphic.dart' as graphic;
+
 
 import '../../constants/app_colors.dart';
 import '../../models/user_model.dart';
@@ -26,6 +29,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   bool thereAreChallenges = false;
 
+
+  var basicData = [
+    { 'genre': 'Cardiovascular', 'sold': 275 },
+    { 'genre': 'Respiratorias', 'sold': 115 },
+    { 'genre': 'Virus y bacterias', 'sold': 120 },
+    { 'genre': 'Shooter', 'sold': 350 },
+    { 'genre': 'Otro', 'sold': 150 },
+  ];
+
   Map<String,BaseService> _services={
     "Temperatura":new TemperatureService(),
     "Oximetro":new OxygenSaturationService(),
@@ -33,9 +45,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
     "Imc":new ImcService()
   };
 
+  Map<String, String> _images = {
+    "Healthy": "assets/images/health.png",
+    "High IMC": "assets/images/high_imc.png",
+    "High OS": "assets/images/high_oxygen_saturation",
+    "Fever": "assets/images/warning.png"
+  };
+
+  Map<String, double> lastValues = {
+    "Temperatura": 0.0,
+    "Oximetro": 0.0,
+    "HearthRate": 0.0,
+    "Imc": 0.0
+  };
+
   @override
   void initState() {
     super.initState();
+  }
+
+  getDisease(){
+
   }
 
   @override
@@ -174,34 +204,113 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+  String getImage() {
+    if (lastValues["Imc"] > 30.0) return _images["High IMC"];
+    else if (lastValues["Oximetro"] > 100.0) return _images["High OS"];
+    else return _images["Healthy"];
+  }
+
   Widget _health() {
-    return Row(
+    return Column(
       children: [
-        Image.asset(
-            "assets/images/health.png",
-            width: MediaQuery.of(context).size.width*.4
-        ),
-        Expanded(child: Container(
-          child: Column(
+        Container(
+          height: 90,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
             children: _sensors(),
-          )
-        ))
+          ),
+        ),
+        Container(
+          width: 350,
+          height: 300,
+          child: graphic.Chart(
+            data: basicData,
+            scales: {
+              'genre': graphic.CatScale(
+                accessor: (map) => map['genre'] as String,
+              ),
+              'sold': graphic.LinearScale(
+                accessor: (map) => map['sold'] as num,
+                nice: true,
+              )
+            },
+            coord: graphic.PolarCoord(),
+            geoms: [graphic.IntervalGeom(
+              position: graphic.PositionAttr(field: 'genre*sold'),
+              adjust: graphic.DodgeAdjust(),
+              color: graphic.ColorAttr(field: 'sold', values: [AppColors.PRIMARY,Colors.yellow, Colors.red]),
+            )],
+            axes: {
+              'genre': graphic.Defaults.circularAxis,
+              'sold': graphic.Defaults.radialAxis
+                ..label = null,
+            },
+          ),
+        ),
+
       ],
     );
   }
 
-  Widget _lastValue(BaseService service) {
+
+
+  Widget _lastValue(SensorModel sensor) {
     return StreamBuilder<Object>(
-        stream: service.lastDocumentsStream(1),
+        stream: _services[sensor.sensorName].lastDocumentsStream(1),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<dynamic> list = snapshot.data;
-            //list.sort((a, b) => a.time.compareTo(b.time));
             value = list.last.value;
-            return Text(value.toStringAsFixed(1));
+            lastValues[sensor.sensorName] = value;
+            return Card(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: _getIcon(sensor),
+                    ),
+                    Container(
+                      width: 100,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                              text: TextSpan(
+                                  text: value.toStringAsFixed(1),
+                                  style: TextStyle(fontSize: 16, color: Colors.black),
+                                  children: <TextSpan> [
+                                    TextSpan(
+                                        text: " " + sensor.unitOfMeasurement,
+                                        style: TextStyle(fontSize: 12, color: Colors.black87)
+                                    ),
+                                  ]
+                              )
+                          ),
+                          Text(
+                              sensor.displayName,
+                              style: TextStyle(fontSize: 12, color: Colors.black87)
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
           }
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator(),);
         });
+  }
+
+  Icon _getIcon(SensorModel sensor) {
+    if (lastValues[sensor.sensorName] > sensor.maxValue)
+      return Icon(Icons.upload_rounded, color: Colors.red, size: 15);
+    else if (lastValues[sensor.sensorName] < sensor.minValue)
+      return Icon(Icons.download_rounded, color: Colors.blue, size: 15);
+    else return Icon(Icons.check, color: AppColors.PRIMARY, size: 15);
   }
 
   List<Widget> _sensors() {
@@ -209,14 +318,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     for (var sensor in CurrentUserModel.instance.sensors) {
       if(sensor.enabled) {
         list.add(
-            ListTile(
-              title: _lastValue(this._services[sensor.sensorName]),
-              subtitle: Text(sensor.displayName, style: TextStyle(fontSize: 12),),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.navigate_next),
-              ),
-            )
+            _lastValue(sensor)
         );
       }
     }

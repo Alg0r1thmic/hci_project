@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       key: _key,
       backgroundColor: Colors.white,
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: true,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[

@@ -114,7 +114,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       size: 200.0,
       counterClockwise: true,
       animationEnabled: true);
-  void _showValidateMessage() {
+  void _showValidateMessage(String text) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -123,7 +123,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
               children: [
                 Icon(Icons.info,color:Colors.yellow,size: 30,),
                 SizedBox(height: 2,),
-                Text('Tiene que completar el reto anterior',textAlign: TextAlign.center,),
+                Text(text,textAlign: TextAlign.center,),
               ],
             ),
             actions: [
@@ -156,12 +156,15 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       children: [
         InkWell(
           onTap: (){
-            if(index==0 || _exerciseChallengeModel.challenges[index>0?index-1:0].completed){
+            if((index==0 || _exerciseChallengeModel.challenges[index>0?index-1:0].completed) && _exerciseChallengeModel.challenges[index].completed==false ){
               Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>ExercisesChallengeScreen(exerciseChallengeModel: _exerciseChallengeModel,index: index,) ));
             }
+            else if(_exerciseChallengeModel.challenges[index].completed){
+              _showValidateMessage('Ya completaste este reto');
+            }
             else{
-              _showValidateMessage();
+              _showValidateMessage('Tiene que completar el reto anterior');
             }
           },
           child: SleekCircularSlider(

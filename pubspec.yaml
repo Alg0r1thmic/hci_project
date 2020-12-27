@@ -46,6 +46,7 @@ dependencies:
   syncfusion_flutter_gauges: ^18.2.44
   fl_chart: ^0.12.1
   sleek_circular_slider: ^1.2.0+web
+  graphic: ^0.3.0
 
   flutter_localizations:
     sdk: flutter

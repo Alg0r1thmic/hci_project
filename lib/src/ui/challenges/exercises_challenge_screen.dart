@@ -226,6 +226,10 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
                       .exerciseChallengeModel.challenges[widget.index].minuts
                       .toDouble();
                   this.seconds = 0;
+                  this._currentSeconds=0;
+                  setState(() {
+                    
+                  });
                 },
                 color: HexColor('#9B9B9B'),
                 child: Text('Resetear'),
@@ -243,11 +247,12 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
       seconds = 60;
     } else if (minuts >= 0 && seconds > 0) {
       seconds--;
+      _currentSeconds++;
     } else {
       _currentTimer.cancel();
       _saveData();
     }
-    _currentSeconds++;
+
     setState(() {});
   }
 

@@ -112,7 +112,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
           shadowMaxOpacity: 0.3),
       startAngle: 270,
       angleRange: 360,
-      size: 200.0,
+      size: 170.0,
       counterClockwise: true,
       animationEnabled: true);
   void _showValidateMessage(String text) {
@@ -176,9 +176,9 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
                 return Align(
                     alignment: Alignment.center,
                     child: Container(
-                      padding: EdgeInsets.all(20),
-                      width: 150,
-                      height: 150,
+                      padding: EdgeInsets.all(10),
+                      width: 120,
+                      height: 120,
                       decoration: BoxDecoration(
                           color:  _exerciseChallengeModel.challenges[index].completed?AppColors.PRIMARY:HexColor('#9B9B9B'),
                           borderRadius: BorderRadius.circular(150)),

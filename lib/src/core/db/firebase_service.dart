@@ -10,13 +10,16 @@ class FirestoreService {
     @required Map<String, dynamic> data,
     bool merge = false,
   }) async {
-    final reference = Firestore.instance.document(path);
-    print('$path: $data');
-    await reference.setData(data, merge: merge);
+    final reference = FirebaseFirestore.instance.doc(path);
+    final option = SetOptions(merge: true);
+    await reference.set(
+      data,
+      option
+    );
   }
 
   Future<void> deleteData({@required String path}) async {
-    final reference = Firestore.instance.document(path);
+    final reference = FirebaseFirestore.instance.doc(path);
     await reference.delete();
   }
 
@@ -30,57 +33,34 @@ class FirestoreService {
 
     //Query query = Firestore.instance.collection(path).where("id", isEqualTo: "dsdas");
     //Query query = Firestore.instance.collection(path).orderBy("id").startAt(["2020-05-20"]);
-    Query query = Firestore.instance.collection(path);
+    Query query = FirebaseFirestore.instance.collection(path);
     if (queryBuilder != null) {
       query = queryBuilder(query);
     }
     final Stream<QuerySnapshot> snapshots = query.snapshots();
     return snapshots.map((snapshot) {
-      final result = snapshot.documents
+      final result = snapshot.docs
           .map((snapshot) {
-            return builder(snapshot.data);       
+            print(snapshot.data);
+            return builder(snapshot.data());
           })
           .where((value) => value != null)
           .toList();
+      //print(result);
       if (sort != null) {
         result.sort(sort);
       }
+      //print("resultado$result");
       return result;
-    }
-    );
+    });
   }
-  Stream<List<T>> lastCollectionStream<T>({
-    @required String path,
-    @required T Function(Map<String, dynamic> data) builder,
-    Query Function(Query query) queryBuilder,
-    int Function(T lhs, T rhs) sort,
-  }) {
-    Query query = Firestore.instance.collection(path);
-    if (queryBuilder != null) {
-      query = queryBuilder(query);
-    }
-    final Stream<QuerySnapshot> snapshots = query.snapshots();
-    return snapshots.map((snapshot) {
-      final result = snapshot.documents
-          .map((snapshot) {
-            return builder(snapshot.data);       
-          })
-          .where((value) => value != null)
-          .toList();
-      if (sort != null) {
-        result.sort(sort);
-      }
-      return result;
-    }
-    );
-  }
+
   Stream<T> documentStream<T>({
     @required String path,
     @required T Function(Map<String, dynamic> data, String documentID) builder,
   }) {
-    final DocumentReference reference = Firestore.instance.document(path);
+    final DocumentReference reference = FirebaseFirestore.instance.doc(path);
     final Stream<DocumentSnapshot> snapshots = reference.snapshots();
-    return snapshots
-        .map((snapshot) => builder(snapshot.data, snapshot.documentID));
+    return snapshots.map((snapshot) => builder(snapshot.data(), snapshot.id));
   }
 }

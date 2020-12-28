@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:health_body_checking/src/providers/push_notification_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'flavor.dart';
@@ -12,10 +13,12 @@ import 'src/services/hearth_service.dart';
 import 'src/services/oxygen_saturation_service.dart';
 import 'src/services/temperature_service.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.landscapeLeft,DeviceOrientation.portraitDown,DeviceOrientation.landscapeRight])
+  await Firebase.initializeApp();
+  final notifications=PushNotificationsProvider();
+  notifications.initNotifications();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown])
       .then((_) async {
     runApp(
       /*

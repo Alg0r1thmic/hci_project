@@ -97,8 +97,8 @@ class _ImcVisualizationScreenState extends State<ImcVisualizationScreen> {
       height: MediaQuery.of(context).size.height * 0.65,
       child: SfCartesianChart(
         primaryXAxis: DateTimeAxis(
-            visibleMinimum: DateTime(0,0,0,0,5),
-            visibleMaximum: DateTime(0,0,0,0,8),
+                visibleMinimum: DateTime(0,0,0,5,5),
+            visibleMaximum: DateTime(0,0,0,8,8),
             zoomFactor: 0.1,
             intervalType: DateTimeIntervalType.auto,
             plotBands: <PlotBand>[
@@ -122,7 +122,7 @@ class _ImcVisualizationScreenState extends State<ImcVisualizationScreen> {
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       child: ListTile(
                         title: Text(
-                          '${data.value.toStringAsFixed(1)}°C',
+                          '${data.value.toStringAsFixed(1)}imc',
                           style: TextStyle(fontSize: 14),
                         ),
                         subtitle: Text(

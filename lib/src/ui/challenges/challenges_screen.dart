@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/models/challenge_model.dart';
 import 'package:health_body_checking/src/models/exercise_challenge_model.dart';
 import 'package:health_body_checking/src/models/user_model.dart';
 import 'package:health_body_checking/src/services/exercise_callenge_service.dart';
@@ -157,8 +158,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
         InkWell(
           onTap: (){
             if((index==0 || _exerciseChallengeModel.challenges[index>0?index-1:0].completed) && _exerciseChallengeModel.challenges[index].completed==false ){
-              Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>ExercisesChallengeScreen(exerciseChallengeModel: _exerciseChallengeModel,index: index,) ));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ExercisesChallengeScreen(exerciseChallengeModel: _exerciseChallengeModel,index: index,) ));
             }
             else if(_exerciseChallengeModel.challenges[index].completed){
               _showValidateMessage('Ya completaste este reto');
@@ -207,9 +207,15 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            FeedingChallengeContainer(
+            currentChallenge==null? FeedingChallengeContainer(
               contentText: 'Empecemos el habito de tomar agua',
               imagePath: 'assets/images/water-glass.png',
+              inputFunction: () {
+                Navigator.pushNamed(context, Routes.feeding_challenges);
+              },
+            ): ActualChallengeContainer(
+              contentText: 'Que bueno verte de nuevo, completa el reto de hoy!',
+              percent: currentChallenge.percent(),
               inputFunction: () {
                 Navigator.pushNamed(context, Routes.feeding_challenges);
               },
@@ -218,7 +224,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
               height: 10,
             ),
             FeedingChallengeContainer(
-              contentText: 'Mantengamos el hábito de comer fruta',
+              contentText: 'Empecemos el hábito de comer fruta',
               imagePath: 'assets/images/fruit.png',
               inputFunction: () {},
             ),
@@ -226,15 +232,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
               height: 10,
             ),
             FeedingChallengeContainer(
-              contentText: 'Empecemos el hábito de comer',
-              imagePath: 'assets/images/no-image.jpg',
-              inputFunction: () {},
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            FeedingChallengeContainer(
-              contentText: 'Empecemos el habito de tomar agua',
+              contentText: 'Empecemos el hábito de comer verduras',
               imagePath: 'assets/images/no-image.jpg',
               inputFunction: () {},
             ),

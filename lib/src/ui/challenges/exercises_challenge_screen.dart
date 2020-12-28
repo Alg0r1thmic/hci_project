@@ -68,6 +68,7 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(226, 226, 226, 1),
       appBar: AppBar(
         title: Text('Reto actual',style: TextStyle(color: AppColors.BLACK),),
         backgroundColor: AppColors.WHITE,

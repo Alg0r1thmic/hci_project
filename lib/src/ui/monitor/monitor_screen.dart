@@ -40,6 +40,7 @@ class _MonitorScreenState extends State<MonitorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(226, 226, 226, 1),
       body: _monitor(),
     );
   }

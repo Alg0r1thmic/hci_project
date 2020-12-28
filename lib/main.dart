@@ -7,6 +7,7 @@ import 'myapp.dart';
 import 'src/providers/auth_provider.dart';
 import 'src/providers/languaje_provider.dart';
 import 'src/providers/theme_provider.dart';
+import 'src/services/hearth_service.dart';
 import 'src/services/oxygen_saturation_service.dart';
 import 'src/services/temperature_service.dart';
 
@@ -32,6 +33,7 @@ void main() {
             create: (context) => LanguageProvider(),
           ),
           Provider<TemperatureService>(create: (_) =>TemperatureService()),
+          Provider<HearthRateService>(create: (_) =>HearthRateService()),
           Provider<OxygenSaturationService>(create: (_) =>OxygenSaturationService()),
 
         ],

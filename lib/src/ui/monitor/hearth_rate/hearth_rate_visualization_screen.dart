@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../../constants/app_colors.dart';
+import '../../../models/hearth_rate_model.dart';
 import '../../../models/temperature_model.dart';
+import '../../../services/hearth_service.dart';
 import '../../../services/temperature_service.dart';
 
 class HearthRateVisualizationScreen extends StatefulWidget {
@@ -13,7 +16,7 @@ class HearthRateVisualizationScreen extends StatefulWidget {
 }
 
 class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationScreen> {
-  List<TemperatureModel> _temperaturaModel = List();
+  List<HearthRateModel> _temperaturaModel = List();
 
   int segmentedControlGroupValue = 0;
   final Map<int, Widget> myTabs = const <int, Widget>{
@@ -29,7 +32,7 @@ class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationS
   }
   
   _listenStream() {
-    final database = Provider.of<TemperatureService>(context, listen: false);
+    final database = Provider.of<HearthRateService>(context, listen: false);
     database.lastDocumentsStream(10).listen((event) {
       _temperaturaModel = event;
       setState(() {
@@ -63,7 +66,41 @@ class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationS
   }
 
   Widget _info() {
-    return Container(
+    return SingleChildScrollView( 
+      child: Padding(
+        padding: EdgeInsets.only(left: 10,right: 10),
+              child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Causas:',
+              style: TextStyle(
+                  color: AppColors.BLACK,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text('Cuando haces ejercicio tus musculos necesitan mas oxigeno y en respuesta a ello el corazon bombea mas sangre.Tambien existen situaciones de peligro que generan estres y en respuesta el corazon late mas rapido. Si no estas realizando ejercicio, entonces se trata de taquicardia y las causas podrian ser estres agudo, ataque de ansiedad, insuficiencia cardiaca, accidente cerebrovascular o un paro cardiaco.',textAlign: TextAlign.justify,),
+            Text(
+              'Consecuencias:',
+              style: TextStyle(
+                  color: AppColors.BLACK,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text('Se considera normal que el ritmo de los latidos de tu corazon varíen a lo largo del día, respondiendo a distintas actividades y emociones.Sin embargo si estas variaciones no son casua de ejercicio o alguna situacion de estres leve. Entonces la taquicardia podria poner en riesgo tu salud o tu vida.',textAlign: TextAlign.justify,),
+            Text(
+              'Recomendaciones:',
+              style: TextStyle(
+                  color: AppColors.BLACK,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text('Si la taquicardia no es causada por ejercicio, una situaicon de estres leve, entonces deberias acudir a un centro de salud. Para atender esta situacion anormal.',textAlign: TextAlign.justify,),
+            
+          ],
+        ),
+      ),
     );
   }
 
@@ -97,14 +134,14 @@ class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationS
       height: MediaQuery.of(context).size.height * 0.65,
       child: SfCartesianChart(
         primaryXAxis: DateTimeAxis(
-            visibleMinimum: DateTime(0,0,0,0,5),
-            visibleMaximum: DateTime(0,0,0,0,8),
+             visibleMinimum: DateTime(0,0,0,5,5),
+            visibleMaximum: DateTime(0,0,0,8,8),
             zoomFactor: 0.1,
             intervalType: DateTimeIntervalType.auto,
             plotBands: <PlotBand>[
-              _makePlotBand(36.0, 37.5, Color.fromRGBO(27, 188, 155, .3)),
-              _makePlotBand(37.5, 40.5, Color.fromRGBO(200, 27, 50, .3)),
-              _makePlotBand(34.0, 36.0, Color.fromRGBO(200, 27, 50, .3))
+              _makePlotBand(72.0, 87.5, Color.fromRGBO(27, 188, 155, .3)),
+              _makePlotBand(87.5, 100.0, Color.fromRGBO(200, 27, 50, .3)),
+              _makePlotBand(60.0, 72.0, Color.fromRGBO(200, 27, 50, .3))
             ]
         ),
         zoomPanBehavior: ZoomPanBehavior(
@@ -134,11 +171,11 @@ class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationS
               );
             }
         ),
-        series: <ChartSeries<TemperatureModel, DateTime>>[
-          LineSeries<TemperatureModel, DateTime>(
+        series: <ChartSeries<HearthRateModel, DateTime>>[
+          LineSeries<HearthRateModel, DateTime>(
               dataSource: this._temperaturaModel,
-              xValueMapper: (TemperatureModel sales, _) => sales.time,
-              yValueMapper: (TemperatureModel sales, _) => sales.value,
+              xValueMapper: (HearthRateModel sales, _) => sales.time,
+              yValueMapper: (HearthRateModel sales, _) => sales.value,
               markerSettings: MarkerSettings(
                   isVisible: true
               )

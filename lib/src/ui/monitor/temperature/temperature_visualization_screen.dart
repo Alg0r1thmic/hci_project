@@ -97,8 +97,8 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
       height: MediaQuery.of(context).size.height * 0.65,
       child: SfCartesianChart(
         primaryXAxis: DateTimeAxis(
-            visibleMinimum: DateTime(0,0,0,0,5),
-            visibleMaximum: DateTime(0,0,0,0,8),
+            visibleMinimum: DateTime(0,0,0,5,5),
+            visibleMaximum: DateTime(0,0,0,8,8),
             zoomFactor: 0.1,
             intervalType: DateTimeIntervalType.auto,
             plotBands: <PlotBand>[

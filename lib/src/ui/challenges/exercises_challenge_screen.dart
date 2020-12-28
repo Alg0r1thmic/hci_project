@@ -4,10 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/models/exercise_challenge_model.dart';
-import 'package:health_body_checking/src/models/user_model.dart';
 import 'package:health_body_checking/src/services/exercise_callenge_service.dart';
 import 'package:health_body_checking/src/utils/hex_color.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+
+import '../../constants/app_colors.dart';
+import '../../constants/app_colors.dart';
+import '../../constants/app_colors.dart';
 
 class ExercisesChallengeScreen extends StatefulWidget {
   final ExerciseChallengeModel exerciseChallengeModel;
@@ -27,7 +30,8 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
   double minuts;
   double seconds = 00;
   Color color = AppColors.GREY;
-  String text='😄 tu puedes!!!';
+  String text = '😄 tu puedes!!!';
+  double _currentSeconds = 0;
   @override
   void initState() {
     _service = ExerciseChallengeService();
@@ -65,7 +69,19 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reto actual'),
+        title: Text('Reto actual',style: TextStyle(color: AppColors.BLACK),),
+        backgroundColor: AppColors.WHITE,
+        leading: MaterialButton(
+            onPressed: () {
+              if(_currentSeconds>0){
+                _showMessageDialog(title: 'salir',content: 'Recuerda que aun no has terminado el reto y tu progreso se perdera');
+              }
+              else{
+                Navigator.of(context).pop();
+              }
+            },
+            child: Icon(Icons.arrow_back,color: AppColors.BLACK),
+          )
       ),
       body: Column(
         children: [
@@ -140,12 +156,10 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
             onChangeEnd: (double value) {},
             appearance: appearance03,
             min: 0,
-            max: widget.exerciseChallengeModel.challenges[widget.index].minuts
-                .toDouble(),
-            initialValue:
-                (widget.exerciseChallengeModel.challenges[widget.index].minuts -
-                        minuts)
+            max: 60 *
+                widget.exerciseChallengeModel.challenges[widget.index].minuts
                     .toDouble(),
+            initialValue: _currentSeconds,
             innerWidget: (double value) {
               return Align(
                 alignment: Alignment.center,
@@ -226,32 +240,108 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
     if (seconds == 0 && minuts > 0) {
       minuts--;
       seconds = 60;
-    }
-    else if(minuts>=0 && seconds>0){
+    } else if (minuts >= 0 && seconds > 0) {
       seconds--;
-    }
-    else{
+    } else {
       _currentTimer.cancel();
       _saveData();
     }
+    _currentSeconds++;
     setState(() {});
-
   }
-  void _saveData()async{
+
+  void _saveData() async {
     setState(() {
-      text='🏆 Lo lograste!!';
+      text = '🏆 Lo lograste!!';
     });
-    if(widget.exerciseChallengeModel.challenges[widget.index].currentDay+1==widget.exerciseChallengeModel.challenges[widget.index].days){
+    if (widget.exerciseChallengeModel.challenges[widget.index].currentDay + 1 ==
+        widget.exerciseChallengeModel.challenges[widget.index].days) {
       widget.exerciseChallengeModel.challenges[widget.index].currentDay++;
-      widget.exerciseChallengeModel.challenges[widget.index].completed=true;
-    }else{
+      widget.exerciseChallengeModel.challenges[widget.index].completed = true;
+    } else {
       widget.exerciseChallengeModel.challenges[widget.index].currentDay++;
     }
     await this._service.createOne(widget.exerciseChallengeModel);
     _currentTimer = Timer(Duration(seconds: 2), () => _natigateToHome());
   }
+  void _goBack(){
+    _currentTimer?.cancel();
+    Navigator.of(context).pop();
+  }
+ void _showMessageDialog({String title, String content, int index}) {
+    // flutter defined function
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('Estas seguro que quieres salir?',style: TextStyle(fontWeight: FontWeight.bold),),
+            ],
+          ),
+          content: new Text(content),
+          actions: <Widget>[
+            FlatButton(
+              color: AppColors.ELECTROMACNETIC,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.check_box,
+                    color: AppColors.PRIMARY,
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Text(
+                    "SI",
+                  ),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _goBack();
+              },
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            FlatButton(
+              color: AppColors.ELECTROMACNETIC,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.cancel,
+                    color: AppColors.ORANGE,
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Text(
+                    "NO",
+                  ),
+                ],
+              ),
+              onPressed: () {
+                //Put your code here which you want to execute on No button click.
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+ 
   void _natigateToHome() {
     _currentTimer?.cancel();
     Navigator.pop(context);
+  }
+  
+  @override
+  void dispose() { 
+    _currentTimer?.cancel();
+    super.dispose();
   }
 }

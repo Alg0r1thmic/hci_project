@@ -127,8 +127,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
         'Welcome to HealthBodyChecking',
         style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
-      image: new Image.network(
-          'https://flutter.io/images/catalog-widget-placeholder.png'),
+      image: new Image.asset('assets/images/logoApp2.png',width:400.0,height: 400.0),
       backgroundColor: Colors.white,
       loaderColor: Colors.red,
     );

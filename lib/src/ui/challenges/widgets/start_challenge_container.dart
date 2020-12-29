@@ -20,7 +20,6 @@ class ChallengeContainer extends StatefulWidget {
   ChallengeContainer({Key key, @required this.index}) : super(key: key){
     bool complete = challenges[index].isComplete();
     currentChallenge = challenges[index];
-    print(currentChallenge);
     if(challenges[index].enable && !challenges[index].progress && !complete) {
       _actualState = States.ENABLE;
     } else if (!challenges[index].enable && !complete) {

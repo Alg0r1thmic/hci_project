@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/core/routes/routes.dart';
 
 import '../../constants/app_colors.dart';
 import '../../models/challenge_model.dart';
@@ -36,7 +37,7 @@ class FeedingChallengesScreenState extends State<FeedingChallengesScreen> with W
         backgroundColor: AppColors.ALICE_BLUE,
         elevation: 0.0,
         leading: MaterialButton(onPressed: () {
-          Navigator.of(context).pop();
+          Navigator.popAndPushNamed(context, Routes.food_challenges);
         },
         child: Icon(Icons.west),
         ),

@@ -12,7 +12,8 @@ import '../../core/routes/routes.dart';
 import 'widgets/feeding_challenge_container.dart';
 
 class ChallengesScreen extends StatefulWidget {
-  ChallengesScreen({Key key}) : super(key: key);
+  final int currentTab;
+  ChallengesScreen({Key key, this.currentTab = 0}) : super(key: key);
 
   @override
   _ChallengesScreenState createState() => _ChallengesScreenState();
@@ -41,6 +42,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: widget.currentTab,
         length: 2,
         child: new Scaffold(
             appBar: AppBar(
@@ -55,27 +57,16 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
   Widget _tabBarHeader() {
     return TabBar(
         unselectedLabelColor: AppColors.PRIMARY_DARK,
-        indicatorSize: TabBarIndicatorSize.label,
+        indicatorSize: TabBarIndicatorSize.tab,
+        indicatorPadding: EdgeInsets.symmetric(horizontal: 10),
+        labelPadding: EdgeInsets.symmetric(horizontal: 10),
         indicator: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
             color: AppColors.PRIMARY_DARK),
         tabs: [
-          _tabBarHeaderTextContainer(text: 'Actividad fisica'),
-          _tabBarHeaderTextContainer(text: 'Alimentacion')
+          Tab(text: 'Actividad fisica'),
+          Tab(text: 'Alimentacion'),
         ]);
-  }
-
-  Widget _tabBarHeaderTextContainer({String text}) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          border: Border.all(color: AppColors.PRIMARY_DARK, width: 1)),
-      child: Align(
-        alignment: Alignment.center,
-        child: Text(text),
-      ),
-    );
   }
 
   Widget _exercises() {

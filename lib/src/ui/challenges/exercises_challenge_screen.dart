@@ -9,8 +9,6 @@ import 'package:health_body_checking/src/utils/hex_color.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../constants/app_colors.dart';
-import '../../constants/app_colors.dart';
-import '../../constants/app_colors.dart';
 
 class ExercisesChallengeScreen extends StatefulWidget {
   final ExerciseChallengeModel exerciseChallengeModel;

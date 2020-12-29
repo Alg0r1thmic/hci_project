@@ -82,7 +82,10 @@ class MyApp extends StatelessWidget {
                           final UserModel user = userSnapshot.data;
                           CurrentUserModel(email: user.email, id: user.uid);
                           UserService _userService = UserService();
+                          String firebaseToken=CurrentUserModel.instance.firebaseKey;
                           _userService.userStream(id: user.uid).listen((event) {
+                            CurrentUserModel.instance.firebaseKey=firebaseToken;
+                            _userService.setUser(CurrentUserModel.instance);
                           });
                           return MySplashScreen();
                         } else {

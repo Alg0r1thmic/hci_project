@@ -28,7 +28,9 @@ class _LoginFormState extends State<LoginForm> {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 150,),
+            SizedBox(height: 100,),
+            Image.asset('assets/images/logoApp2.png',width: 100,height: 100,),
+            Text('Healthy Body Checking',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
             _formCard(context),
             Container(
                 alignment: Alignment.centerRight,

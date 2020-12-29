@@ -67,67 +67,67 @@ class _TemperatureVisualizationScreenState extends State<TemperatureVisualizatio
  Widget _info() {
     return SingleChildScrollView( 
       child: Padding(
-        padding: EdgeInsets.only(left: 10,right: 10),
-              child: Column(
+        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+          child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Informacion Importante',
-              style: TextStyle(
-                  color: AppColors.BLACK,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Informacion Importante',
+                    style: TextStyle(
+                        color: AppColors.BLACK,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  ListTile(
+                    title: Text('Rango de valores normales'),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('36° Celsius'),
+                        Icon(Icons.minimize_rounded),
+                        Text('37.2° Celsius'),
+                      ],
+                    ),
+                  ),
+                  Text("Durante el dia distintas situaciones alteran la temperatura en el rango normal.",textAlign: TextAlign.justify,),
+                ],
+              ),
             ),
-            Text("valores normales oscilan entre 36° y 37,2° Celsius Durante el dia distintas situaciones alteran la tempreatura en este rango.",textAlign: TextAlign.justify,),
-            Text(
-              'Recomendaciones valores entre 35.5 a 36',
-              style: TextStyle(
-                  color: AppColors.BLACK,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text('Si sientes que te desvances, tienes dificultades para respirar o sientes dolor en el pecho durante más de unos minutos, avisa a alguien cercano y llama al numero de emergencias o acude de inmediato a un centro de salud.',textAlign: TextAlign.justify,),
-            Text(
-              'Recomendaciones valores menores a 35.5',
-              style: TextStyle(
-                  color: AppColors.BLACK,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text('Busca ayuda medica definitivamente no estas bien podria estar en riesgo tu salud.',textAlign: TextAlign.justify,),
-            
-            Text(
-              'Recomendaciones valores normales',
-              style: TextStyle(
-                  color: AppColors.BLACK,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text('Vamos bien todo OK! si sientes calor hidratate y si sientes frio una bebida caliente estaria perfecta.',textAlign: TextAlign.justify,),
-            
-            Text(
-              'Recomendaciones valores entre 37.2 y 38',
-              style: TextStyle(
-                  color: AppColors.BLACK,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text('Esto se llama febricula, algo esta causando esto, si sientes alguna molestia adicional, estamos a tiempo de parar una fiebre acudiendo a una consulta en algun centro de salud.',textAlign: TextAlign.justify,),
-            
-            Text(
-              'Recomendaciones valores mayores a 38',
-              style: TextStyle(
-                  color: AppColors.BLACK,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text('Tienes fiebre, existen muchas causas algunas podrian ser graves, por favor acude por atencion medica para no poner en riesgo tu salud.',textAlign: TextAlign.justify,),
+
+            getFindings()
           ],
         ),
       ),
     );
   }
+
+  Widget makeFinding(String title, String subtitle) {
+    return ListTile(
+      title: Text(title),
+      subtitle: Text(subtitle, textAlign: TextAlign.justify),
+    );
+  }
+
+  Widget getFindings() {
+    var lastValue = _temperaturaModel.last.value;
+    if(lastValue < 35.5)
+      return makeFinding("Recomendaciones con valores menores a 35.5", "Busca ayuda medica definitivamente no estas bien podria estar en riesgo tu salud.");
+    else if (lastValue > 35.5 && lastValue < 36.0)
+      return makeFinding("Recomendaciones con valores entre 35.5° C y 36.° C", "Si sientes que te desvances, tienes dificultades para respirar o sientes dolor en el pecho durante más de unos minutos, avisa a alguien cercano y llama al numero de emergencias o acude de inmediato a un centro de salud.");
+    else if (lastValue > 36.0 && lastValue < 37.2)
+      return makeFinding("REcomendaciones con valores normales", "Vamos bien todo OK! si sientes calor hidratate y si sientes frio una bebida caliente estaria perfecta.");
+    else if (lastValue > 37.2 && lastValue < 38.0)
+      return makeFinding("Recomendaciones con valores entre 37.2° C y 38° C", "Esto se llama febricula, algo esta causando esto, si sientes alguna molestia adicional, estamos a tiempo de parar una fiebre acudiendo a una consulta en algun centro de salud.");
+    else return makeFinding("Recomendaciones con valores mayores a 38", "Tienes fiebre, existen muchas causas algunas podrian ser graves, por favor acude por atencion medica para no poner en riesgo tu salud.");
+  }
+
   Widget _intervalSelector() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),

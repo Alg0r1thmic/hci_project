@@ -7,7 +7,9 @@ import '../monitor/monitor_screen.dart';
 import '../profile/profile_screen.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+  final int tab;
+  final int challengeTab;
+  const Home({Key key, this.tab = 0, this.challengeTab = 0}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -21,6 +23,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    _currentTab = widget.tab;
   }
 
   @override
@@ -43,7 +46,7 @@ class _HomeState extends State<Home> {
   Widget _getBody(){
     if(_currentTab == 0) return DashboardScreen();
     else if (_currentTab == 1) return MonitorScreen();
-    else if (_currentTab == 2) return ChallengesScreen();
+    else if (_currentTab == 2) return ChallengesScreen(currentTab: widget.challengeTab);
     else return ProfileScreen();
   }
 

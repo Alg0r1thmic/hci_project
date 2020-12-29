@@ -34,23 +34,27 @@ class WaterChallengeModel {
 class WaterChallenge {
     WaterChallenge({
         this.completed=false,
+        this.unlocked=false,
         this.amount,
         this.challengePerWeek,
     });
 
     bool completed;
+    bool unlocked;
     int amount;
     List<ChallengePerWeek> challengePerWeek;
 
     factory WaterChallenge.fromJson(Map<String, dynamic> json) => WaterChallenge(
         completed: json["completed"],
         amount: json["amount"],
+        unlocked: json["unlocked"],
         challengePerWeek: (json["challengePerWeek"]!=null)?List<ChallengePerWeek>.from(json["challengePerWeek"].map((x) => ChallengePerWeek.fromJson(x))):null,
     );
 
     Map<String, dynamic> toJson() => {
         "completed": completed,
         "amount": amount,
+        "unlocked":unlocked,
         "challengePerWeek": List<dynamic>.from(challengePerWeek.map((x) => x.toJson())),
     };
 }

@@ -24,7 +24,6 @@ class ChallengeModel {
 
   double percent() {
     var value = ((days.currentDay + 1) / 7);
-    print(value);
     return value;
   }
 }

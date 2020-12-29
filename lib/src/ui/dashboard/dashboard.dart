@@ -1,14 +1,15 @@
-import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/models/challenge_model.dart';
 import 'package:health_body_checking/src/models/sensor_model.dart';
 import 'package:health_body_checking/src/services/hearth_service.dart';
 import 'package:health_body_checking/src/services/imc_service.dart';
 import 'package:health_body_checking/src/services/oxygen_saturation_service.dart';
 import 'package:health_body_checking/src/services/temperature_service.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:graphic/graphic.dart' as graphic;
+import '../../core/routes/routes.dart';
 
 
 import '../../constants/app_colors.dart';
@@ -34,7 +35,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     { 'genre': 'Cardiovascular', 'sold': 275 },
     { 'genre': 'Respiratorias', 'sold': 115 },
     { 'genre': 'Virus y bacterias', 'sold': 120 },
-    { 'genre': 'Shooter', 'sold': 350 },
     { 'genre': 'Otro', 'sold': 150 },
   ];
 
@@ -62,6 +62,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
+    thereAreChallenges = (currentChallenge != null);
   }
 
   getDisease(){
@@ -82,17 +83,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Alimentacion", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
-                  thereAreChallenges ? _getChallenges() : _makeNoChallenge()
+                  thereAreChallenges ? _makeChallengeFood() : _makeNoChallenge()
                 ],
               ),
             ),
             Container(
+              margin: EdgeInsets.only(top: 25),
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Actividad fisica", textAlign: TextAlign.start, style: TextStyle(fontSize: 16),),
-                  thereAreChallenges ? _getChallenges() : _makeNoChallenge()
+                  thereAreChallenges ? _makeChallenge(50.0, 'Caminar 15 min', '1 semana') : _makeNoChallenge()
                 ],
               ),
             ),
@@ -125,63 +127,60 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _makeChallenge(double percent, String cantidad, String duracion) {
     return InkWell(
       onTap: (){
-
+        Navigator.popAndPushNamed(context, Routes.exercises_challenges);
       },
-      child: SfRadialGauge(
-        axes: <RadialAxis>[
-          RadialAxis(
-            minimum: 0,
-            maximum: 100,
-            showLabels: false,
-            showTicks: false,
-            startAngle: 270,
-            endAngle: 270,
-            annotations: <GaugeAnnotation>[
-              GaugeAnnotation(
-                  positionFactor: 0.1,
-                  angle: 90,
-                  widget: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          text: percent.toStringAsFixed(0) + ' / 100\n',
-                          style: TextStyle(fontSize: 20, color: Colors.black),
-                          children: <TextSpan> [
-                            TextSpan(
-                                text: duracion.toString() + '\n' + cantidad.toString(),
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black
-                                )
-                            )
-                          ]
-                      )
-                  )
-              )
-            ],
-            pointers: <GaugePointer>[
-              RangePointer(
-                value: percent,
-                cornerStyle: CornerStyle.bothCurve,
-                width: 0.2,
-                sizeUnit: GaugeSizeUnit.factor,
-              )
-            ],
-            axisLineStyle: AxisLineStyle(
-              thickness: 0.2,
-              cornerStyle: CornerStyle.bothCurve,
-              color: Color.fromARGB(30, 0, 169, 181),
-              thicknessUnit: GaugeSizeUnit.factor,
+      child: Container(
+        child: Card(
+          color: AppColors.PRIMARY,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            leading: Text(percent.toString() + "%", style: TextStyle(color: Colors.white, fontSize: 20),),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(cantidad, style: TextStyle(color: Colors.white),),
+                Text(duracion, style: TextStyle(color: Colors.white),)
+              ],
             ),
-          )
-        ],
-      ),
+            trailing: Icon(Icons.navigate_next, color: Colors.white,)
+          ),
+        ),
+      )
+    );
+  }
+  Widget _makeChallengeFood() {
+    return InkWell(
+      onTap: (){
+        Navigator.popAndPushNamed(context, Routes.feeding_challenges);
+      },
+      child: Card(
+        color: AppColors.PRIMARY,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          leading: Text((currentChallenge.percent() * 100).toStringAsFixed(1) + "%", style: TextStyle(fontSize: 20, color: Colors.white)),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(currentChallenge.amount, style: TextStyle(color: Colors.white)),
+              Text(currentChallenge.duration, style: TextStyle(color: Colors.white))
+            ],
+          ),
+          trailing: Icon(Icons.navigate_next, color: Colors.white,)
+        ),
+      )
     );
   }
 
   Widget _makeNoChallenge() {
     return InkWell(
       onTap: (){
-
+        Navigator.popAndPushNamed(context, Routes.food_challenges);
       },
       child: Card(
         child: Container(

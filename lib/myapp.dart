@@ -79,13 +79,11 @@ class MyApp extends StatelessWidget {
                     builder: (_, authProviderRef, __) {
                       if (userSnapshot.connectionState == ConnectionState.active) {
                         if (userSnapshot.hasData) {
+                          String firebaseToken=CurrentUserModel.instance.firebaseKey;
                           final UserModel user = userSnapshot.data;
                           CurrentUserModel(email: user.email, id: user.uid);
                           UserService _userService = UserService();
-                          String firebaseToken=CurrentUserModel.instance.firebaseKey;
                           _userService.userStream(id: user.uid).listen((event) {
-                            CurrentUserModel.instance.firebaseKey=firebaseToken;
-                            _userService.setUser(CurrentUserModel.instance);
                           });
                           return MySplashScreen();
                         } else {
@@ -148,6 +146,6 @@ class PrevisScreen extends StatefulWidget {
 class _PrevisScreenState extends State<PrevisScreen> {
   @override
   Widget build(BuildContext context) {
-    return CurrentUserModel.instance.custionsCompleted?Home():QuestionsScreen();
+    return CurrentUserModel.instance.custionsCompleted??false?Home():QuestionsScreen();
   }
 }

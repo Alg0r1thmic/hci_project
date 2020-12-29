@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -9,6 +10,7 @@ import '../services/user_service.dart';
 enum Status { Uninitialized, Authenticated, Authenticating, GoogleAuthenticating, Unauthenticated, Registering }
 
 class AuthProvider extends ChangeNotifier {
+
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email'],
   );
@@ -70,12 +72,14 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void _setSensorsToUserAndUpdate(String id,String email,String user) {
+  void _setSensorsToUserAndUpdate(String id,String email,String user) async{
     UserService _userService = UserService();
+    final token = CurrentUserModel.instance.firebaseKey;
     CurrentUserModel _user = CurrentUserModel(id:id, email: email, userName: user);
     final _sensorService = SensorService();
     _sensorService.sensorsStream().listen((event) {
       CurrentUserModel.instance.sensors = event;
+      CurrentUserModel.instance.firebaseKey=token;
       _userService.setUser(_user);
     });
   }

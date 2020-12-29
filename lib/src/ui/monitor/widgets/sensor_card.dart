@@ -210,6 +210,10 @@ class SensorCardState extends State<SensorCard> {
           dotData: FlDotData(
             show: false,
           ),
+          isStepLineChart: false,
+          lineChartStepData: LineChartStepData(
+            stepDirection: 12
+          ),
           belowBarData: BarAreaData(
             show: true,
             colors:

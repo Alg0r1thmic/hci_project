@@ -1,5 +1,11 @@
 
+import 'dart:async';
+
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/core/routes/routes.dart';
+import 'package:health_body_checking/src/providers/water_challenge_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../models/challenge_model.dart';
@@ -37,6 +43,7 @@ class ChallengeContainer extends StatefulWidget {
 }
 
 class ChallengeContainerState extends State<ChallengeContainer> {
+  Timer timer;
 
   @override
   Widget build(BuildContext context) {
@@ -183,19 +190,15 @@ class ChallengeContainerState extends State<ChallengeContainer> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Center(
-            child: Image.asset(
-              'assets/images/trophy_color.png',
-              width: 80,
-              height: 80,
-              color: AppColors.ORANGE,
-            )),
-        Text(
+          Expanded(child: FlareActor("assets/animation/trophy.flr", alignment: Alignment.center, fit: BoxFit.contain, animation: "Untitled")),    
+          Text(
           '¡Terminaste este reto!',
           textAlign: TextAlign.center,
           style: TextStyle(color: AppColors.WHITE, fontSize: 18),
         ),
-        _timeInfoContainer()
+
+        _timeInfoContainer(),
+        SizedBox(height: 200,),
       ],
     );
   }
@@ -255,16 +258,24 @@ class ChallengeContainerState extends State<ChallengeContainer> {
   String getText() {
     return (!challenges[widget.index].isComplete()) ? '¿Lograste terminar el reto hoy?' : '¡Lo lograste!';
   }
-
+  void _navigatePop() {
+      Navigator.pop(context);
+      timer?.cancel();
+    }
   Widget _madeButton() {
+    final mapsProvider=Provider.of<ChallengeCompleProvider>(context);
+
     return InkWell(
       onTap: () {
         if (challenges[widget.index].days.currentDay < 7) {
+
           setState(() {
             if (challenges[widget.index].days.currentDay == 6) {
               challenges[widget.index].progress = false;
               if (challenges.length != widget.index)  challenges[widget.index + 1].enable = true;
               updateState(States.COMPLETE);
+              mapsProvider.firstChallenge=true;
+              timer = Timer(Duration(seconds: 3), () => _navigatePop());
             }
             int current = challenges[widget.index].days.currentDay;
             challenges[widget.index].days.currentDayArray[current] = false;

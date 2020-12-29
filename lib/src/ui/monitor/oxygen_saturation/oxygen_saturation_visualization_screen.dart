@@ -153,7 +153,7 @@ class _OxygenSaturationVisualizationScreenState
                           EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       child: ListTile(
                         title: Text(
-                          '${data.value.toStringAsFixed(1)}°C',
+                          '${data.value.toStringAsFixed(1)}%',
                           style: TextStyle(fontSize: 14),
                         ),
                         subtitle: Text(

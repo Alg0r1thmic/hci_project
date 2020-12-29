@@ -49,6 +49,7 @@ dependencies:
   percent_indicator: "^2.1.7+2"
   firebase_messaging: ^7.0.3
   firebase_core : ^0.5.0
+  flare_flutter: ^2.0.6
 
   flutter_localizations:
     sdk: flutter
@@ -73,6 +74,7 @@ flutter:
    - assets/fonts/
    - assets/images/
    - assets/CustomIcons/
+   - assets/animation/
    - lang/
 
   # An image asset can refer to one or more resolution-specific "variants", see

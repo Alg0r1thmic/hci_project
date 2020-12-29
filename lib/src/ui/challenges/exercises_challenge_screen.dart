@@ -153,8 +153,6 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
       child: Column(
         children: [
           SleekCircularSlider(
-            onChangeStart: (double value) {},
-            onChangeEnd: (double value) {},
             appearance: appearance03,
             min: 0,
             max: 60 *

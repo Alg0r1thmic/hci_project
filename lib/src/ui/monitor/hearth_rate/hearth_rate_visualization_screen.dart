@@ -65,7 +65,7 @@ class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationS
     else return DateTimeIntervalType.years;
   }
 
-  Widget _info() {
+    Widget _info() {
     return SingleChildScrollView( 
       child: Padding(
         padding: EdgeInsets.only(left: 10,right: 10),
@@ -74,35 +74,47 @@ class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationS
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Causas:',
+              'Información importante:',
               style: TextStyle(
                   color: AppColors.BLACK,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            Text('Cuando haces ejercicio tus musculos necesitan mas oxigeno y en respuesta a ello el corazon bombea mas sangre.Tambien existen situaciones de peligro que generan estres y en respuesta el corazon late mas rapido. Si no estas realizando ejercicio, entonces se trata de taquicardia y las causas podrian ser estres agudo, ataque de ansiedad, insuficiencia cardiaca, accidente cerebrovascular o un paro cardiaco.',textAlign: TextAlign.justify,),
+            Text("En adultos los valores normales estan entre 60 a 80 pulsaciones/min Los latidos del corazon se incrementa en respuesta a la necesidad del cuerpo por recibir más oxigeno o nutrientes. Recomendaciones valores menores a 60 .Si sientes que te desvances, tienes dificultades para respirar o sientes dolor en el pecho durante más de unos minutos, avisa a alguien cercano y llama al numero de emergencias o acude de inmediato a un centro de salud.",textAlign: TextAlign.justify,),
             Text(
-              'Consecuencias:',
+              'Recomendaciones valores menores a 60:',
               style: TextStyle(
                   color: AppColors.BLACK,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            Text('Se considera normal que el ritmo de los latidos de tu corazon varíen a lo largo del día, respondiendo a distintas actividades y emociones.Sin embargo si estas variaciones no son casua de ejercicio o alguna situacion de estres leve. Entonces la taquicardia podria poner en riesgo tu salud o tu vida.',textAlign: TextAlign.justify,),
+            Text('Si sientes que te desvances, tienes dificultades para respirar o sientes dolor en el pecho durante más de unos minutos, avisa a alguien cercano y llama al numero de emergencias o acude de inmediato a un centro de salud.',textAlign: TextAlign.justify,),
             Text(
-              'Recomendaciones:',
+              'Recomendaciones valores sobre 80:',
               style: TextStyle(
                   color: AppColors.BLACK,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            Text('Si la taquicardia no es causada por ejercicio, una situaicon de estres leve, entonces deberias acudir a un centro de salud. Para atender esta situacion anormal.',textAlign: TextAlign.justify,),
-            
+            Text('¿Estas realizando ejercicio o acabas de pasar por alguna situacion de estres leve?',textAlign: TextAlign.justify,),
+            RichText(text:TextSpan(
+              children: [
+                TextSpan(text: 'Si  ',style: TextStyle(color: AppColors.BLACK,fontWeight: FontWeight.bold)),
+                TextSpan(text: 'entonces es normal descansando pasara.',style: TextStyle(color: AppColors.BLACK))
+              ]
+            )),
+            RichText(text:TextSpan(
+              children: [
+                TextSpan(text: 'No  ',style: TextStyle(color: AppColors.BLACK,fontWeight: FontWeight.bold)),
+                TextSpan(text: 'entonces podrias tener algun problema cardiaco u otro que pone en riesgo tu salud o tu vida debes acudir a un centro de salud.',style: TextStyle(color: AppColors.BLACK))
+              ]
+            ))
           ],
         ),
       ),
     );
   }
+
 
   Widget _intervalSelector() {
     return Container(
@@ -159,7 +171,7 @@ class _HearthRateVisualizationScreenState extends State<HearthRateVisualizationS
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       child: ListTile(
                         title: Text(
-                          '${data.value.toStringAsFixed(1)}°C',
+                          '${data.value.toStringAsFixed(1)}°lpm',
                           style: TextStyle(fontSize: 14),
                         ),
                         subtitle: Text(

@@ -169,7 +169,7 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
         ),
         RichText(
           text: TextSpan(
-            style: TextStyle(fontSize: 30, color: Colors.black),
+            style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(
                   text: '¿Cuantas ',
@@ -190,9 +190,13 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
           value: _currentSliderValue,
           interval: 1,
           showLabels: true,
+          showTicks: true,
+          showDivisors: true,
+          enableTooltip: true,
           onChanged: (dynamic value) {
             setState(() {
-              _currentSliderValue = value;
+              int val=value.toInt();
+              _currentSliderValue = val.toDouble();
             });
           },
         )

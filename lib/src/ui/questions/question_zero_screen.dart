@@ -101,22 +101,27 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
             ),
           ),
 
-          SizedBox(height: 25,),
+          SizedBox(height: 30,),
 
           RichText(
             text:
             TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
               children: <TextSpan>[
-                TextSpan(text: 'Talla ', style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: 'en centimetros:', style: TextStyle(fontWeight: FontWeight.normal)),
+                TextSpan(text: '¿Cuantos ', style: TextStyle(fontWeight: FontWeight.normal)),
+                TextSpan(text: 'centimetros ', style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: 'de altura mide?', style: TextStyle(fontWeight: FontWeight.normal)),
               ],
             ),
           ),
 
           TextFormField(
             controller: _estaturaString,
-            decoration: new InputDecoration(hintText: "Ingrese su talla en centimetros."),
+            decoration: new InputDecoration(
+              hintText: "Ingrese su talla en centimetros.",
+              suffixText: "cm"
+            ),
             keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.next,
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly
             ],
@@ -130,22 +135,28 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
             }, // Only numbers can be entered
           ),
 
-          SizedBox(height: 25,),
+          SizedBox(height: 30,),
 
           RichText(
             text:
             TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
               children: <TextSpan>[
-                TextSpan(text: 'Edad ', style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: 'en años:', style: TextStyle(fontWeight: FontWeight.normal)),
+                TextSpan(text: '¿Cuantos ', style: TextStyle(fontWeight: FontWeight.normal)),
+                TextSpan(text: 'años', style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: ' tiene?', style: TextStyle(fontWeight: FontWeight.normal))
               ],
             ),
           ),
 
+
           TextFormField(
             controller: _edadString,
-            decoration: new InputDecoration(hintText: "Ingrese su edad en años."),
+            decoration: new InputDecoration(
+              hintText: "Ingrese su edad en años.",
+              suffixText: "años"
+            ),
             keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.done,
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly
             ],

@@ -96,8 +96,8 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: '¿Cuantas ', style: TextStyle(fontWeight: FontWeight.normal)),
-              TextSpan(text: 'veces a la semana ', style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: 'realizas actividad fisica? ', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: 'veces a la semana realizas ', style: TextStyle(fontWeight: FontWeight.normal)),
+              TextSpan(text: 'actividad fisica? ', style: TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
           textAlign: TextAlign.center,

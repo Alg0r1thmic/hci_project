@@ -18,4 +18,8 @@ class FirestorePath {
   static String exerciseChallenges()=>'exerciseChallenges';
   static String exerciseQuestion(String id) => 'exerciseQuestions/$id';
   static String exerciseQuestions()=>'exerciseQuestions';
+  static String waterChallenge(String id) => 'waterChallenges/$id';
+  static String waterChallenges()=>'waterChallenges';
+
+
 }

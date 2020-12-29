@@ -66,7 +66,7 @@ class PushNotificationsProvider {
     // print('argumento: $argumento');
     String argumento = 'no-data';
     
-      argumento = message['data']['comida'] ?? 'no-data';
+    argumento = message['data']['comida'] ?? 'no-data';
 
 
     _mensajesStreamController.sink.add( argumento );
@@ -75,11 +75,11 @@ class PushNotificationsProvider {
   Future<dynamic> onResume(Map<String, dynamic> message) async {
 
     print('====== onResume ====== ');
-    // print('message: $message');
+     print('message: $message');
     // print('argumento: $argumento');
     String argumento = 'no-data';
     
-      argumento = message['data']['comida'] ?? 'no-data';
+    argumento = message['data']['comida'] ?? 'no-data';
     
     _mensajesStreamController.sink.add( argumento );
 

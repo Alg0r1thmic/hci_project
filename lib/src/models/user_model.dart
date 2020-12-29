@@ -59,6 +59,8 @@ class CurrentUserModel {
   double weight;
   double height;
   bool custionsCompleted;
+  String firebaseKey;
+  int glassOfWaterPerDay;
   List<SensorModel> sensors;
   factory CurrentUserModel.fromJson(Map<String, dynamic> json) {
     _instance.id = json["id"];
@@ -73,10 +75,10 @@ class CurrentUserModel {
     _instance.country = json["country"];
     _instance.weight = (json["weight"]!=null)?json["weight"].toDouble():null;
     _instance.height = (json["height"]!=null)?json["height"].toDouble():null;
-    
+    _instance.firebaseKey=json["firebaseKey"];
     _instance.custionsCompleted= json["custionsCompleted"];
-    
     _instance.sensors =(json["sensors"]!=null)?List<SensorModel>.from(json["sensors"].map((x) => SensorModel.fromJson(x))):null;
+    _instance.glassOfWaterPerDay=json["  int glassOfWaterPerDay"];
     return _instance;
   }
   factory CurrentUserModel({
@@ -93,7 +95,9 @@ class CurrentUserModel {
     double weight,
     double height,
     bool cuestionsCompleted=false,
+    String firebaseKey,
     List<SensorModel> sensors,
+    int glassOfWaterPerDay
   }) {
     _instance.id = id;
     _instance.email = email;
@@ -109,6 +113,8 @@ class CurrentUserModel {
     _instance.height = height;
     _instance.sensors = sensors;
     _instance.custionsCompleted=cuestionsCompleted;
+    _instance.firebaseKey=firebaseKey;
+    _instance.glassOfWaterPerDay=glassOfWaterPerDay;
     return _instance;
   }
   Map<String, dynamic> toJson() => {
@@ -125,6 +131,8 @@ class CurrentUserModel {
         "weight": weight,
         "height": height,
         "custionsCompleted":custionsCompleted,
+        "firebaseKey":firebaseKey,
+        "glassOfWaterPerDay":glassOfWaterPerDay,
         "sensors": (sensors!=null)?List<dynamic>.from(sensors.map((x) => x.toJson())):null,
       };
   

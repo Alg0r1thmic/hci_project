@@ -84,19 +84,23 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
           textAlign: TextAlign.center,
         ),
 
+        
         SfSlider(
           min: 0.0,
           max: 6.0,
           value: _currentSliderValue,
           interval: 1,
           showLabels: true,
+          showTicks: true,
+          showDivisors: true,
+          enableTooltip: true,
           onChanged: (dynamic value) {
             setState(() {
-              _currentSliderValue = value;
+              int val=value.toInt();
+              _currentSliderValue = val.toDouble();
             });
           },
-        )
-
+        ),
 
 
       ],

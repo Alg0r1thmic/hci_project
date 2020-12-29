@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:health_body_checking/src/models/user_model.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import 'widgets/next_or_back_button.dart';
@@ -14,7 +15,7 @@ class QuestionOneScreen extends StatefulWidget {
 }
 
 class _QuestionOneScreenState extends State<QuestionOneScreen> {
-  double _currentSliderValue = 0;
+  double _currentSliderValue = CurrentUserModel.instance.glassOfWaterPerDay!=null?CurrentUserModel.instance.glassOfWaterPerDay.toDouble():0;
 
   @override
   Widget build(BuildContext context) {
@@ -79,18 +80,23 @@ class _QuestionOneScreenState extends State<QuestionOneScreen> {
           ),
           textAlign: TextAlign.center,
         ),
-        SfSlider(
+         SfSlider(
           min: 0.0,
           max: 8.0,
-          value: _currentSliderValue,
+          value: CurrentUserModel.instance.glassOfWaterPerDay!=null?CurrentUserModel.instance.glassOfWaterPerDay.toDouble():_currentSliderValue,
           interval: 1,
           showLabels: true,
+          showTicks: true,
+          showDivisors: true,
+          enableTooltip: true,
           onChanged: (dynamic value) {
             setState(() {
-              _currentSliderValue = value;
-          });
+              int val=value.toInt();
+              _currentSliderValue = val.toDouble();
+              CurrentUserModel.instance.glassOfWaterPerDay=val;
+            });
           },
-        )
+        ),
 
       ],
     );

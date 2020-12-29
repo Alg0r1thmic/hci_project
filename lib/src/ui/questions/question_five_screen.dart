@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/models/exercise_challenge_model.dart';
 import 'package:health_body_checking/src/models/exercise_question_model.dart';
 import 'package:health_body_checking/src/models/user_model.dart';
+import 'package:health_body_checking/src/models/water_challenge_model.dart';
 import 'package:health_body_checking/src/services/exercise_callenge_service.dart';
 import 'package:health_body_checking/src/services/exercise_question_service.dart';
+import 'package:health_body_checking/src/services/user_service.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../constants/app_colors.dart';
@@ -29,9 +31,11 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
   ExerciseChallengeModel _exerciseChallengeModel;
   ExerciseQuestionModel _exerciseQuestionModel;
 
+  UserService _userService;
   @override
   void initState() {
     super.initState();
+    _userService=UserService();
     _service = ExerciseChallengeService();
     _exerciseQuestionService = ExerciseQuestionService();
   }
@@ -44,6 +48,7 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
       this._exerciseQuestionModel = event[0];
       _generateList(this._exerciseQuestionModel);
     });
+    this._userService.setUser(CurrentUserModel.instance);
   }
 
   _generateList(ExerciseQuestionModel model) async {
@@ -79,6 +84,18 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
     this._service.createOne(_exerciseChallengeModel);
   }
 
+  void _generateWaterChallenge(){
+    List<WaterChallenge> _list;
+    List<ChallengePerWeek> _listWeek;
+
+    for (var i = 0; i < 7; i++) {
+      _listWeek.add(ChallengePerWeek());
+    }
+    for (var i = CurrentUserModel.instance.glassOfWaterPerDay+1; i <= 8; i++) {
+      _list.add(WaterChallenge(challengePerWeek: _listWeek,amount:i ));
+    }
+    print(_list);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,8 +132,9 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
     return InkWell(
       onTap: () {
         this._createExerciseChallenges();
-        CurrentUserModel.instance.custionsCompleted=true;
-        Navigator.of(context).pushReplacementNamed(Routes.home);
+        this._generateWaterChallenge();
+        //CurrentUserModel.instance.custionsCompleted=true;
+        //Navigator.of(context).pushReplacementNamed(Routes.home);
       },
       child: Container(
         width: 90,

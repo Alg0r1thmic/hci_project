@@ -196,7 +196,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
               },
             ),
           ),
-        (index%2==0)?Image.asset('assets/images/arrow1.png',):Image.asset('assets/images/arrow2.png',fit: BoxFit.cover,),
+        (index%2==0)?Image.asset('assets/images/arrow1.png',color:_exerciseChallengeModel.challenges[index>1?index-2:index].completed?AppColors.PRIMARY:AppColors.GREY,width: 50,height: 50,):Image.asset('assets/images/arrow2.png',fit: BoxFit.cover,color:_exerciseChallengeModel.challenges[index>1?index-2:index].completed?AppColors.PRIMARY:AppColors.GREY,width: 50,height: 50,),
       ],
     );
   }

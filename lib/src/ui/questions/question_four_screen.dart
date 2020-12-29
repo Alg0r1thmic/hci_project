@@ -27,13 +27,24 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
   void initState() { 
     super.initState();
     _service=ExerciseQuestionService();
+    _getQuestion();
   }
   double _currentSliderValue = 2;
   void _saveData()async{
     _model=ExerciseQuestionModel(id: DateTime.now().toIso8601String(),userId: CurrentUserModel.instance.id,days: _currentSliderValue.toInt(),minuts:int.parse(_controller.text));
     await _service.createOne(_model);
   }
-
+  void _getQuestion(){
+     _service.findByUserId(userId: CurrentUserModel.instance.id).listen((event) {
+       if(event.length>0){
+        _model=event[0];
+        _currentSliderValue=_model.days.toDouble();
+        _controller.text=_model.minuts.toString();
+       }
+    });
+    setState(() {  
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,9 +109,13 @@ class _QuestionFourScreenState extends State<QuestionFourScreen> {
           value: _currentSliderValue,
           interval: 1,
           showLabels: true,
+          showTicks: true,
+          showDivisors: true,
+          enableTooltip: true,
           onChanged: (dynamic value) {
             setState(() {
-              _currentSliderValue = value;
+              int val=value.toInt();
+              _currentSliderValue = val.toDouble();
             });
           },
         ),

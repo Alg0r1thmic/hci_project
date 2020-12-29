@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:health_body_checking/src/models/user_model.dart';
 
 import 'widgets/next_or_back_button.dart';
 import 'widgets/pagination.dart';
@@ -22,6 +23,7 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
   String _myAccountState = "Account Enabled";
   int _value = 1;
   SexOption _character = SexOption.Hombre;
+  final _formKey = GlobalKey<FormState>();
 
 
   Widget build(BuildContext context) {
@@ -46,7 +48,13 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         NextOrBackButton(
-          inputFunction: widget.onGoToNextQuestion,
+          inputFunction: (){
+            if(_formKey.currentState.validate()){
+              CurrentUserModel.instance.age=int.parse(_edadString.text);
+              CurrentUserModel.instance.height=double.parse(_estaturaString.text);
+              widget.onGoToNextQuestion();
+            }
+          },
           icon: Icons.east,
         )
       ],
@@ -54,85 +62,102 @@ class _QuestionZeroScreenState extends State<QuestionZeroScreen> {
   }
 
   Widget _content() {
-    return ListView(
-      children: [
-        RichText(
-          text:
-          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
-            children: <TextSpan>[
-              TextSpan(text: 'Sexo', style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: ':', style: TextStyle(fontWeight: FontWeight.normal)),
+    return Form(
+        key: _formKey,
+          child: ListView(
+        children: [
+          RichText(
+            text:
+            TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
+              children: <TextSpan>[
+                TextSpan(text: 'Sexo', style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: ':', style: TextStyle(fontWeight: FontWeight.normal)),
+              ],
+            ),
+          ),
+
+          ListTile(
+            title: const Text('Hombre'),
+            leading: Radio(
+              value: SexOption.Hombre,
+              groupValue: _character,
+              onChanged: (SexOption value) {
+                setState(() {
+                  _character = value;
+                });
+              },
+            ),
+          ),
+          ListTile(
+            title: const Text('Mujer'),
+            leading: Radio(
+              value: SexOption.Mujer,
+              groupValue: _character,
+              onChanged: (SexOption value) {
+                setState(() {
+                  _character = value;
+                });
+              },
+            ),
+          ),
+
+          SizedBox(height: 25,),
+
+          RichText(
+            text:
+            TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
+              children: <TextSpan>[
+                TextSpan(text: 'Talla ', style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: 'en centimetros:', style: TextStyle(fontWeight: FontWeight.normal)),
+              ],
+            ),
+          ),
+
+          TextFormField(
+            controller: _estaturaString,
+            decoration: new InputDecoration(hintText: "Ingrese su talla en centimetros."),
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
             ],
+            validator:(value){
+              if(value.isEmpty){
+                return 'Ingrese su talla';
+              }
+              else{
+                return null;
+              }
+            }, // Only numbers can be entered
           ),
-        ),
 
-        ListTile(
-          title: const Text('Hombre'),
-          leading: Radio(
-            value: SexOption.Hombre,
-            groupValue: _character,
-            onChanged: (SexOption value) {
-              setState(() {
-                _character = value;
-              });
-            },
+          SizedBox(height: 25,),
+
+          RichText(
+            text:
+            TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
+              children: <TextSpan>[
+                TextSpan(text: 'Edad ', style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: 'en años:', style: TextStyle(fontWeight: FontWeight.normal)),
+              ],
+            ),
           ),
-        ),
-        ListTile(
-          title: const Text('Mujer'),
-          leading: Radio(
-            value: SexOption.Mujer,
-            groupValue: _character,
-            onChanged: (SexOption value) {
-              setState(() {
-                _character = value;
-              });
-            },
-          ),
-        ),
 
-        SizedBox(height: 25,),
-
-        RichText(
-          text:
-          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
-            children: <TextSpan>[
-              TextSpan(text: 'Talla ', style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: 'en centimetros:', style: TextStyle(fontWeight: FontWeight.normal)),
+          TextFormField(
+            controller: _edadString,
+            decoration: new InputDecoration(hintText: "Ingrese su edad en años."),
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
             ],
+            validator: (value){
+              if(value.isEmpty){
+                return 'Ingrese su edad';
+              }
+              return null;
+            }, // Only numbers can be entered
           ),
-        ),
-
-        TextField(
-          controller: _estaturaString,
-          decoration: new InputDecoration(hintText: "Ingrese su talla en centimetros."),
-          keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ], // Only numbers can be entered
-        ),
-
-        SizedBox(height: 25,),
-
-        RichText(
-          text:
-          TextSpan(style: TextStyle(fontSize: 20, color: Colors.black),
-            children: <TextSpan>[
-              TextSpan(text: 'Edad ', style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: 'en años:', style: TextStyle(fontWeight: FontWeight.normal)),
-            ],
-          ),
-        ),
-
-        TextField(
-          controller: _edadString,
-          decoration: new InputDecoration(hintText: "Ingrese su edad en años."),
-          keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ], // Only numbers can be entered
-        ),
-      ],
+        ],
+      ),
     );
   }
 

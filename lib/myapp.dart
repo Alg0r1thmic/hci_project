@@ -129,6 +129,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       ),
       image: new Image.asset('assets/images/logoApp2.png',width:400.0,height: 400.0),
       backgroundColor: Colors.white,
+      photoSize: 100.0,
       loaderColor: Colors.red,
     );
   }

@@ -35,7 +35,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   void _switchForm(int page) {
     _pageController.animateToPage(page, duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
   }
-
   @override
   Widget build(BuildContext context) {
     return PageView(
@@ -81,7 +80,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         ),
         QuestionFiveScreen(
           onGoToBackQuestion: () {
-            _switchForm(QuestionIndex.QUESTION_ZERO);
+            _switchForm(QuestionIndex.QUESTION_FOUR);
           },
         )
       ],

@@ -20,6 +20,29 @@ class QuestionThreeScreen extends StatefulWidget {
 class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
   double _currentSliderValue = 3;
 
+  Future<void> _showMyDialog(String content) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Ayuda'),
+          content: ListTile(
+            title: Text(content),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cerrar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +51,18 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        icon: Icon(Icons.help_outline_rounded),
+                        onPressed: () {
+                          _showMyDialog("Por favor ingresa la informacion real, por que esta sirve para establecer el punto de partida en el proceso de adquirir nuevos habitos.\nLa informacion solicitada es unicamente para realizar calculos necesarios para obtener indicadores como IMC y para establecer un punto de partida para los retos propuestos con la finalidad de ayudarte a adquirr un nuevo habito.");
+                        }
+                    )
+                    //DialogHelp(context: this.context, content: "Por favor ingresa la informacion real, por que esta sirve para establecer el punto de partida en el proceso de adquirir nuevos habitos.\nLa informacion solicitada es unicamente para realizar calculos necesarios para obtener indicadores como IMC y para establecer un punto de partida para los retos propuestos con la finalidad de ayudarte a adquirr un nuevo habito.")
+                  ],
+                ),
                 PaginationText(total: 6, actual: 4),
                 Expanded(child: SizedBox(child: _content(),)),
                 _questionsChangeButton(),

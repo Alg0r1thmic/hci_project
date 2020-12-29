@@ -134,6 +134,18 @@
       "languageVersion": "2.6"
     },
     {
+      "name": "flare_dart",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/flare_dart-2.3.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "flare_flutter",
+      "rootUri": "file:///home/serlog/flutter/.pub-cache/hosted/pub.dartlang.org/flare_flutter-2.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///home/serlog/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -506,7 +518,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-28T22:11:41.355201Z",
+  "generated": "2020-12-29T14:26:39.706838Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

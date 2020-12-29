@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:health_body_checking/src/providers/push_notification_provider.dart';
+import 'package:health_body_checking/src/providers/water_challenge_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'flavor.dart';
@@ -40,7 +41,7 @@ void main() async{
           Provider<TemperatureService>(create: (_) =>TemperatureService()),
           Provider<HearthRateService>(create: (_) =>HearthRateService()),
           Provider<OxygenSaturationService>(create: (_) =>OxygenSaturationService()),
-
+          ChangeNotifierProvider(create: (_)=>ChallengeCompleProvider()),
         ],
         child: MyApp(
           //databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),

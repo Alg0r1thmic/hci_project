@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:health_body_checking/src/models/user_model.dart';
 
 class PushNotificationsProvider {
   
@@ -27,10 +28,9 @@ class PushNotificationsProvider {
   }
 
   initNotifications() async {
-
     await _firebaseMessaging.requestNotificationPermissions();
     final token = await _firebaseMessaging.getToken();
-
+    CurrentUserModel.instance.firebaseKey=token;
     print('==== FCM Token ======');
     print( token );
 

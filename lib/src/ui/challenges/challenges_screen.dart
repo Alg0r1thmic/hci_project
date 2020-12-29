@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:health_body_checking/src/models/challenge_model.dart';
 import 'package:health_body_checking/src/models/exercise_challenge_model.dart';
 import 'package:health_body_checking/src/models/user_model.dart';
+import 'package:health_body_checking/src/providers/water_challenge_provider.dart';
 import 'package:health_body_checking/src/services/exercise_callenge_service.dart';
 import 'package:health_body_checking/src/ui/challenges/exercises_challenge_screen.dart';
 import 'package:health_body_checking/src/utils/hex_color.dart';
+import 'package:provider/provider.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../constants/app_colors.dart';
@@ -193,12 +195,14 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
   }
 
   Widget _feeding() {
+    final callengeProvider=Provider.of<ChallengeCompleProvider>(context);
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            currentChallenge==null? FeedingChallengeContainer(
+            callengeProvider.firstChallenge==false? FeedingChallengeContainer(
               contentText: 'Empecemos el habito de tomar agua',
               imagePath: 'assets/images/water-glass.png',
               inputFunction: () {

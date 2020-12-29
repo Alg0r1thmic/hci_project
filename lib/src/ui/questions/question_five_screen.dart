@@ -6,6 +6,7 @@ import 'package:health_body_checking/src/models/water_challenge_model.dart';
 import 'package:health_body_checking/src/services/exercise_callenge_service.dart';
 import 'package:health_body_checking/src/services/exercise_question_service.dart';
 import 'package:health_body_checking/src/services/user_service.dart';
+import 'package:health_body_checking/src/services/water_challenge_service.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../constants/app_colors.dart';
@@ -30,13 +31,14 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
   ExerciseQuestionService _exerciseQuestionService;
   ExerciseChallengeModel _exerciseChallengeModel;
   ExerciseQuestionModel _exerciseQuestionModel;
-
+  WaterChallengeService _waterChallengeService;
   UserService _userService;
   @override
   void initState() {
     super.initState();
     _userService=UserService();
     _service = ExerciseChallengeService();
+    _waterChallengeService=WaterChallengeService();
     _exerciseQuestionService = ExerciseQuestionService();
   }
 
@@ -48,6 +50,7 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
       this._exerciseQuestionModel = event[0];
       _generateList(this._exerciseQuestionModel);
     });
+    CurrentUserModel.instance.custionsCompleted=true;
     this._userService.setUser(CurrentUserModel.instance);
   }
 
@@ -85,16 +88,20 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
   }
 
   void _generateWaterChallenge(){
-    List<WaterChallenge> _list;
-    List<ChallengePerWeek> _listWeek;
+    print(CurrentUserModel.instance);
+    List<WaterChallenge> _list=[];
+    List<ChallengePerWeek> _listWeek=[];
 
     for (var i = 0; i < 7; i++) {
+      if(i==0)
+        _listWeek.add(ChallengePerWeek(currentDay: true));
       _listWeek.add(ChallengePerWeek());
     }
     for (var i = CurrentUserModel.instance.glassOfWaterPerDay+1; i <= 8; i++) {
       _list.add(WaterChallenge(challengePerWeek: _listWeek,amount:i ));
     }
-    print(_list);
+    WaterChallengeModel _waterChallengeModel=WaterChallengeModel(waterChallenges: _list,id: DateTime.now().toIso8601String(),userId: CurrentUserModel.instance.id);
+    this._waterChallengeService.createOne(_waterChallengeModel);
   }
   @override
   Widget build(BuildContext context) {
@@ -133,8 +140,7 @@ class _QuestionFiveScreenState extends State<QuestionFiveScreen> {
       onTap: () {
         this._createExerciseChallenges();
         this._generateWaterChallenge();
-        //CurrentUserModel.instance.custionsCompleted=true;
-        //Navigator.of(context).pushReplacementNamed(Routes.home);
+        Navigator.of(context).pushReplacementNamed(Routes.home);
       },
       child: Container(
         width: 90,

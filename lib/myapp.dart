@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'src/constants/app_font_family.dart';
 import 'src/models/user_model.dart';
@@ -81,7 +82,10 @@ class MyApp extends StatelessWidget {
                           final UserModel user = userSnapshot.data;
                           CurrentUserModel(email: user.email, id: user.uid);
                           UserService _userService = UserService();
+                          String firebaseToken=CurrentUserModel.instance.firebaseKey;
                           _userService.userStream(id: user.uid).listen((event) {
+                            CurrentUserModel.instance.firebaseKey=firebaseToken;
+                            _userService.setUser(CurrentUserModel.instance);
                           });
                           return MySplashScreen();
                         } else {
@@ -121,7 +125,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 5,
+      seconds: 3,
       navigateAfterSeconds:PrevisScreen(),
       title: new Text(
         'Welcome to HealthBodyChecking',
@@ -130,7 +134,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       image: new Image.asset('assets/images/logoApp2.png',width:400.0,height: 400.0),
       backgroundColor: Colors.white,
       photoSize: 100.0,
-      loaderColor: Colors.red,
+      loaderColor: AppColors.PRIMARY_DARK,
     );
   }
 }

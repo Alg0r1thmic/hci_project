@@ -78,7 +78,7 @@ class CurrentUserModel {
     _instance.firebaseKey=json["firebaseKey"];
     _instance.custionsCompleted= json["custionsCompleted"];
     _instance.sensors =(json["sensors"]!=null)?List<SensorModel>.from(json["sensors"].map((x) => SensorModel.fromJson(x))):null;
-    _instance.glassOfWaterPerDay=json["  int glassOfWaterPerDay"];
+    _instance.glassOfWaterPerDay=json["glassOfWaterPerDay"];
     return _instance;
   }
   factory CurrentUserModel({

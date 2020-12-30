@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:health_body_checking/src/constants/app_colors.dart';
 import 'package:health_body_checking/src/models/exercise_challenge_model.dart';
 import 'package:health_body_checking/src/services/exercise_callenge_service.dart';
@@ -28,8 +30,9 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
   double minuts;
   double seconds = 00;
   Color color = AppColors.GREY;
-  String text = '😄 tu puedes!!!';
+  String text = 'Tu puedes!! 💪😀';
   double _currentSeconds = 0;
+  bool showMessage = false;
   @override
   void initState() {
     _service = ExerciseChallengeService();
@@ -52,7 +55,7 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
             color: HexColor('#002D43'),
             fontSize: 20,
             fontWeight: FontWeight.w700),
-        bottomLabelText: '😄 Tu puedes',
+        bottomLabelText: 'Tu puedes!! 💪😀',
         mainLabelStyle: TextStyle(
             color: Color.fromRGBO(97, 169, 210, 1),
             fontSize: 30.0,
@@ -66,29 +69,37 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(226, 226, 226, 1),
-      appBar: AppBar(
-        title: Text('Reto actual',style: TextStyle(color: AppColors.BLACK),),
-        backgroundColor: AppColors.WHITE,
-        leading: MaterialButton(
-            onPressed: () {
-              if(_currentSeconds>0){
-                _showMessageDialog(title: 'salir',content: 'Recuerda que aun no has terminado el reto y tu progreso se perdera');
-              }
-              else{
-                Navigator.of(context).pop();
-              }
-            },
-            child: Icon(Icons.arrow_back,color: AppColors.BLACK),
-          )
-      ),
-      body: Column(
-        children: [
-          _infoCard(),
-          _startChallengeCard(),
-        ],
-      ),
-    );
+        backgroundColor: Color.fromRGBO(226, 226, 226, 1),
+        appBar: AppBar(
+            title: Text(
+              'Reto actual',
+              style: TextStyle(color: AppColors.BLACK),
+            ),
+            backgroundColor: AppColors.WHITE,
+            leading: MaterialButton(
+              onPressed: () {
+                if (_currentSeconds > 0) {
+                  _showMessageDialog(
+                      title: 'salir',
+                      content:
+                          'Recuerda que aun no has terminado el reto y tu progreso se perdera');
+                } else {
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Icon(Icons.arrow_back, color: AppColors.BLACK),
+            )),
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                _infoCard(),
+                _startChallengeCard(),
+              ],
+            ),
+            (showMessage) ? _showMessage() : SizedBox(),
+          ],
+        ));
   }
 
   Widget _infoCard() {
@@ -167,6 +178,7 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Text('Quedan'),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -222,10 +234,8 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
                       .exerciseChallengeModel.challenges[widget.index].minuts
                       .toDouble();
                   this.seconds = 0;
-                  this._currentSeconds=0;
-                  setState(() {
-                    
-                  });
+                  this._currentSeconds = 0;
+                  setState(() {});
                 },
                 color: HexColor('#9B9B9B'),
                 child: Text('Resetear'),
@@ -264,13 +274,15 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
       widget.exerciseChallengeModel.challenges[widget.index].currentDay++;
     }
     await this._service.createOne(widget.exerciseChallengeModel);
-    _currentTimer = Timer(Duration(seconds: 2), () => _natigateToHome());
+    _natigateToHome();
   }
-  void _goBack(){
+
+  void _goBack() {
     _currentTimer?.cancel();
     Navigator.of(context).pop();
   }
- void _showMessageDialog({String title, String content, int index}) {
+
+  void _showMessageDialog({String title, String content, int index}) {
     // flutter defined function
     showDialog(
       barrierDismissible: false,
@@ -280,7 +292,10 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Estas seguro que quieres salir?',style: TextStyle(fontWeight: FontWeight.bold),),
+              Text(
+                'Estas seguro que quieres salir?',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ],
           ),
           content: new Text(content),
@@ -335,14 +350,112 @@ class _ExercisesChallengeScreenState extends State<ExercisesChallengeScreen> {
       },
     );
   }
- 
+
+  Widget _showMessage() {
+    return Container(
+      padding: EdgeInsets.all(50),
+      decoration: BoxDecoration(color: AppColors.BLACK.withOpacity(0.5)),
+      child: Column(
+        children: [
+          Container(padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: AppColors.PRIMARY,
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child: Center(child: Text('Felicidades !! , Lo lograste',style:TextStyle(color: AppColors.WHITE,fontSize: 18),))),
+          Expanded(
+              child: FlareActor("assets/animation/trophy.flr",
+                  alignment: Alignment.center,
+                  fit: BoxFit.contain,
+                  animation: "Untitled")),
+          InkWell(
+            onTap: (){
+              FlutterRingtonePlayer.stop();
+              _navigateToBack();
+            },
+            child: Container(
+              width: 100,
+              height: 50,
+              decoration: BoxDecoration(color: AppColors.PRIMARY,
+              borderRadius: BorderRadius.circular(10)
+              ),
+              child: Center(child: Text('✖ Salir',style: TextStyle(color: AppColors.WHITE,fontWeight: FontWeight.bold,fontSize: 18),)),
+            ),
+          ),
+          
+        ],
+      ),
+    );
+  }
+
   void _natigateToHome() {
     _currentTimer?.cancel();
-    Navigator.pop(context);
+    FlutterRingtonePlayer.playAlarm();
+    showMessage=true;
+    setState(() {
+      
+    });
+    //avigator.pop(context);
   }
-  
+
+  void _navigateToBack() {
+    Navigator.of(context).pop();
+  }
+
+  void _showValidateMessage(String text) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Column(
+              children: [
+                Icon(
+                  Icons.info,
+                  color: Colors.yellow,
+                  size: 30,
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Text(
+                  text,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            content: Column(
+              children: [],
+            ),
+            actions: [
+              FlatButton(
+                color: AppColors.ELECTROMACNETIC,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box,
+                      color: AppColors.PRIMARY,
+                    ),
+                    SizedBox(
+                      width: 2,
+                    ),
+                    Text(
+                      "Salir",
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  FlutterRingtonePlayer.stop();
+                  Navigator.of(context).pop();
+                  _navigateToBack();
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   @override
-  void dispose() { 
+  void dispose() {
     _currentTimer?.cancel();
     super.dispose();
   }

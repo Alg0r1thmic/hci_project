@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_body_checking/src/constants/app_colors.dart';
 
 import '../../models/sensor_model.dart';
 import '../../models/user_model.dart';
@@ -36,7 +37,14 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Configuraciones'),
+        title: Text('Configuraciones',style: TextStyle(color: AppColors.BLACK),),
+        backgroundColor: AppColors.WHITE,
+        leading: MaterialButton(
+            onPressed: () {
+                Navigator.of(context).pop();
+            },
+            child: Icon(Icons.arrow_back,color: AppColors.BLACK),
+          )
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 20, right: 20, top: 20),

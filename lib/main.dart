@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:health_body_checking/src/providers/push_notification_provider.dart';
 import 'package:health_body_checking/src/providers/water_challenge_provider.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,8 @@ void main() async{
   await Firebase.initializeApp();
   final notifications=PushNotificationsProvider();
   notifications.initNotifications();
+  FlutterRingtonePlayer.playNotification();
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown])
       .then((_) async {
     runApp(
